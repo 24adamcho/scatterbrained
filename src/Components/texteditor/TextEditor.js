@@ -35,9 +35,10 @@ class TextEditor extends Component {
     }
 
     render() {
-        const [value, setValue] = useState('');
+        //const [value, setValue] = useState('');
         return (
-            <ReactQuill modules={this.modules} placeholder='Make a new note...' value={value} onChange={setValue} />
+            //<ReactQuill modules={this.modules} placeholder='Make a new note...' value={value} onChange={setValue} /> //useState don't work
+            <ReactQuill modules={this.modules} placeholder="Make a new note..." />
         );
     }
 }
