@@ -1,27 +1,32 @@
 @import 'palette.css';
 
 .App {
-  display:grid;
-  text-align: left;
+  display:inline-flexbox;
+  flex-direction: column;
+  height:inherit;
+  width:100%;
 }
 
 .contentWrapper {
-  top:0;
+  position:absolute;
+  /* top:56px;
+  bottom:0;
   left:0;
-  width:100vw;
-  height:94vh;
+  right:0; */
+  /* height:100%; */
+  top:56px;
+  bottom:0;
+  width:100%;
 }
 
 .leftContentWrapper {
-  float:left;
-  width:50%;
+  width:100%;
   height:100%;
   background-color: var(--color-mid);
 }
 
 .rightContentWrapper {
-  float:right;
-  width:50%;
-  height:100%;  
+  width:100%;
+  height:100%;
   background-color:var(--color-high);
 }

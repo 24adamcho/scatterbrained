@@ -9,7 +9,9 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.0",
     "react-dom": "^18.2.0",
+    "react-quill": "^2.0.0",
     "react-scripts": "5.0.1",
+    "react-split-pane": "github:tomkp/react-split-pane",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

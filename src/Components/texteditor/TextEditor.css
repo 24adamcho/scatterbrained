@@ -1,0 +1,45 @@
+@import '../../palette.css';
+
+.quill {
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:100%;
+    text-wrap:wrap;
+    word-wrap: normal;
+
+    display:flex;
+    flex-direction:column;
+}
+.ql-editor {
+    overflow-wrap: break-word;
+    position:absolute;
+    width:100%;
+}
+
+.ql-toolbar {
+    border:none !important;
+    background-color:var(--color-mid);
+}
+
+.ql-picker-label::before,
+.ql-stroke,
+.ql-fill {
+    stroke:var(--color-low) !important;
+    color:var(--color-low) !important;
+}
+
+.ql-picker-options {
+    border:inset 1px var(--color-mid-trans) !important;
+    box-shadow: 4px 4px var(--color-low-trans),
+                -2px 0 var(--color-low),
+                -4px 0 var(--color-high),
+                -8px 0 var(--color-low) !important;
+    background-color: var(--color-high) !important;
+    margin-left:8px;
+}
+
+.ql-picker-item:hover {
+    color:var(--color-mid) !important;
+    text-shadow: 2px 2px var(--color-low);
+}
