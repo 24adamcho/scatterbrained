@@ -1,0 +1,27 @@
+@import '../../palette.css';
+
+.navbar {
+    background-color:var(--color-low);
+}
+.navbar-brand {
+    font-weight:bold;
+    color:var(--color-high) !important;
+    text-shadow:2px 2px var(--color-mid);
+    transition: linear 0.1s;
+}
+.navbar-brand:hover {
+    color:var(--color-high-trans) !important;
+    transition: linear 0.1s;
+}
+
+.nav-link {
+    color:var(--color-low) !important;
+    background-color:var(--color-mid) !important;
+    border-radius: 8px;
+}
+.nav-link:hover {
+    color:var(--color-high) !important;
+    background-color:var(--color-mid-trans) !important;
+}
+
+/* fucking hate how i have to spam !important everywhere, because goddamn default color schemes suck ass*/
