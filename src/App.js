@@ -28,7 +28,7 @@ function App() {
     <div className={['App', style].join(" ")}>
       <TopBar changeStyle={changeStyle}/>
       <div className="contentWrapper">
-        <SplitPane split="vertical" defaultSize={400} maxSize={-200} minSize={200}>
+        <SplitPane primary='second' split="vertical" defaultSize={400} maxSize={-200} minSize={200}>
           <div className='leftContentWrapper'>
             <GraphEditor />
           </div>
