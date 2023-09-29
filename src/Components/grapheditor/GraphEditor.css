@@ -1,0 +1,5 @@
+@import "../../palette.css";
+
+.react-flow__background>pattern>path {
+    stroke:var(--color-high-trans);
+}
