@@ -30,7 +30,7 @@ function App() {
       <div className="contentWrapper">
         <SplitPane primary='second' split="vertical" defaultSize={400} maxSize={-200} minSize={200}>
           <div className='leftContentWrapper'>
-            <GraphEditor />
+            <GraphEditor idIterator={0} nodes={[{id:"0", data:{label:"init"}, position:{x:0, y:0}}]}/>
           </div>
           <div className='rightContentWrapper'>
             <TextEditor />
