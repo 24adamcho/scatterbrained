@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import './App.css';
 
@@ -24,16 +24,20 @@ function App() {
       setStyle('palette-dark');
   }
 
+  const [editorValue, setEditorValue] = useState('test');
+  const [nodeValue, nodeEditCallback] = useState('');
+  const [changeCurrentNodeData, setChangeCurrentNodeDataFunction] = useState(() => {});
+
   return (
     <div className={['App', style].join(" ")}>
       <TopBar changeStyle={changeStyle}/>
       <div className="contentWrapper">
         <SplitPane primary='second' split="vertical" defaultSize={400} maxSize={-200} minSize={200}>
           <div className='leftContentWrapper'>
-            <GraphEditor idIterator={0} nodes={[{id:"0", data:{label:"init"}, position:{x:0, y:0}}]}/>
+            <GraphEditor propNodes={[{id:"0", data:{label:"init"}, position:{x:0, y:0}}]} setEditorValue={setEditorValue} setChangeCurrentNodeDataFunction={setChangeCurrentNodeDataFunction}/>
           </div>
           <div className='rightContentWrapper'>
-            <TextEditor />
+            <TextEditor value={editorValue} nodeEditCallback={changeCurrentNodeData}/>
           </div>
         </SplitPane>
       </div>

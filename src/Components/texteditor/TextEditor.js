@@ -3,7 +3,7 @@ import ReactQuill from "react-quill";
 import './TextEditor.css'
 import 'react-quill/dist/quill.snow.css';
 
-function TextEditor(props) {
+function TextEditor({inputValue, nodeEditCallback}) {
     const modules = {
         toolbar: [
             [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
@@ -28,10 +28,16 @@ function TextEditor(props) {
         ]
     };
     
-    const [value, setValue] = useState(props.value);
+    const [value, setValue] = useState(inputValue);
+
+    const changeNodeData = (delta, _, __, editor) => {
+        setValue(editor.getContents());
+        console.log(`Changing node's data to ${JSON.stringify(value)}`);
+        nodeEditCallback(value);
+    }
     
     return (
-        <ReactQuill modules={modules} placeholder='Make a new note...' value={value} onChange={setValue} /> //useState doesn't like classes
+        <ReactQuill modules={modules} placeholder='Make a new note...' value={value} onChange={changeNodeData} /> //useState doesn't like classes
         //<ReactQuill modules={modules} placeholder="Make a new note..." />
     );
 }

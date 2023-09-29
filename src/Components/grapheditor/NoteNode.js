@@ -1,4 +1,4 @@
-import { useState, memo } from 'react';
+import { memo } from 'react';
 import {Handle, Position, NodeResizer} from 'reactflow';
 import ReactQuill from 'react-quill'; //for data display
 
@@ -6,7 +6,6 @@ import '../texteditor/TextEditor.css'
 import 'react-quill/dist/quill.snow.css';
 
 const NoteNode = ({data, selected}) => {
-    const [value, setValue] = useState('');
     return (
         <>
             <NodeResizer 
@@ -25,7 +24,7 @@ const NoteNode = ({data, selected}) => {
             />
             <ReactQuill
                 modules={{toolbar:false}}
-                value={data.value}
+                value={data}
                 placeholder='Empty node.'
                 readOnly={true}
                 // style={{padding:10}}
