@@ -41,8 +41,38 @@
     stroke:var(--color-low) !important;
 }
 
+.ql-container {
+    border:none !important;
+}
+/* .ql-container.selectable {
+    border:none !important;
+}
+.ql-container.selected {
+    border-color:var(--color-alert) !important;
+    border-width:1px !important;
+} */
+.react-flow__resize-control.line {
+    border-color:var(--color-alert) !important;
+    border-width:1px !important;
+    background-color:var(--color-alert)
+}
+.react-flow__resize-control.handle {
+    border-color:var(--color-alert) !important;
+    background-color: var(--color-green) !important;
+    width:6px;
+    height:6px;
+}
+
 .react-flow__node,
 .react-flow__node-note {
     width:130px;
     height:100px;
+}
+.react-flow__node-note {
+    background-color:var(--color-high);
+    box-shadow:4px 4px var(--color-low-trans),
+               inset 0 8px var(--color-low);
+}
+.react-flow__node-note>.quill>.ql-container>.ql-editor>* {
+    cursor:pointer
 }
