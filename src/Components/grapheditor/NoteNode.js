@@ -19,6 +19,7 @@ const NoteNode = ({data, selected}) => {
                 isValidConnection={(connection) => connection.source = connection.target}
                 onConnect={(params) => console.log('handle pnConnect', params)}
 
+                isConnectable={true}
                 isConnectableStart={true}
                 isConnectableEnd={true}
             />
