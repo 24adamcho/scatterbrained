@@ -7,9 +7,11 @@ import './TopBar.css';
 import { useState } from 'react';
 
 function TopBar(props) {
+
+  //button interractivity to change between night and light modes
   const [nightmodeStateText, changeNightModeStateText] = useState('Night Mode');
   const nightmodeButton = () => {
-    props.changeStyle();
+    props.changeStyle();  //have to use this gross piece of shit because i can't just call two functions in one onClick event (...i think)
 
     if(nightmodeStateText == 'Night Mode')
       changeNightModeStateText('Light Mode');
