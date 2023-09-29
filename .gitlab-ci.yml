@@ -15,7 +15,7 @@ build:
 pages:
   stage: deploy
   dependencies:
-    -build
+    - build
   script:
     - rm -rf public
     - cp build/index.html build/404.html
