@@ -11,7 +11,7 @@ import NoteNode from './NoteNode';
 // const nodeTypes = {note:NoteNode}
 const getNodeId = () => `${String(+new Date()).slice(6)}`;
 
-function GraphEditor({propNodes, propEdges, setEditorValue, setChangeCurrentNodeDataFunction}){
+function GraphEditor({propNodes, propEdges, setEditorValue, setChangeCurrentNodeDataFunction, changeCurrentNodeData}){
     const nodeTypes= useMemo(() => ({note: NoteNode}), []);
 
     const [instance, setInstance] = React.useState();
@@ -30,8 +30,6 @@ function GraphEditor({propNodes, propEdges, setEditorValue, setChangeCurrentNode
     const addNote = () => {
         const id = getNodeId();
         const center = instance.project({x:window.innerWidth / 4, y:window.innerHeight / 2});
-        
-        console.log(`New note ${id} added at ${center.x}, ${center.y}`)
         const newNoteNode = {
             id,
             type:'note',
@@ -39,31 +37,34 @@ function GraphEditor({propNodes, propEdges, setEditorValue, setChangeCurrentNode
             data:'',
         }
         setNodes((nds) => nds.concat(newNoteNode));
-        console.log(nodes);
+        
+        console.log(`New note ${id} added at ${center.x}, ${center.y}`)
     }
 
     //okay this just leads to spaghetti code regardless, fucking shit
     const changeEditorOnSelect = (_, node) => {
-        console.log(`Set editor value to ${JSON.stringify(node.data)}, Note ID ${node.id}`);
+        console.log(nodes);
         setNodeId(node.id);
         setEditorValue(nodes.map((nd) => {
-            if (nd.id === '1') {
+            if (nd.id === node.id) {
                 return nd.data;
             }
         }));
-        setChangeCurrentNodeDataFunction((data) => {
+        setChangeCurrentNodeDataFunction(()=>(data) => {
+            console.log(`setting data of ${node.id} to ${data}`)
             setNodeId(node.id);
             setNodes(nodes.map((n) => {
+                console.log(n.id)
                 if (n.id === nodeId) {
-                    console.log(data)
-                    if (n.data!=undefined)
+                    if (n.data==undefined)
                         n.data = '';
                     else
                         n.data = data
-                    console.log(`setting data to ${n.data}`)
                 }
             }));
         });
+        
+        console.log(`Set editor value to ${JSON.stringify(node.data)}, Note ID ${node.id}, function ${changeCurrentNodeData}`);
     }
 
     return (

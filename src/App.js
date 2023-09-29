@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 import './App.css';
 
@@ -26,7 +26,11 @@ function App() {
 
   const [editorValue, setEditorValue] = useState('test');
   const [nodeValue, nodeEditCallback] = useState('');
-  const [changeCurrentNodeData, setChangeCurrentNodeDataFunction] = useState(() => {});
+  // let changeCurrentNodeData = () => {}
+  // const setChangeCurrentNodeDataFunction = (f) => {
+  //   changeCurrentNodeData = f;
+  // }
+  const [changeCurrentNodeData, setChangeCurrentNodeDataFunction] = useState(()=>(data)=>{console.log(data)});
 
   return (
     <div className={['App', style].join(" ")}>
@@ -34,7 +38,7 @@ function App() {
       <div className="contentWrapper">
         <SplitPane primary='second' split="vertical" defaultSize={400} maxSize={-200} minSize={200}>
           <div className='leftContentWrapper'>
-            <GraphEditor propNodes={[{id:"0", data:{label:"init"}, position:{x:0, y:0}}]} setEditorValue={setEditorValue} setChangeCurrentNodeDataFunction={setChangeCurrentNodeDataFunction}/>
+            <GraphEditor propNodes={[{id:"0", data:{label:"init"}, position:{x:0, y:0}}]} setEditorValue={setEditorValue} setChangeCurrentNodeDataFunction={setChangeCurrentNodeDataFunction} changeCurrentNodeData={changeCurrentNodeData}/>
           </div>
           <div className='rightContentWrapper'>
             <TextEditor value={editorValue} nodeEditCallback={changeCurrentNodeData}/>
