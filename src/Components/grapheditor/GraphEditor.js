@@ -11,7 +11,17 @@ import NoteNode from './NoteNode';
 // const nodeTypes = {note:NoteNode}
 const getNodeId = () => `${String(+new Date()).slice(6)}`;
 
-function GraphEditor({propNodes, propEdges, setEditorValue, setChangeCurrentNodeDataFunction, changeCurrentNodeData}){
+const GraphEditor = React.forwardRef((
+        { //properties
+            propNodes, 
+            propEdges, 
+            setEditorValue, 
+            setChangeCurrentNodeDataFunction, 
+            changeCurrentNodeData,
+            editTextRef
+        },
+        ref
+    ) => {
     const nodeTypes= useMemo(() => ({note: NoteNode}), []);
 
     const [instance, setInstance] = React.useState();
@@ -41,30 +51,32 @@ function GraphEditor({propNodes, propEdges, setEditorValue, setChangeCurrentNode
         console.log(`New note ${id} added at ${center.x}, ${center.y}`)
     }
 
-    //okay this just leads to spaghetti code regardless, fucking shit
-    const changeEditorOnSelect = (_, node) => {
-        console.log(nodes);
+    //editNote
+    React.useImperativeHandle(ref, () => ({
+        editNote: (data) => {
+            setNodes((nds) =>
+                nds.map((node) => {
+                    if(node.id === nodeId) {
+                        node.data = data;
+                    // console.log(`changed note data to ${node.data}`)
+                    }
+
+                    return node;
+                })
+            );
+        }
+    }));
+
+    const changeNoteId = (mouseEvent, node) => {
         setNodeId(node.id);
-        setEditorValue(nodes.map((nd) => {
-            if (nd.id === node.id) {
-                return nd.data;
+        console.log(`changed id to ${node.id}`);
+        nodes.map((nds) => {
+            if(nds.id === node.id) 
+            {
+                editTextRef.current.editText(nds.data);
+                // console.log(nds)
             }
-        }));
-        setChangeCurrentNodeDataFunction(()=>(data) => {
-            console.log(`setting data of ${node.id} to ${data}`)
-            setNodeId(node.id);
-            setNodes(nodes.map((n) => {
-                console.log(n.id)
-                if (n.id === nodeId) {
-                    if (n.data==undefined)
-                        n.data = '';
-                    else
-                        n.data = data
-                }
-            }));
         });
-        
-        console.log(`Set editor value to ${JSON.stringify(node.data)}, Note ID ${node.id}, function ${changeCurrentNodeData}`);
     }
 
     return (
@@ -80,7 +92,8 @@ function GraphEditor({propNodes, propEdges, setEditorValue, setChangeCurrentNode
                     onEdgesChange={onEdgesChange}
                     onInit={onInit}
                     nodeTypes={nodeTypes}
-                    onNodeClick={changeEditorOnSelect}
+                    onNodeClick={changeNoteId}
+                    onNodeDrag={changeNoteId}
                     >
                     <Background variant={bgstyle}/>
                     <Controls></Controls>
@@ -89,5 +102,6 @@ function GraphEditor({propNodes, propEdges, setEditorValue, setChangeCurrentNode
         </>
     )
 }
+)
 
 export default GraphEditor;

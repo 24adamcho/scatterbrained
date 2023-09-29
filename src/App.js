@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 import './App.css';
 
@@ -24,13 +24,8 @@ function App() {
       setStyle('palette-dark');
   }
 
-  const [editorValue, setEditorValue] = useState('test');
-  const [nodeValue, nodeEditCallback] = useState('');
-  // let changeCurrentNodeData = () => {}
-  // const setChangeCurrentNodeDataFunction = (f) => {
-  //   changeCurrentNodeData = f;
-  // }
-  const [changeCurrentNodeData, setChangeCurrentNodeDataFunction] = useState(()=>(data)=>{console.log(data)});
+  const nodeRef = React.useRef(()=>({editText:()=>{}}));
+  const textRef = React.useRef(()=>({editNote:()=>{}}));
 
   return (
     <div className={['App', style].join(" ")}>
@@ -38,10 +33,10 @@ function App() {
       <div className="contentWrapper">
         <SplitPane primary='second' split="vertical" defaultSize={400} maxSize={-200} minSize={200}>
           <div className='leftContentWrapper'>
-            <GraphEditor propNodes={[{id:"0", data:{label:"init"}, position:{x:0, y:0}}]} setEditorValue={setEditorValue} setChangeCurrentNodeDataFunction={setChangeCurrentNodeDataFunction} changeCurrentNodeData={changeCurrentNodeData}/>
+            <GraphEditor propNodes={[{id:"0", data:{label:"init"}, position:{x:0, y:0}}]} ref={nodeRef} editTextRef={textRef}/>
           </div>
           <div className='rightContentWrapper'>
-            <TextEditor value={editorValue} nodeEditCallback={changeCurrentNodeData}/>
+            <TextEditor value={''} ref={textRef} editNodeRef={nodeRef}/>
           </div>
         </SplitPane>
       </div>
