@@ -52,6 +52,7 @@ const GraphEditor = React.forwardRef((
     }
 
     //editNote
+    //SPAGHETTI MONSTER: DO NOT TOUCH
     React.useImperativeHandle(ref, () => ({
         editNote: (data) => {
             setNodes((nds) =>

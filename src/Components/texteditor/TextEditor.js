@@ -36,18 +36,12 @@ const TextEditor = React.forwardRef((
 
     const [value, setValue] = useState(initvalue);
 
+    //SPAGHETTI MONSTERS; DO NOT TOUCH
     useEffect(()=> {
         editNodeRef.current.editNote(value);
-        // console.log(value);
     }, [value]);
-
-    // const changeNodeData = (delta, _, __, editor) => {
-    //     let content = editor.getContents();
-    //     setValue(content);
-    //     editNodeRef.current.editNote(content);
-    //     console.log(content);
-    // }
-
+    
+    //MORE SPAGHETTI
     React.useImperativeHandle(ref, () => ({
         editText: (data) => {
             setValue(data);

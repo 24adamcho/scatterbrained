@@ -24,6 +24,7 @@ function App() {
       setStyle('palette-dark');
   }
 
+  //absolute spaghetti monster, DO NOT TOUCH
   const nodeRef = React.useRef(()=>({editText:()=>{}}));
   const textRef = React.useRef(()=>({editNote:()=>{}}));
 
