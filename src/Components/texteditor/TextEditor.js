@@ -28,7 +28,7 @@ function TextEditor(props) {
         ]
     };
     
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(props.value);
     
     return (
         <ReactQuill modules={modules} placeholder='Make a new note...' value={value} onChange={setValue} /> //useState doesn't like classes
