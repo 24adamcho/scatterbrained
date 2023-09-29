@@ -1,5 +1,3 @@
-@import '../../palette.css';
-
 .navbar {
     background-color:var(--color-low);
 }

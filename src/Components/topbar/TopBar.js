@@ -5,12 +5,21 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import './TopBar.css';
 
-function TopBar() {
+function TopBar(props) {
   return (
     <Navbar>
       <Container>
         <Nav>
-            <Nav.Link href='#test'>Test</Nav.Link>
+            <NavDropdown title='File'>
+              <NavDropdown.Item >Open File</NavDropdown.Item>
+              <NavDropdown.Item >Save File</NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title='Edit'>
+              <NavDropdown.Item >placeholder</NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title='View'>
+              <NavDropdown.Item onClick={props.changeStyle}>Night Mode</NavDropdown.Item>
+            </NavDropdown>
         </Nav>
         <Navbar.Brand href='#scatterbrained'>Scatterbrained</Navbar.Brand>
       </Container>

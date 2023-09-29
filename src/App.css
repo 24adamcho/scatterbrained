@@ -1,5 +1,3 @@
-@import 'palette.css';
-
 .App {
   display:inline-flexbox;
   flex-direction: column;
