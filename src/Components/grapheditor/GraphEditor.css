@@ -40,3 +40,9 @@
 .addNoteButton>svg>path {
     stroke:var(--color-low) !important;
 }
+
+.react-flow__node,
+.react-flow__node-note {
+    width:130px;
+    height:100px;
+}
