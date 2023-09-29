@@ -1,3 +1,42 @@
+.react-flow__attribution {
+    display:none;
+}
 .react-flow__background>pattern>path {
     stroke:var(--color-high-trans);
+}
+.flowInterfaceWrapper {
+    overflow:hidden;
+}
+.addNoteButton {
+    z-index: 1;
+    position:absolute;
+    right:0;
+    bottom:0;
+    margin:50px;
+    
+    width:10vh;
+    height:10vh;
+       
+    border: none !important;
+    border-radius: 100% !important;
+
+    display:block;
+    align-items: center;
+    align-content: center;
+}
+.addNoteButton>svg {
+    /* scale:10%; */
+    margin:auto;
+    width:7vh !important;
+    height:auto !important;
+}
+
+.addNoteButton {
+    background-color: var(--color-high) !important;
+}
+.addNoteButton:hover {
+    background-color:var(--color-high-trans) !important;
+}
+.addNoteButton>svg>path {
+    stroke:var(--color-low) !important;
 }
