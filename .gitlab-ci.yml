@@ -9,8 +9,8 @@ build:
     - npm install react
     - npm install react-bootstrap
     - npm install reactflow
-    - npm install react-split-pane --force
-    - npm link react-split-pane --force
+    - npm install tomkp/react-split-pane --force
+    - npm link tomkp/react-split-pane --force
     - npm run build
   artifacts:
     paths:
