@@ -1,16 +1,22 @@
 image: node
 
-pages:
-  stage: deploy
+build:
+  stage: build
   cache:
     paths:
       - node_modules/
   script:
     - npm install
-    - npm install react
-    - npm install reactflow
-    - npm install react-split-pane
     - npm run build
+  artifacts:
+    paths:
+      - build
+
+pages:
+  stage: deploy
+  dependancies:
+    -build
+  script:
     - rm -rf public
     - cp build/index.html build/404.html
     - mv build public
