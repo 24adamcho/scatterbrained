@@ -10,6 +10,7 @@ build:
     - npm install react-split-pane --force
     - npm link react-split-pane --force
     - npm run build
+    - cat /root/.npm/_logs/*.log
   artifacts:
     paths:
       - build
