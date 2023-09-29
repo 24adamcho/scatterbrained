@@ -14,7 +14,7 @@ build:
 
 pages:
   stage: deploy
-  dependancies:
+  dependencies:
     -build
   script:
     - rm -rf public
