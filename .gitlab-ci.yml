@@ -7,6 +7,9 @@ pages:
       - node_modules/
   script:
     - npm install
+    - npm install react
+    - npm install reactflow
+    - npm install react-split-pane
     - npm run build
     - rm -rf public
     - cp build/index.html build/404.html
