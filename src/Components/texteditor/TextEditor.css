@@ -10,14 +10,15 @@
     flex-direction:column;
 }
 .ql-editor {
-    overflow-wrap: break-word;
+    /* overflow-wrap: break-word; */
     position:absolute;
     width:100%;
 }
 
 .ql-toolbar {
-    border:none !important;
-    background-color:var(--color-mid);
+    margin-left:5px;
+    background-color:var(--color-high);
+    border-bottom: 2px solid var(--color-low-trans) !important;
 }
 
 .ql-picker-label::before,
