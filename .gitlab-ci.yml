@@ -6,7 +6,9 @@ build:
     paths:
       - node_modules/
   script:
-    - npm install
+    - npm install react
+    - npm install react-bootstrap
+    - npm install reactflow
     - npm install react-split-pane --force
     - npm link react-split-pane --force
     - npm run build
