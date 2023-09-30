@@ -15,7 +15,7 @@
 }
 
 .ql-toolbar {
-    margin-left:5px;
+    /*margin-left:5px;*/
     background-color:var(--color-high);
     border-bottom: 2px solid var(--color-low-trans) !important;
 }
