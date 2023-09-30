@@ -33,3 +33,19 @@
     border-left: 2px solid var(--color-low-trans);
     border-right: 2px solid var(--color-low-trans);
   }
+
+.split {
+    display: flex;
+    flex-direction: row;
+}
+
+.gutter {
+    background-color: #eee;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+    background-color:green;
+    cursor: col-resize;
+}

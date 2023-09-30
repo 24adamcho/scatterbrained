@@ -8,7 +8,7 @@ import TextEditor from './Components/texteditor/TextEditor';
 import GraphEditor from './Components/grapheditor/GraphEditor';
 
 import './SplitPane.css';
-import SplitPane from 'react-split-pane';
+import Split from 'react-split';
 import './palette.css';
 
 function App() {
@@ -31,16 +31,14 @@ function App() {
   return (
     <div className={['App', style].join(" ")}>
       <TopBar changeStyle={changeStyle}/>
-      <div className="contentWrapper">
-        <SplitPane primary='second' split="vertical" defaultSize={400} maxSize={-200} minSize={200}>
+      <Split className="contentWrapper" minSize={window.innerWidth * 0.3}>
           <div className='leftContentWrapper'>
-            <GraphEditor propNodes={[{id:"0", data:{label:"init"}, position:{x:0, y:0}}]} ref={nodeRef} editTextRef={textRef}/>
+            <GraphEditor propNodes={[]} ref={nodeRef} editTextRef={textRef}/>
           </div>
           <div className='rightContentWrapper'>
             <TextEditor value={''} ref={textRef} editNodeRef={nodeRef}/>
           </div>
-        </SplitPane>
-      </div>
+      </Split>
     </div>
   );
 }

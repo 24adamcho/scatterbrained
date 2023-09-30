@@ -73,6 +73,9 @@
     box-shadow:4px 4px var(--color-low-trans),
                inset 0 8px var(--color-low);
 }
+.react-flow__node-note>.quill {
+    width:100%;
+}
 .react-flow__node-note>.quill>.ql-container>.ql-editor>* {
     cursor:pointer
 }
