@@ -1,3 +1,5 @@
+#from https://dev.to/jtorbett23/react-gitlab-pages-42l6
+
 image: node
 
 build:
