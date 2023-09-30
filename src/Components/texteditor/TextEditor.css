@@ -17,7 +17,12 @@
 .ql-toolbar {
     /*margin-left:5px;*/
     background-color:var(--color-high);
-    border-bottom: 2px solid var(--color-low-trans) !important;
+    /*border-bottom: 2px solid var(--color-low-trans) !important;
+    border-left: none;
+    border-right: none;
+    border-top:none;*/
+    box-shadow: 0 2px var(--color-low-trans);
+    border:none !important;
 }
 
 .ql-picker-label::before,
