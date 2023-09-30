@@ -1,4 +1,4 @@
-import React, { Component, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import ReactFlow, { Controls, Background, useNodesState, useEdgesState } from 'reactflow';
 import { Button } from 'react-bootstrap';
@@ -26,9 +26,13 @@ const GraphEditor = React.forwardRef((
 
     const [instance, setInstance] = React.useState();
     const onInit = (reactFlowInstance) => setInstance(reactFlowInstance);
-    const [bgstyle, setBgstyle] = useState('cross');
+    //const [bgstyle, setBgstyle] = useState('cross');
     const [nodes, setNodes, onNodesChange] = useNodesState(propNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(propEdges);
+    //const [edges, setEdges, onEdgesChange] = useEdgesState(propEdges);
+
+    //error fixes for now
+    const bgstyle = 'cross';
+    const [edges, onEdgesChange] = useEdgesState(propEdges);
 
     const [nodeId, setNodeId] = useState();
 
@@ -77,6 +81,8 @@ const GraphEditor = React.forwardRef((
                 editTextRef.current.editText(nds.data);
                 // console.log(nds)
             }
+
+            return nds;
         });
     }
 
