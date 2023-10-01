@@ -9,7 +9,7 @@ build:
       - node_modules/
   script:
     - npm install
-    - npm run build
+    - CI=false npm run build
   artifacts:
     paths:
       - build
