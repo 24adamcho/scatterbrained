@@ -18,7 +18,8 @@ const GraphEditor = React.forwardRef((
             setEditorValue, 
             setChangeCurrentNodeDataFunction, 
             changeCurrentNodeData,
-            editTextRef
+            editTextRef,
+            subcontentWidth
         },
         ref
     ) => {
@@ -35,6 +36,7 @@ const GraphEditor = React.forwardRef((
     const [edges, onEdgesChange] = useEdgesState(propEdges);
 
     const [nodeId, setNodeId] = useState();
+    const [prevNodeId, setPrevNodeId] = useState(); //used for when adding new notes
 
     //const [noteValue, setNoteValue] = useState('');
 
@@ -43,14 +45,34 @@ const GraphEditor = React.forwardRef((
     //oh, it also does some weird rart shit with importing presumably the entirety of react
     const addNote = () => {
         const id = getNodeId();
-        const center = instance.project({x:window.innerWidth / 4, y:window.innerHeight / 2});
+        
+        console.log(nodes);
+        let center = [0, 0];
+        if(nodes.length <= 0) {
+            center = instance.project({x:window.innerWidth / 4, 
+                                       y:window.innerHeight / 2});
+            console.log('nodes was empty! using ratio value');
+        }
+        else {
+            let previousNode = nodes.find((element) => element.id === prevNodeId);
+            center = {x:previousNode.position.x+15, 
+                      y:previousNode.position.y+15};
+            console.log('nodes had an element! using last known value touched')
+            console.log(previousNode);
+        }
+        console.log(center);
+
         const newNoteNode = {
             id,
             type:'note',
             position:center,
             data:'',
         }
+        console.log(newNoteNode);
         setNodes((nds) => nds.concat(newNoteNode));
+        //change to new new id so that repeatedly added notes stagger, but using changeNodeId doesn't want to update the editor
+        //sidestep this by *just* changing the node id
+        setPrevNodeId(newNoteNode.id)
         
         console.log(`New note ${id} added at ${center.x}, ${center.y}`)
     }
@@ -74,6 +96,7 @@ const GraphEditor = React.forwardRef((
 
     const changeNoteId = (mouseEvent, node) => {
         setNodeId(node.id);
+        setPrevNodeId(node.id);
         console.log(`changed id to ${node.id}`);
         nodes.map((nds) => {
             if(nds.id === node.id) 
@@ -89,7 +112,7 @@ const GraphEditor = React.forwardRef((
     return (
         <>
             <div className='flowInterfaceWrapper' style={{height:'100%'}}>
-                <Button className='addNoteButton' variant='primary' onClick={addNote}>
+                <Button className='addNoteButton' variant='primary' onClick={addNote} style={{right:`${subcontentWidth[1]}%`}}>
                     <AddNoteIcon />
                 </Button>
                 <ReactFlow

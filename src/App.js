@@ -28,12 +28,17 @@ function App() {
   const nodeRef = React.useRef(()=>({editText:()=>{}}));
   const textRef = React.useRef(()=>({editNote:()=>{}}));
 
+  const [sizes, setSize] = useState(['50', '50'])
+
   return (
     <div className={['App', style].join(" ")}>
       <TopBar changeStyle={changeStyle}/>
-      <Split className="contentWrapper" minSize={window.innerWidth * 0.3}>
+      <Split className="contentWrapper" 
+             minSize={window.innerWidth * 0.3}
+             onDrag={setSize}
+      >
           <div className='leftContentWrapper'>
-            <GraphEditor propNodes={[]} ref={nodeRef} editTextRef={textRef}/>
+            <GraphEditor propNodes={[]} ref={nodeRef} editTextRef={textRef} subcontentWidth={sizes}/>
           </div>
           <div className='rightContentWrapper'>
             <TextEditor value={''} ref={textRef} editNodeRef={nodeRef}/>
