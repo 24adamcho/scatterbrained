@@ -15,9 +15,6 @@ const GraphEditor = React.forwardRef((
         { //properties
             propNodes, 
             propEdges, 
-            setEditorValue, 
-            setChangeCurrentNodeDataFunction, 
-            changeCurrentNodeData,
             editTextRef,
             subcontentWidth
         },
@@ -112,7 +109,10 @@ const GraphEditor = React.forwardRef((
     return (
         <>
             <div className='flowInterfaceWrapper' style={{height:'100%'}}>
-                <Button className='addNoteButton' variant='primary' onClick={addNote} style={{right:`${subcontentWidth[1]}%`}}>
+                <Button className='addNoteButton' 
+                        variant='primary' 
+                        onClick={addNote} 
+                        style={{right:`${subcontentWidth[1]}%`}}>
                     <AddNoteIcon />
                 </Button>
                 <ReactFlow

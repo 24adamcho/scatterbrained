@@ -28,7 +28,7 @@ function App() {
   const nodeRef = React.useRef(()=>({editText:()=>{}}));
   const textRef = React.useRef(()=>({editNote:()=>{}}));
 
-  const [sizes, setSize] = useState(['50', '50'])
+  const [sizes, setSize] = useState(['50', '50']) //this is converted into a percent so that the addNote button is positioned properly
 
   return (
     <div className={['App', style].join(" ")}>
