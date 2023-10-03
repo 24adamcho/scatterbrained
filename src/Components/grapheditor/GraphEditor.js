@@ -6,9 +6,10 @@ import { Button } from 'react-bootstrap';
 import 'reactflow/dist/style.css';
 import './GraphEditor.css'
 import {ReactComponent as AddNoteIcon } from './add-note-svgrepo-com.svg'
+import SidebarContextMenu from './SidebarContextMenu/SidebarContextMenu';
 
 import NoteNode from './NoteNode';
-// const nodeTypes = {note:NoteNode}
+
 const getNodeId = () => `${String(+new Date()).slice(6)}`;
 
 const GraphEditor = React.forwardRef((
@@ -24,13 +25,11 @@ const GraphEditor = React.forwardRef((
 
     const [instance, setInstance] = React.useState();
     const onInit = (reactFlowInstance) => setInstance(reactFlowInstance);
-    //const [bgstyle, setBgstyle] = useState('cross');
+    const [bgstyle, setBgstyle] = useState('cross');
     const [nodes, setNodes, onNodesChange] = useNodesState(propNodes);
-    //const [edges, setEdges, onEdgesChange] = useEdgesState(propEdges);
+    const [edges, setEdges, onEdgesChange] = useEdgesState(propEdges);
 
-    //error fixes for now
-    const bgstyle = 'cross';
-    const [edges, onEdgesChange] = useEdgesState(propEdges);
+    const [edgeStyle, setEdgeStyle] = useState('straight');
 
     const [nodeId, setNodeId] = useState();
     const [prevNodeId, setPrevNodeId] = useState(); //used for when adding new notes
@@ -115,6 +114,7 @@ const GraphEditor = React.forwardRef((
                         style={{right:`${subcontentWidth[1]}%`}}>
                     <AddNoteIcon />
                 </Button>
+                <SidebarContextMenu edgeStyleCallback={setEdgeStyle}/>
                 <ReactFlow
                     nodes={nodes}
                     edges={edges}
