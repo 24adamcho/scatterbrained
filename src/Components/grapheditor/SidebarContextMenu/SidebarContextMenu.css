@@ -1,0 +1,17 @@
+.sidebarContextMenu {
+    position:absolute;
+    z-index: 1;
+    top:0;
+    left:0;
+    margin:15px;
+
+    display: flex;
+    flex-direction:column;
+    align-content:left;
+    text-align:left;
+}
+
+.btn {
+    text-align:left;
+    align-content: left;
+}
