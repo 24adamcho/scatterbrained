@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ReactQuill from "react-quill";
 import './TextEditor.css'
 import 'react-quill/dist/quill.snow.css';
@@ -38,7 +38,7 @@ const TextEditor = React.forwardRef((
 
     //SPAGHETTI MONSTERS; DO NOT TOUCH
     useEffect(()=> {
-        editNodeRef.current.editNote(value);
+            editNodeRef.current.editNote(value);
     }, [value]);
     
     //MORE SPAGHETTI

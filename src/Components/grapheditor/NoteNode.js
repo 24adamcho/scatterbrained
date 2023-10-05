@@ -15,12 +15,17 @@ const NoteNode = ({data, selected}) => {
             />
             <Handle
                 position={Position.Top}
-                isValidConnection={(connection) => connection.source = connection.target}
-                onConnect={(params) => console.log('handle pnConnect', params)}
+                type='target'
+            />
+            <Handle
+                position={Position.Top}
+                type='source'
+                // isValidConnection={(connection) => connection.source = connection.target}
+                // onConnect={(params) => console.log('handle pnConnect', params)}
 
-                isConnectable={true}
-                isConnectableStart={true}
-                isConnectableEnd={true}
+                // isConnectable={true}
+                // isConnectableStart={true}
+                // isConnectableEnd={true}
             />
             <ReactQuill
                 modules={{toolbar:false}}

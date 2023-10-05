@@ -79,3 +79,20 @@
 .react-flow__node-note>.quill>.ql-container>.ql-editor>* {
     cursor:pointer
 }
+
+#temp {
+    z-index: 3 !important;
+}
+.react-flow__edges {
+    z-index: 2 !important;
+}
+.react-flow__nodes {
+    z-index: 1;
+}
+.react-flow__edge-path {
+    stroke:var(--color-low-trans);
+    stroke-width: 2px;
+}
+.react-flow__edge.selected>.react-flow__edge-path {
+    stroke:var(--color-alert-trans);
+}

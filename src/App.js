@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import { useState, useRef } from 'react';
 
 import './App.css';
 
@@ -25,8 +25,8 @@ function App() {
   }
 
   //absolute spaghetti monster, DO NOT TOUCH
-  const nodeRef = React.useRef(()=>({editText:()=>{}}));
-  const textRef = React.useRef(()=>({editNote:()=>{}}));
+  const nodeRef = useRef(()=>({editText:()=>{}}));
+  const textRef = useRef(()=>({editNote:()=>{}}));
 
   const [sizes, setSize] = useState(['50', '50']) //this is converted into a percent so that the addNote button is positioned properly
 
