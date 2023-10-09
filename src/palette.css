@@ -11,7 +11,7 @@
 	--color-alert-trans: rgba(205, 102, 77, 0.7);
 	--color-green-trans: rgb(116, 189, 133, 0.6);
 
-	transition: linear 1s;
+	/* transition: linear 1s; */
 }
 
 .palette-dark {
@@ -27,5 +27,5 @@
 	--color-green-trans: rgba(205, 102, 77, 0.7);
 	--color-alert-trans: rgb(116, 189, 133, 0.6);
 	
-	transition: linear 1s;
+	/* transition: linear 1s; */
 }

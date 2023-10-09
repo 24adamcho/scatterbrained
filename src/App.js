@@ -10,6 +10,7 @@ import GraphEditor from './Components/grapheditor/GraphEditor';
 import './SplitPane.css';
 import Split from 'react-split';
 import './palette.css';
+import BottomBar from './Components/bottombar/BottomBar';
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
             <TextEditor value={''} ref={textRef} editNodeRef={nodeRef}/>
           </div>
       </Split>
+      <BottomBar className="bottomBar"/>
     </div>
   );
 }

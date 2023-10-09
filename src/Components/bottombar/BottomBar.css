@@ -1,0 +1,22 @@
+.bottomBar {
+    height: 1.5em;
+    width:100%;
+    background-color:var(--color-low);
+}
+
+.leftContent {
+    position:absolute;
+    left:0;
+}
+
+.rightContent {
+    position:absolute;
+    right:0;
+}
+
+.leftContent>span {
+    color:var(--color-high);
+}
+.rightContent>span {
+    color:var(--color-high);
+}
