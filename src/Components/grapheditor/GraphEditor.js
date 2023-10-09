@@ -47,7 +47,7 @@ const GraphEditor = forwardRef((
     const [nodeId, setNodeId] = useState();
     const [prevNodeId, setPrevNodeId] = useState(); //used for when adding new notes
     
-    const onConnect = useCallback((params) => {setEdges((eds) => addEdge({...params, id:getTimeId(), type:newEdgeStyle}, eds)); setEdgeCount(edges.length)}, [setEdges, newEdgeStyle]);
+    const onConnect = useCallback((params) => {setEdges((eds) => addEdge({...params, id:getTimeId(), type:newEdgeStyle}, eds)); setEdgeCount(edges.length)}, [setEdges, newEdgeStyle, setEdgeCount, edges.length]);
     const getClosestEdge = useCallback((node) => {
       const { nodeInternals } = store.getState();
       const storeNodes = Array.from(nodeInternals.values());
@@ -127,7 +127,7 @@ const GraphEditor = forwardRef((
         });
         setEdgeCount(edges.length)
       },
-      [getClosestEdge, setEdges, newEdgeStyle, edges]
+      [getClosestEdge, setEdges, newEdgeStyle, setEdgeCount, edges.length]
     );
 
     //this is utterly fucking stupid, but there is no other way to put a node in the frame that doesn't involve
