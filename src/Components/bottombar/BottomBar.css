@@ -16,7 +16,13 @@
 
 .leftContent>span {
     color:var(--color-high);
+    margin-left: 0.25em;
+    padding-right: 0.25em;
+    border-right: solid 1px var(--color-mid-trans);
 }
 .rightContent>span {
     color:var(--color-high);
+    margin-right: 0.25em;
+    padding-left: 0.25em;
+    border-left: solid 1px var(--color-mid-trans);
 }
