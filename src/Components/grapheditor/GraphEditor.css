@@ -94,11 +94,8 @@
 #temp {
     z-index: 3 !important;
 }
-.react-flow__edges {
-    z-index: 2 !important;
-}
 .react-flow__nodes {
-    z-index: 1;
+    z-index: -1;
 }
 .react-flow__edge-path {
     stroke:var(--color-low);
@@ -106,6 +103,9 @@
 }
 .react-flow__edge.selected>.react-flow__edge-path {
     stroke:var(--color-alert-trans);
+}
+.react-flow__edge-interaction {
+    stroke-width: 5 !important;
 }
 
 .react-flow__handle {
