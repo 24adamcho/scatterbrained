@@ -30,7 +30,7 @@ const NoteNode = ({data, selected}) => {
             <ReactQuill
                 modules={{toolbar:false}}
                 value={data}
-                placeholder='Empty node.'
+                placeholder='Empty note.'
                 readOnly={true}
                 // style={{padding:10}}
             />
