@@ -1,6 +1,14 @@
 import React, { useMemo, useState, useCallback, forwardRef } from 'react';
 
-import ReactFlow, { Controls, Background, useNodesState, useEdgesState, addEdge, ReactFlowProvider, useStoreApi } from 'reactflow';
+import ReactFlow, { 
+    Controls, 
+    Background, 
+    useNodesState, 
+    useEdgesState,
+    addEdge, 
+    ReactFlowProvider,
+    useStoreApi,
+} from 'reactflow';
 import { Button } from 'react-bootstrap';
 
 import 'reactflow/dist/style.css';
@@ -12,7 +20,7 @@ import NoteNode from './NoteNode';
 
 const getTimeId = () => `${String(+new Date()).slice(6)}`;
 
-const MIN_DISTANCE = 150;
+const MIN_DISTANCE = 100;
 
 const GraphEditor = forwardRef((
         { //properties
@@ -37,7 +45,7 @@ const GraphEditor = forwardRef((
     const [nodeId, setNodeId] = useState();
     const [prevNodeId, setPrevNodeId] = useState(); //used for when adding new notes
     
-    const onConnect = useCallback((params) => setEdges((eds) => addEdge({...params, type:newEdgeStyle}, eds)), [setEdges, newEdgeStyle]);
+    const onConnect = useCallback((params) => setEdges((eds) => addEdge({...params, id:getTimeId(), type:newEdgeStyle}, eds)), [setEdges, newEdgeStyle]);
     const getClosestEdge = useCallback((node) => {
       const { nodeInternals } = store.getState();
       const storeNodes = Array.from(nodeInternals.values());
@@ -71,12 +79,13 @@ const GraphEditor = forwardRef((
   
       // console.log(newEdgeStyle)
       return {
-        id: `${node.id}-${closestNode.node.id}, ${getTimeId()}`,
+        // id: `${node.id}-${closestNode.node.id}, ${getTimeId()}`,
+        id: getTimeId(),
         type: newEdgeStyle,
         source: closeNodeIsSource ? closestNode.node.id : node.id,
         target: closeNodeIsSource ? node.id : closestNode.node.id,
       };
-    }, [newEdgeStyle]);
+    }, [newEdgeStyle, store]);
     const onNodeDrag = useCallback(
       (_, node) => {
         const closeEdge = getClosestEdge(node);
@@ -115,14 +124,14 @@ const GraphEditor = forwardRef((
           return nextEdges;
         });
       },
-      [getClosestEdge, newEdgeStyle]
+      [getClosestEdge, setEdges, newEdgeStyle]
     );
 
     //this is utterly fucking stupid, but there is no other way to put a node in the frame that doesn't involve
     //lacing hook spaghetti code through the whole project
     //oh, it also does some weird rart shit with importing presumably the entirety of react
     const addNote = () => {
-        const id = getTimeId();
+        const newid = getTimeId();
         
         // console.log(nodes);
         let center = [0, 0];
@@ -141,7 +150,7 @@ const GraphEditor = forwardRef((
         // console.log(center);
 
         const newNoteNode = {
-            id,
+            id:newid,
             type:'note',
             position:center,
             data:'',
@@ -152,7 +161,7 @@ const GraphEditor = forwardRef((
         //sidestep this by *just* changing the node id
         setPrevNodeId(newNoteNode.id)
         
-        console.log(`New note ${id} added at ${center.x}, ${center.y}`)
+        console.log(`New note ${newid} added at ${center.x}, ${center.y}`)
     }
 
     //editNote
@@ -208,6 +217,8 @@ const GraphEditor = forwardRef((
                     onNodeDrag={(a, b) => {onNodeDrag(a, b); changeNoteId(a, b);}}
                     onNodeDragStop={onNodeDragStop}
                     onConnect={onConnect}
+                    connectionLineType={newEdgeStyle}
+                    connectionLineStyle={{stroke:'var(--color-low)', strokeWidth:2}}
                     >
                     <Background variant={bgstyle}/>
                     <Controls></Controls>

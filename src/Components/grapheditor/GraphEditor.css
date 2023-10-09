@@ -74,6 +74,7 @@
                inset 0 8px var(--color-low);
 }
 .react-flow__node-note>.quill {
+    z-index: 2;
     width:100%;
 }
 .react-flow__node-note>.quill>.ql-container>.ql-editor>* {
@@ -90,9 +91,17 @@
     z-index: 1;
 }
 .react-flow__edge-path {
-    stroke:var(--color-low-trans);
+    stroke:var(--color-low);
     stroke-width: 2px;
 }
 .react-flow__edge.selected>.react-flow__edge-path {
     stroke:var(--color-alert-trans);
+}
+
+.react-flow__handle {
+    z-index:10;
+    width:8px;
+    height: 8px;
+    border:none;
+    background:var(--color-alert);
 }
