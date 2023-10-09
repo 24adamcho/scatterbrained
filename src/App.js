@@ -31,6 +31,11 @@ function App() {
 
   const [sizes, setSize] = useState(['50', '50']) //this is converted into a percent so that the addNote button is positioned properly
 
+  const [nodeCount, setNodeCount] = useState(0);
+  const [edgeCount, setEdgeCount] = useState(0);
+  const [charCount, setCharCount] = useState(0);
+  const [wordCount, setWordCount] = useState(0);
+
   return (
     <div className={['App', style].join(" ")}>
       <TopBar changeStyle={changeStyle}/>
@@ -39,13 +44,27 @@ function App() {
              onDrag={setSize}
       >
           <div className='leftContentWrapper'>
-            <GraphEditor propNodes={[]} ref={nodeRef} editTextRef={textRef} subcontentWidth={sizes}/>
+            <GraphEditor 
+              propNodes={[]} 
+              propEdges={[]}
+              ref={nodeRef} 
+              editTextRef={textRef} 
+              subcontentWidth={sizes}
+              setNodeCount={setNodeCount}
+              setEdgeCount={setEdgeCount}
+            />
           </div>
           <div className='rightContentWrapper'>
-            <TextEditor value={''} ref={textRef} editNodeRef={nodeRef}/>
+            <TextEditor 
+              value={''} 
+              ref={textRef} 
+              editNodeRef={nodeRef} 
+              setCharCount={setCharCount} 
+              setWordCount={setWordCount}
+            />
           </div>
       </Split>
-      <BottomBar className="bottomBar"/>
+      <BottomBar className="bottomBar" nodes={nodeCount} edges={edgeCount} chars={charCount} words={wordCount}/>
     </div>
   );
 }

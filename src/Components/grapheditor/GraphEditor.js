@@ -27,7 +27,9 @@ const GraphEditor = forwardRef((
             propNodes, 
             propEdges, 
             editTextRef,
-            subcontentWidth
+            subcontentWidth,
+            setNodeCount,
+            setEdgeCount
         },
         ref
     ) => {
@@ -45,7 +47,7 @@ const GraphEditor = forwardRef((
     const [nodeId, setNodeId] = useState();
     const [prevNodeId, setPrevNodeId] = useState(); //used for when adding new notes
     
-    const onConnect = useCallback((params) => setEdges((eds) => addEdge({...params, id:getTimeId(), type:newEdgeStyle}, eds)), [setEdges, newEdgeStyle]);
+    const onConnect = useCallback((params) => {setEdges((eds) => addEdge({...params, id:getTimeId(), type:newEdgeStyle}, eds)); setEdgeCount(edges.length)}, [setEdges, newEdgeStyle]);
     const getClosestEdge = useCallback((node) => {
       const { nodeInternals } = store.getState();
       const storeNodes = Array.from(nodeInternals.values());
@@ -123,8 +125,9 @@ const GraphEditor = forwardRef((
   
           return nextEdges;
         });
+        setEdgeCount(edges.length)
       },
-      [getClosestEdge, setEdges, newEdgeStyle]
+      [getClosestEdge, setEdges, newEdgeStyle, edges]
     );
 
     //this is utterly fucking stupid, but there is no other way to put a node in the frame that doesn't involve
@@ -157,6 +160,7 @@ const GraphEditor = forwardRef((
         }
         // console.log(newNoteNode);
         setNodes((nds) => nds.concat(newNoteNode));
+        setNodeCount(nodes.length);
         //change to new new id so that repeatedly added notes stagger, but using changeNodeId doesn't want to update the editor
         //sidestep this by *just* changing the node id
         setPrevNodeId(newNoteNode.id)
@@ -219,6 +223,8 @@ const GraphEditor = forwardRef((
                     onConnect={onConnect}
                     connectionLineType={newEdgeStyle}
                     connectionLineStyle={{stroke:'var(--color-low)', strokeWidth:2}}
+                    onNodesDelete={setNodeCount(nodes.length)}
+                    onEdgesDelete={setEdgeCount(edges.length)}
                     >
                     <Background variant={bgstyle}/>
                     <Controls></Controls>
