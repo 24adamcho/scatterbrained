@@ -3,6 +3,34 @@ import ReactQuill from "react-quill";
 import './TextEditor.css'
 import 'react-quill/dist/quill.snow.css';
 
+class Counter {
+  constructor(quill, options) {
+    this.quill = quill;
+    this.options = options;
+    quill.on('text-change', this.update.bind(this));
+    this.update();  // Account for initial contents
+  }
+
+  calculate(type) {
+    let text = this.quill.getText().trim();
+    if (type === 'word') {
+      text = text.trim();
+      // Splitting empty text returns a non-empty array
+      return text.length > 0 ? text.split(/\s+/).length : 0;
+    } else {
+      return text.length;
+    }
+  }
+
+  update() {
+    var length = this.calculate('chars');
+    this.options.char(length);
+    length = this.calculate('word');
+    this.options.word(length);
+  }
+}
+ReactQuill.Quill.register('modules/counter', Counter);
+
 const TextEditor = React.forwardRef((
     {
         initvalue, 
@@ -12,7 +40,12 @@ const TextEditor = React.forwardRef((
     },
     ref
     ) => {
+
     const modules = {
+        counter: {
+            char: setCharCount,
+            word: setWordCount
+        },
         toolbar: [
             [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
             [{ 'font': [] }],
@@ -51,7 +84,11 @@ const TextEditor = React.forwardRef((
     }));
 
     return (
-        <ReactQuill modules={modules} placeholder='Make a new note...' value={value} onChange={setValue}/>
+        <ReactQuill 
+            modules={modules} 
+            placeholder='Make a new note...' 
+            value={value} 
+            onChange={setValue}/>
     );
 })
 
