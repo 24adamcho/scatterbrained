@@ -70,15 +70,25 @@
 }
 .react-flow__node-note {
     background-color:var(--color-high);
-    box-shadow:4px 4px var(--color-low-trans),
-               inset 0 8px var(--color-low);
+    /* box-shadow:4px 4px var(--color-low-trans),
+               inset 0 8px var(--color-low); */
+    box-shadow: 4px 4px var(--color-low-trans);
+    box-sizing:border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    border-top:8px solid var(--color-low);
 }
 .react-flow__node-note>.quill {
     z-index: 2;
     width:100%;
 }
+.react-flow__node-note>.quill>.ql-container>.ql-editor {
+    scrollbar-width:thin;
+    scrollbar-gutter: stable both-edges;
+    scrollbar-color: var(--color-low-trans) transparent;
+}
 .react-flow__node-note>.quill>.ql-container>.ql-editor>* {
-    cursor:pointer
+    cursor:pointer;
 }
 
 #temp {
