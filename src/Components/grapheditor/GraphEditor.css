@@ -67,6 +67,7 @@
 .react-flow__node-note {
     width:130px;
     height:100px;
+    /* overflow:hidden; */
 }
 .react-flow__node-note {
     background-color:var(--color-high);
@@ -109,9 +110,28 @@
 }
 
 .react-flow__handle {
+    width:100%;
+    height: 100%;
+    border-radius:0;
+    top:0;
+    bottom:0;
+}
+.react-flow__handle {
     z-index:10;
-    width:8px;
-    height: 8px;
     border:none;
+    background:none;
+}
+/*dummy circle*/
+.react-flow__handle::after {
+    content:"";
+    position:relative;
+    display:flex;
+    border:none;
+    border-radius:100%;
+    width:8px;
+    height:8px;
     background:var(--color-alert);
+    margin-left:auto;
+    margin-right: auto;
+    top:-4px;
 }

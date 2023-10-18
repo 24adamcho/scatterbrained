@@ -47,87 +47,12 @@ const GraphEditor = forwardRef((
     const [nodeId, setNodeId] = useState();
     const [prevNodeId, setPrevNodeId] = useState(); //used for when adding new notes
     
-    const onConnect = useCallback((params) => {setEdges((eds) => addEdge({...params, id:getTimeId(), type:newEdgeStyle}, eds)); setEdgeCount(edges.length)}, [setEdges, newEdgeStyle, setEdgeCount, edges.length]);
-    const getClosestEdge = useCallback((node) => {
-      const { nodeInternals } = store.getState();
-      const storeNodes = Array.from(nodeInternals.values());
-  
-      const closestNode = storeNodes.reduce(
-        (res, n) => {
-          if (n.id !== node.id) {
-            const dx = n.positionAbsolute.x - node.positionAbsolute.x;
-            const dy = n.positionAbsolute.y - node.positionAbsolute.y;
-            const d = Math.sqrt(dx * dx + dy * dy);
-  
-            if (d < res.distance && d < MIN_DISTANCE) {
-              res.distance = d;
-              res.node = n;
-            }
-          }
-  
-          return res;
-        },
-        {
-          distance: Number.MAX_VALUE,
-          node: null,
-        }
-      );
-  
-      if (!closestNode.node) {
-        return null;
-      }
-  
-      const closeNodeIsSource = closestNode.node.positionAbsolute.x < node.positionAbsolute.x;
-  
-      // console.log(newEdgeStyle)
-      return {
-        // id: `${node.id}-${closestNode.node.id}, ${getTimeId()}`,
-        id: getTimeId(),
-        type: newEdgeStyle,
-        source: closeNodeIsSource ? closestNode.node.id : node.id,
-        target: closeNodeIsSource ? node.id : closestNode.node.id,
-      };
-    }, [newEdgeStyle, store]);
-    const onNodeDrag = useCallback(
-      (_, node) => {
-        const closeEdge = getClosestEdge(node);
-  
-        setEdges((es) => {
-            if(es === undefined) return;
-          const nextEdges = es.filter((e) => e.className !== 'temp');
-  
-          if (
-            closeEdge &&
-            !nextEdges.find((ne) => ne.source === closeEdge.source && ne.target === closeEdge.target)
-          ) {
-            closeEdge.className = 'temp';
-            closeEdge.type = newEdgeStyle;
-            nextEdges.push(closeEdge);
-          }
-  
-          return nextEdges;
-        });
-      },
-      [getClosestEdge, setEdges, newEdgeStyle]
-    );
-    const onNodeDragStop = useCallback(
-      (_, node) => {
-        const closeEdge = getClosestEdge(node);
-  
-        setEdges((es) => {
-            if(es === undefined) es = [];
-          const nextEdges = es.filter((e) => e.className !== 'temp');
-  
-          if (closeEdge) {
-            closeEdge.type = newEdgeStyle;
-            nextEdges.push(closeEdge);
-          }
-  
-          return nextEdges;
-        });
+    const onConnect = useCallback((params) => {
+        console.log(params);
+      setEdges(
+        (eds) => addEdge({...params, id:getTimeId(), type:newEdgeStyle}, eds)); 
         setEdgeCount(edges.length)
-      },
-      [getClosestEdge, setEdges, newEdgeStyle, setEdgeCount, edges.length]
+      }, [setEdges, newEdgeStyle, setEdgeCount, edges.length]
     );
 
     //this is utterly fucking stupid, but there is no other way to put a node in the frame that doesn't involve
@@ -218,8 +143,7 @@ const GraphEditor = forwardRef((
                     onInit={onInit}
                     nodeTypes={nodeTypes}
                     onNodeClick={changeNoteId}
-                    onNodeDrag={(a, b) => {onNodeDrag(a, b); changeNoteId(a, b);}}
-                    onNodeDragStop={onNodeDragStop}
+                    onNodeDrag={(a, b) => {changeNoteId(a, b);}}
                     onConnect={onConnect}
                     connectionLineType={newEdgeStyle}
                     connectionLineStyle={{stroke:'var(--color-low)', strokeWidth:2}}

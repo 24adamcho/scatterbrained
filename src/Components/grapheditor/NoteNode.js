@@ -1,11 +1,18 @@
 import { memo } from 'react';
-import {Handle, Position, NodeResizer} from 'reactflow';
+import {Handle, Position, NodeResizer, useStore} from 'reactflow';
 import ReactQuill from 'react-quill'; //for data display
 
 import '../texteditor/TextEditor.css'
 import 'react-quill/dist/quill.snow.css';
 
+const connectionNodeIdSelector = (state) => state.connectionNodeId;
+
 const NoteNode = ({data, selected}) => {
+    const connectionNodeId = useStore(connectionNodeIdSelector);
+
+    const isConnecting = !!connectionNodeId;
+    const isTarget = connectionNodeId && connectionNodeId !== data.id;
+
     return (
         <>
             <NodeResizer 
@@ -17,16 +24,12 @@ const NoteNode = ({data, selected}) => {
                 position={Position.Top}
                 type='target'
             />
-            <Handle
-                position={Position.Top}
-                type='source'
-                // isValidConnection={(connection) => connection.source = connection.target}
-                // onConnect={(params) => console.log('handle pnConnect', params)}
-
-                // isConnectable={true}
-                // isConnectableStart={true}
-                // isConnectableEnd={true}
-            />
+            {!isConnecting && (
+                <Handle
+                    position={Position.Top}
+                    type='source'
+                />
+            )}
             <ReactQuill
                 modules={{toolbar:false}}
                 value={data}
