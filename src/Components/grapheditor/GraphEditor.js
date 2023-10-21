@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback, forwardRef } from 'react';
+import React, { useMemo, useState, useCallback, forwardRef, useEffect } from 'react';
 
 import ReactFlow, { 
     Controls, 
@@ -43,12 +43,26 @@ const GraphEditor = forwardRef((
     const [edges, setEdges, onEdgesChange] = useEdgesState(propEdges);
 
     const [newEdgeStyle, setNewEdgeStyle] = useState('default');
+    const [tool, setTool] = useState('pointer')
 
     const [nodeId, setNodeId] = useState();
     const [prevNodeId, setPrevNodeId] = useState(); //used for when adding new notes
     
+    useEffect(()=>{
+        console.log(tool)
+        setNodes((nds)=>{
+            return nds.map((node)=>{
+                node.data = {
+                    ...node.data,
+                    tool:tool,
+                }
+                return node;
+            });
+        });
+    },[tool, setNodes])
+
     const onConnect = useCallback((params) => {
-        console.log(params);
+        // console.log(params);
       setEdges(
         (eds) => addEdge({...params, id:getTimeId(), type:newEdgeStyle}, eds)); 
         setEdgeCount(edges.length)
@@ -81,7 +95,10 @@ const GraphEditor = forwardRef((
             id:newid,
             type:'note',
             position:center,
-            data:'',
+            data:{
+                content:'', 
+                tool:tool
+            },
         }
         // console.log(newNoteNode);
         setNodes((nds) => nds.concat(newNoteNode));
@@ -96,17 +113,18 @@ const GraphEditor = forwardRef((
     //editNote
     //SPAGHETTI MONSTER: DO NOT TOUCH
     React.useImperativeHandle(ref, () => ({
-        editNote: (data) => {
-            setNodes((nds) =>
-                nds.map((node) => {
+        editNote: (content) => {
+            setNodes((nds) => {
+                console.log("I've been called!");
+                return nds.map((node) => {
                     if(node.id === nodeId) {
-                        node.data = data;
+                        node.data = {...node.data, content:content};
                     // console.log(`changed note data to ${node.data}`)
                     }
 
                     return node;
                 })
-            );
+            });
         }
     }));
 
@@ -117,7 +135,7 @@ const GraphEditor = forwardRef((
         nodes.map((nds) => {
             if(nds.id === node.id) 
             {
-                editTextRef.current.editText(nds.data);
+                editTextRef.current.editText(nds.data.content);
                 // console.log(nds)
             }
 
@@ -134,7 +152,11 @@ const GraphEditor = forwardRef((
                         style={{right:`${subcontentWidth[1]}%`}}>
                     <AddNoteIcon />
                 </Button>
-                <SidebarContextMenu edgeStyle={newEdgeStyle} edgeStyleCallback={setNewEdgeStyle}/>
+                <SidebarContextMenu 
+                    edgeStyle={newEdgeStyle} 
+                    edgeStyleCallback={setNewEdgeStyle}
+                    setToolCallback={setTool}
+                />
                 <ReactFlow
                     nodes={nodes}
                     edges={edges}
