@@ -1,14 +1,15 @@
 .sidebarContextMenu {
-    position:absolute;
-    z-index: 1;
-    top:0;
-    left:0;
-    margin:15px;
+    order:1;
+    /* position:absolute; */
+    /* z-index: 1; */
+    /* top:0;
+    left:0; */
+    /* margin:15px; */
 
-    display: flex;
+    /* display: flex;
     flex-direction:column;
     align-content:left;
-    text-align:left;
+    text-align:left; */
 }
 
 .btn {

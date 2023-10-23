@@ -80,6 +80,7 @@ function App() {
               enableMiniMap={enableMiniMap}
               tool={tool}
               setTool={setTool}
+              width={sizes[0]}
             />
           </div>
           <div className='rightContentWrapper'>

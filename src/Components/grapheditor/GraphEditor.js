@@ -34,7 +34,8 @@ const GraphEditor = forwardRef((
             setEdgeCount,
             enableMiniMap,
             tool,
-            setTool
+            setTool,
+            width
         },
         ref
     ) => {
@@ -204,16 +205,18 @@ const GraphEditor = forwardRef((
                         style={{right:`${subcontentWidth[1]}%`}}>
                     <AddNoteIcon />
                 </Button>
-                <SidebarContextMenu 
-                    edgeStyle={newEdgeStyle} 
-                    edgeStyleCallback={setNewEdgeStyle}
-                    setToolCallback={setTool}
-                />
-                <TopbarContextMenu
-                    selectedNodes={selectedNodes}
-                    selectedEdges={selectedEdges}
-                    tool={tool}
-                />
+                <div className='toolsetOverlay' style={{width:width + '%'}}>
+                    <SidebarContextMenu 
+                        edgeStyle={newEdgeStyle} 
+                        edgeStyleCallback={setNewEdgeStyle}
+                        setToolCallback={setTool}
+                    />
+                    <TopbarContextMenu
+                        selectedNodes={selectedNodes}
+                        selectedEdges={selectedEdges}
+                        tool={tool}
+                    />
+                </div>
                 <ReactFlow
                     nodes={nodes}
                     edges={edges}
@@ -235,7 +238,7 @@ const GraphEditor = forwardRef((
                     <Background variant={bgstyle}/>
                     <Controls></Controls>
                     {enableMiniMap && (
-                        <MiniMap position='top-right' 
+                        <MiniMap position='bottom-left' 
                                  pannable
                                  style={{opacity:'50%'}}/>
                     )}

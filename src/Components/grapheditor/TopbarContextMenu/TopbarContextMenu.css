@@ -1,0 +1,10 @@
+.topbarContextMenu {
+    order:2;
+    flex:1;
+}
+.topBarWidgetsMenu {
+    order:3;
+    flex:1;
+    background-color:var(--color-high);
+    height:fit-content;
+}

@@ -7,6 +7,18 @@
 .flowInterfaceWrapper {
     overflow:hidden;
 }
+
+.toolsetOverlay {
+    display:flex;
+    flex-direction:row;
+    position:absolute;
+    z-index: 10;
+    /* top:0;
+    left:0;
+    right:0; */
+    top:0;
+    left:0;
+}
 .addNoteButton {
     z-index: 1;
     position:absolute;

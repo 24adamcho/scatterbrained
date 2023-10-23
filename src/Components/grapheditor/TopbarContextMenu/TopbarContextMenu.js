@@ -1,20 +1,75 @@
 import { useState, useEffect } from 'react'
 import './TopbarContextMenu.css'
 
+const NodesBar = ({
+    className,
+    nodes,
+}) => {
 
+    return (
+        <>
+            <div className={className}>
+            <p>test nodesbar</p>
+            </div>
+        </>
+    )
+}
+
+const EdgesBar = ({
+    className,
+    edges,
+}) => {
+
+    return (
+        <>
+            <div className={className}>
+                <p>test edgesbar</p>
+            </div>
+        </>
+    )
+}
+
+const BothBar = ({
+    className,
+    nodes,
+    edges
+}) => {
+
+    return (
+        <>
+            <div className={className}>
+                <p>test bothbar</p>
+            </div>
+        </>
+    )
+}
+
+const LineToolBar = ({
+    className,
+}) => {
+
+    return (
+        <>
+            <div className={className}>
+                <p>test lineToolBar</p>
+            </div>
+        </>
+    )
+}
 
 const TopbarContextMenu = (
     {
         selectedNodes,
         selectedEdges,
-        tool
+        tool,
+        width
     }
 ) => {
     const [selectionType, setSelectionType] = useState('')
 
     useEffect(()=>{
-        console.log(selectedNodes.length)
-        console.log(selectedEdges.length)
+        // console.log(selectedNodes.length)
+        // console.log(selectedEdges.length)
         if(selectedNodes.length > 0 && selectedEdges.length === 0) {
             setSelectionType('nodes');
         }
@@ -29,26 +84,37 @@ const TopbarContextMenu = (
         }
     }, [selectedNodes.length, selectedEdges.length])
 
+    console.log(`${width}%`);
     return (
         <>
-            {
-                (tool === 'pointer') ?
-                    (selectionType === 'nodes') ?
-                        <p>nodesbar</p>
+            <div class='topbarContextMenu'>
+                {
+                    (tool === 'pointer') ?
+                        (selectionType === 'nodes') ?
+                            <NodesBar className={['nodesBar', 'topBarWidgetsMenu'].join(' ')} 
+                                      nodes={selectedNodes}
+                            />
+                        :
+                        (selectionType === 'edges') ?
+                            <EdgesBar className={['edgesBar', 'topBarWidgetsMenu'].join(' ')}
+                                      edges={selectedEdges}
+                            />
+                        :
+                        (selectionType === 'both') ?
+                            <BothBar className={['bothBar', 'topBarWidgetsMenu'].join(' ')}
+                                     nodes={selectedNodes}
+                                     edges={selectedEdges}
+                            />
+                        :
+                        <></> //pointer but nothing selected
+                    : 
+                    (tool === 'line') ?
+                        <LineToolBar className={['lineToolBar', 'topBarWidgetsMenu'].join(' ')}
+                        />
                     :
-                    (selectionType === 'edges') ?
-                        <p>edgesbar</p>
-                    :
-                    (selectionType === 'both') ?
-                        <p>bothbar</p>
-                    :
-                    <></> //pointer but nothing selected
-                : 
-                (tool === 'line') ?
-                    <p>linetoolcontextmenu</p>
-                :
-                <></> //nothing selected or no tool context required
-            }
+                    <></> //nothing selected or no tool context required
+                }
+            </div>
         </>
     )
 }
