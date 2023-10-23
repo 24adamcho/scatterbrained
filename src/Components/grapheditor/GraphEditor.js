@@ -69,11 +69,15 @@ const GraphEditor = forwardRef((
         });
     },[tool, setNodes])
 
+    useEffect(()=>{
+        setNodeCount(nodes.length)
+        setEdgeCount(edges.length)
+    }, [nodes.length, edges.length])
+
     const onConnect = useCallback((params) => {
         // console.log(params);
       setEdges(
         (eds) => addEdge({...params, id:getTimeId(), type:newEdgeStyle}, eds)); 
-        setEdgeCount(edges.length)
       }, [setEdges, newEdgeStyle, setEdgeCount, edges.length]
     );
 
@@ -112,7 +116,6 @@ const GraphEditor = forwardRef((
         }
         // console.log(newNoteNode);
         setNodes((nds) => nds.concat(newNoteNode));
-        setNodeCount(nodes.length);
         //change to new new id so that repeatedly added notes stagger, but using changeNodeId doesn't want to update the editor
         //sidestep this by *just* changing the node id
         setPrevNodeId(newNoteNode.id)
@@ -229,8 +232,6 @@ const GraphEditor = forwardRef((
                     onConnect={onConnect}
                     connectionLineType={newEdgeStyle}
                     connectionLineStyle={{stroke:'var(--color-low)', strokeWidth:2}}
-                    onNodesDelete={useCallback(()=>{setNodeCount(nodes.length)}, [setNodeCount, nodes])}
-                    onEdgesDelete={useCallback(()=>{setEdgeCount(edges.length)}, [setEdgeCount, edges])}
 
                     onPaneClick={clearEditor}
                     onSelectionChange={onSelectionChange}
