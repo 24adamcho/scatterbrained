@@ -115,7 +115,6 @@ const GraphEditor = forwardRef((
     React.useImperativeHandle(ref, () => ({
         editNote: (content) => {
             setNodes((nds) => {
-                console.log("I've been called!");
                 return nds.map((node) => {
                     if(node.id === nodeId) {
                         node.data = {...node.data, content:content};
