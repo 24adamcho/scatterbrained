@@ -91,10 +91,7 @@ function TopBar(props) {
     console.log(sanitizedNodes);
     
     let slug = {metadata:`
- _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ ____  
-|   __|     |  _  |_   _|_   _|   __| __  | __  | __  |  _  |     |   | |   __|    \ 
-|__   |   --|     | | |   | | |   __|    -| __ -|    -|     |-   -| | | |   __|  |  |
-|_____|_____|__|__| |_|   |_| |_____|__|__|_____|__|__|__|__|_____|_|___|_____|____/
+SCATTERBRAINED
 `,//TODO: add git repo link
                 title: props.title,
                 nodes:props.nodeRef.current.getNodes(),
