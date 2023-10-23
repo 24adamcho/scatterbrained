@@ -86,8 +86,8 @@ const GraphEditor = forwardRef((
         }
         else {
             let previousNode = nodes.find((element) => element.id === prevNodeId);
-            center = {x:previousNode.position.x+15, 
-                      y:previousNode.position.y+15};
+            center = {x:previousNode.position.x-15, 
+                      y:previousNode.position.y-15};
             // console.log('nodes had an element! using last known value touched')
             // console.log(previousNode);
         }
