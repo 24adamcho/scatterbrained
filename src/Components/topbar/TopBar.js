@@ -85,7 +85,7 @@ function TopBar(props) {
   const save = () => {
     let sanitizedNodes = props.nodeRef.current.getNodes().map((node) => {
       node.selected=false;
-      node.data.tool='pointer';
+      node.data.tool=props.tool;
       return node;
     })
     console.log(sanitizedNodes);

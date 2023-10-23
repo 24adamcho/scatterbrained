@@ -26,7 +26,14 @@ function App() {
   }
 
   //absolute spaghetti monster, DO NOT TOUCH
-  const nodeRef = useRef(()=>({editText:()=>{}, getNodes:()=>{}, getEdges:()=>{}, setNewNodes:()=>{}, setNewEdges:()=>{}}));
+  const nodeRef = useRef(()=>({editText:()=>{},
+                               getNodes:()=>{}, 
+                               getEdges:()=>{}, 
+                               setNewNodes:()=>{}, 
+                               setNewEdges:()=>{}
+                              }
+                             )
+  );
   const textRef = useRef(()=>({editNote:()=>{}}));
 
   const [sizes, setSize] = useState(['50', '50']) //this is converted into a percent so that the addNote button is positioned properly
@@ -45,6 +52,8 @@ function App() {
   const changeMiniMapState = () => {
     setMiniMapState(!enableMiniMap);
   }
+  
+  const [tool, setTool] = useState('pointer')
 
   return (
     <div className={['App', style].join(" ")}>
@@ -53,6 +62,7 @@ function App() {
               setTitle={setTitle}
               title={title}
               changeMiniMapState={changeMiniMapState}
+              tool={tool}
       />
       <Split className="contentWrapper" 
              minSize={window.innerWidth * 0.3}
@@ -68,6 +78,8 @@ function App() {
               setNodeCount={setNodeCount}
               setEdgeCount={setEdgeCount}
               enableMiniMap={enableMiniMap}
+              tool={tool}
+              setTool={setTool}
             />
           </div>
           <div className='rightContentWrapper'>
