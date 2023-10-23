@@ -161,9 +161,6 @@ const GraphEditor = forwardRef((
         setNodeId('');
         editTextRef.current.editText(undefined);
     }
-    const onSelectionchange = (onSelectionChangeParams) => {
-        if(onSelectionChangeParams.nodes.length == 0) clearEditor();
-    }
 
     return (
         <>
