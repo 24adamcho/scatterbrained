@@ -135,3 +135,7 @@
     margin-right: auto;
     top:-4px;
 }
+
+.react-flow__minimap {
+	background-color: var(--color-mid);
+}

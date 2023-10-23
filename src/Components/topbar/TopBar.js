@@ -115,6 +115,7 @@ SCATTERBRAINED
             </NavDropdown>
             <NavDropdown title='View'>
               <NavDropdown.Item onClick={nightmodeButton}>{nightmodeStateText}</NavDropdown.Item>
+              <NavDropdown.Item onClick={props.changeMiniMapState}>Mini Map</NavDropdown.Item>
             </NavDropdown>
         </Nav>
         <Navbar.Brand href='#scatterbrained'>Scatterbrained</Navbar.Brand>

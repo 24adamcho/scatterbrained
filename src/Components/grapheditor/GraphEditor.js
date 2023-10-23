@@ -8,6 +8,7 @@ import ReactFlow, {
     addEdge, 
     ReactFlowProvider,
     useStoreApi,
+    MiniMap,
 } from 'reactflow';
 import { Button } from 'react-bootstrap';
 
@@ -29,7 +30,8 @@ const GraphEditor = forwardRef((
             editTextRef,
             subcontentWidth,
             setNodeCount,
-            setEdgeCount
+            setEdgeCount,
+            enableMiniMap
         },
         ref
     ) => {
@@ -196,6 +198,11 @@ const GraphEditor = forwardRef((
                     >
                     <Background variant={bgstyle}/>
                     <Controls></Controls>
+                    {enableMiniMap && (
+                        <MiniMap position='top-right' 
+                                 pannable
+                                 style={{opacity:'50%'}}/>
+                    )}
                 </ReactFlow>
             </div>
         </>

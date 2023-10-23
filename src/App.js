@@ -41,12 +41,18 @@ function App() {
     document.title = `Scatterbrained${(title==='')?'':` | ${title}`}`;
   }, [title])
 
+  const [enableMiniMap, setMiniMapState] = useState(false);
+  const changeMiniMapState = () => {
+    setMiniMapState(!enableMiniMap);
+  }
+
   return (
     <div className={['App', style].join(" ")}>
       <TopBar changeStyle={changeStyle} 
               nodeRef={nodeRef}
               setTitle={setTitle}
               title={title}
+              changeMiniMapState={changeMiniMapState}
       />
       <Split className="contentWrapper" 
              minSize={window.innerWidth * 0.3}
@@ -61,6 +67,7 @@ function App() {
               subcontentWidth={sizes}
               setNodeCount={setNodeCount}
               setEdgeCount={setEdgeCount}
+              enableMiniMap={enableMiniMap}
             />
           </div>
           <div className='rightContentWrapper'>
