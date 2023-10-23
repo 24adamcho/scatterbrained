@@ -19,13 +19,61 @@ function TopBar(props) {
       changeNightModeStateText('Night Mode');
   }
 
+  const openFile = async () => {
+    return new Promise((resolve) => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.addEventListener('change', () => {
+        resolve(input.files[0]);
+      });
+      input.click();
+    });
+  }
+  const open = () => {
+    openFile().then(function (file) {
+      var reader = new FileReader();
+      reader.addEventListener('load', (event)=> {
+        let data = JSON.parse(event.target.result)
+        console.log(data)
+
+        props.nodeRef.current.setNewNodes(data.nodes)
+        props.nodeRef.current.setNewEdges(data.edges)
+      });
+      reader.readAsText(file);
+    })
+  }
+
+  const saveFile = async (blob) => {
+    const a = document.createElement('a');
+    a.download = 'scatterbrained.json';
+    a.href = URL.createObjectURL(blob);
+    a.addEventListener('click', (e) => {
+      setTimeout(() => URL.revokeObjectURL(a.href), 30 * 1000);
+    });
+    a.click();
+  }
+  const save = () => {
+    let sanitizedNodes = props.nodeRef.current.getNodes().map((node) => {
+      node = {...node, selected:false}
+      return node;
+    })
+    console.log(sanitizedNodes);
+    
+    let slug = {nodes:props.nodeRef.current.getNodes(),
+                edges:props.nodeRef.current.getEdges()}
+    
+    const blob = new Blob([JSON.stringify(slug, null,2)], {type:'application/json'});
+
+    saveFile(blob);
+  }
+
   return (
     <Navbar>
       <Container>
         <Nav>
             <NavDropdown title='File'>
-              <NavDropdown.Item >Open File</NavDropdown.Item>
-              <NavDropdown.Item >Save File</NavDropdown.Item>
+              <NavDropdown.Item onClick={open}>Open File</NavDropdown.Item>
+              <NavDropdown.Item onClick={save}>Save File</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title='Edit'>
               <NavDropdown.Item >placeholder</NavDropdown.Item>

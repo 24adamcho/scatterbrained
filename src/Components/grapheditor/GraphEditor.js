@@ -125,6 +125,18 @@ const GraphEditor = forwardRef((
                     return node;
                 })
             });
+        },
+        getNodes: () => {
+            return nodes;
+        },
+        getEdges: () => {
+            return edges;
+        },
+        setNewNodes:(nodeList)=>{
+            setNodes(nodeList)
+        }, 
+        setNewEdges:(edgeList)=>{
+            setEdges(edgeList)
         }
     }));
 

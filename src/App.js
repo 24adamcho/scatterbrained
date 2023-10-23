@@ -26,7 +26,7 @@ function App() {
   }
 
   //absolute spaghetti monster, DO NOT TOUCH
-  const nodeRef = useRef(()=>({editText:()=>{}}));
+  const nodeRef = useRef(()=>({editText:()=>{}, getNodes:()=>{}, getEdges:()=>{}, setNewNodes:()=>{}, setNewEdges:()=>{}}));
   const textRef = useRef(()=>({editNote:()=>{}}));
 
   const [sizes, setSize] = useState(['50', '50']) //this is converted into a percent so that the addNote button is positioned properly
@@ -38,7 +38,9 @@ function App() {
 
   return (
     <div className={['App', style].join(" ")}>
-      <TopBar changeStyle={changeStyle}/>
+      <TopBar changeStyle={changeStyle} 
+              nodeRef={nodeRef}
+      />
       <Split className="contentWrapper" 
              minSize={window.innerWidth * 0.3}
              onDrag={setSize}
