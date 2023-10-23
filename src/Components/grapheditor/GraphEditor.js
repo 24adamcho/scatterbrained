@@ -42,7 +42,7 @@ const GraphEditor = forwardRef((
     const [nodes, setNodes, onNodesChange] = useNodesState(propNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(propEdges);
 
-    const [newEdgeStyle, setNewEdgeStyle] = useState('default');
+    const [newEdgeStyle, setNewEdgeStyle] = useState('straight');
     const [tool, setTool] = useState('pointer')
 
     const [nodeId, setNodeId] = useState();
@@ -99,6 +99,7 @@ const GraphEditor = forwardRef((
                 content:'', 
                 tool:tool
             },
+            // style:{backgroundColor:'green'},
         }
         // console.log(newNoteNode);
         setNodes((nds) => nds.concat(newNoteNode));
@@ -142,6 +143,14 @@ const GraphEditor = forwardRef((
         });
     }
 
+    const clearEditor = () => {
+        setNodeId('');
+        editTextRef.current.editText(undefined);
+    }
+    const onSelectionchange = (onSelectionChangeParams) => {
+        if(onSelectionChangeParams.nodes.length == 0) clearEditor();
+    }
+
     return (
         <>
             <div className='flowInterfaceWrapper' style={{height:'100%'}}>
@@ -170,6 +179,8 @@ const GraphEditor = forwardRef((
                     connectionLineStyle={{stroke:'var(--color-low)', strokeWidth:2}}
                     onNodesDelete={setNodeCount(nodes.length)}
                     onEdgesDelete={setEdgeCount(edges.length)}
+
+                    onSelectionChange={onSelectionchange}
                     >
                     <Background variant={bgstyle}/>
                     <Controls></Controls>
