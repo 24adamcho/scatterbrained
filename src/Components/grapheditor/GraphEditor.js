@@ -18,6 +18,7 @@ import {ReactComponent as AddNoteIcon } from './add-note-svgrepo-com.svg'
 import SidebarContextMenu from './SidebarContextMenu/SidebarContextMenu';
 
 import NoteNode from './NoteNode';
+import TopbarContextMenu from './TopbarContextMenu/TopbarContextMenu';
 
 const getTimeId = () => `${String(+new Date()).slice(6)}`;
 
@@ -50,6 +51,9 @@ const GraphEditor = forwardRef((
 
     const [nodeId, setNodeId] = useState('');
     const [prevNodeId, setPrevNodeId] = useState(''); //used for when adding new notes
+
+    const [selectedNodes, setSelectedNodes] = useState([]);
+    const [selectedEdges, setSelectedEdges] = useState([]);
     
     useEffect(()=>{
         console.log(tool)
@@ -182,6 +186,11 @@ const GraphEditor = forwardRef((
         editTextRef.current.editText(undefined);
     }
 
+    const onSelectionChange = (params) => {
+        setSelectedNodes(params.nodes);
+        setSelectedEdges(params.edges);
+    }
+
     return (
         <>
             <div className='flowInterfaceWrapper' style={{height:'100%'}}>
@@ -200,6 +209,11 @@ const GraphEditor = forwardRef((
                     edgeStyleCallback={setNewEdgeStyle}
                     setToolCallback={setTool}
                 />
+                <TopbarContextMenu
+                    selectedNodes={selectedNodes}
+                    selectedEdges={selectedEdges}
+                    tool={tool}
+                />
                 <ReactFlow
                     nodes={nodes}
                     edges={edges}
@@ -216,6 +230,7 @@ const GraphEditor = forwardRef((
                     onEdgesDelete={useCallback(()=>{setEdgeCount(edges.length)}, [setEdgeCount, edges])}
 
                     onPaneClick={clearEditor}
+                    onSelectionChange={onSelectionChange}
                     >
                     <Background variant={bgstyle}/>
                     <Controls></Controls>
