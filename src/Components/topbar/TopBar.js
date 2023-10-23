@@ -75,7 +75,7 @@ function TopBar(props) {
 
   const saveFile = async (blob) => {
     const a = document.createElement('a');
-    a.download = 'scatterbrained.json';
+    a.download = (props.title === '') ? 'scatterbrained.json' : props.title;
     a.href = URL.createObjectURL(blob);
     a.addEventListener('click', (e) => {
       setTimeout(() => URL.revokeObjectURL(a.href), 30 * 1000);
@@ -85,6 +85,7 @@ function TopBar(props) {
   const save = () => {
     let sanitizedNodes = props.nodeRef.current.getNodes().map((node) => {
       node.selected=false;
+      node.data.tool='pointer';
       return node;
     })
     console.log(sanitizedNodes);
