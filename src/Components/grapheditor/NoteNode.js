@@ -29,7 +29,7 @@ const NoteNode = ({data, selected}) => {
             <NodeResizer 
                 minWidth={130} 
                 minHeight={100} 
-                isVisible={selected}
+                isVisible={selected && data.tool === 'pointer'}
             />
             <Handle
                 position={Position.Top}
