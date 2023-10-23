@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import './App.css';
 
@@ -36,10 +36,17 @@ function App() {
   const [charCount, setCharCount] = useState(0);
   const [wordCount, setWordCount] = useState(0);
 
+  const [title, setTitle] = useState('');
+  useEffect(() => {
+    document.title = `Scatterbrained${(title==='')?'':` | ${title}`}`;
+  }, [title])
+
   return (
     <div className={['App', style].join(" ")}>
       <TopBar changeStyle={changeStyle} 
               nodeRef={nodeRef}
+              setTitle={setTitle}
+              title={title}
       />
       <Split className="contentWrapper" 
              minSize={window.innerWidth * 0.3}

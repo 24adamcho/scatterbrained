@@ -53,6 +53,8 @@ function TopBar(props) {
       const input = document.createElement('input');
       input.type = 'file';
       input.addEventListener('change', () => {
+        let t = input.files[0].name;
+        props.setTitle(t.substring(0, t.lastIndexOf('.')))
         resolve(input.files[0]);
       });
       input.click();
@@ -63,7 +65,6 @@ function TopBar(props) {
       var reader = new FileReader();
       reader.addEventListener('load', (event)=> {
         let data = JSON.parse(event.target.result)
-        console.log(data)
 
         props.nodeRef.current.setNewNodes(data.nodes)
         props.nodeRef.current.setNewEdges(data.edges)
@@ -88,7 +89,14 @@ function TopBar(props) {
     })
     console.log(sanitizedNodes);
     
-    let slug = {nodes:props.nodeRef.current.getNodes(),
+    let slug = {metadata:`
+ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ ____  
+|   __|     |  _  |_   _|_   _|   __| __  | __  | __  |  _  |     |   | |   __|    \ 
+|__   |   --|     | | |   | | |   __|    -| __ -|    -|     |-   -| | | |   __|  |  |
+|_____|_____|__|__| |_|   |_| |_____|__|__|_____|__|__|__|__|_____|_|___|_____|____/
+`,//TODO: add git repo link
+                title: props.title,
+                nodes:props.nodeRef.current.getNodes(),
                 edges:props.nodeRef.current.getEdges()}
     
     const blob = new Blob([JSON.stringify(slug, null,2)], {type:'application/json'});
