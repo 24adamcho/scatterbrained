@@ -194,7 +194,7 @@ const GraphEditor = forwardRef((
                     onNodesDelete={setNodeCount(nodes.length)}
                     onEdgesDelete={setEdgeCount(edges.length)}
 
-                    onSelectionChange={onSelectionchange}
+                    onPaneClick={clearEditor}
                     >
                     <Background variant={bgstyle}/>
                     <Controls></Controls>
