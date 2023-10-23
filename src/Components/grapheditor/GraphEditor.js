@@ -31,7 +31,9 @@ const GraphEditor = forwardRef((
             subcontentWidth,
             setNodeCount,
             setEdgeCount,
-            enableMiniMap
+            enableMiniMap,
+            tool,
+            setTool
         },
         ref
     ) => {
@@ -45,10 +47,9 @@ const GraphEditor = forwardRef((
     const [edges, setEdges, onEdgesChange] = useEdgesState(propEdges);
 
     const [newEdgeStyle, setNewEdgeStyle] = useState('straight');
-    const [tool, setTool] = useState('pointer')
 
-    const [nodeId, setNodeId] = useState();
-    const [prevNodeId, setPrevNodeId] = useState(); //used for when adding new notes
+    const [nodeId, setNodeId] = useState('');
+    const [prevNodeId, setPrevNodeId] = useState(''); //used for when adding new notes
     
     useEffect(()=>{
         console.log(tool)
@@ -75,6 +76,7 @@ const GraphEditor = forwardRef((
     //lacing hook spaghetti code through the whole project
     //oh, it also does some weird rart shit with importing presumably the entirety of react
     const addNote = () => {
+        if(instance === undefined) return; //line is really goofy, but whole app crashes without it because editNote() gets called by TextEditor before instance is ready or something.
         const newid = getTimeId();
         
         // console.log(nodes);
@@ -111,12 +113,30 @@ const GraphEditor = forwardRef((
         setPrevNodeId(newNoteNode.id)
         
         console.log(`New note ${newid} added at ${center.x}, ${center.y}`)
+
+        return newNoteNode;
+    }
+
+    const addNoteIfBlanked = (content) => {
+        const shorthand = () => {
+            let newnote = addNote();  //TROUBLESOME LINE
+            if(newnote === undefined) return;
+            setNodeId(newnote.id);
+            setPrevNodeId(newnote.id);
+        }
+        if(prevNodeId === '') {
+            shorthand();
+        }
+        else if(content !== undefined && content !== '<p><br></p>' && nodeId === '' && prevNodeId !== '') {
+            shorthand();
+        }
     }
 
     //editNote
     //SPAGHETTI MONSTER: DO NOT TOUCH
     React.useImperativeHandle(ref, () => ({
         editNote: (content) => {
+            addNoteIfBlanked(content);
             setNodes((nds) => {
                 return nds.map((node) => {
                     if(node.id === nodeId) {
@@ -140,7 +160,7 @@ const GraphEditor = forwardRef((
         setNewEdges:(edgeList)=>{
             setEdges(edgeList)
         }
-    }));
+    }),[addNoteIfBlanked, nodes, edges, setNodes, setEdges]);
 
     const changeNoteId = (mouseEvent, node) => {
         setNodeId(node.id);
@@ -167,7 +187,11 @@ const GraphEditor = forwardRef((
             <div className='flowInterfaceWrapper' style={{height:'100%'}}>
                 <Button className='addNoteButton' 
                         variant='primary' 
-                        onClick={addNote} 
+                        onClick={()=>{
+                            let newNote = addNote();
+                            clearEditor();
+                            changeNoteId(undefined, newNote);
+                        }} 
                         style={{right:`${subcontentWidth[1]}%`}}>
                     <AddNoteIcon />
                 </Button>
@@ -188,8 +212,8 @@ const GraphEditor = forwardRef((
                     onConnect={onConnect}
                     connectionLineType={newEdgeStyle}
                     connectionLineStyle={{stroke:'var(--color-low)', strokeWidth:2}}
-                    onNodesDelete={setNodeCount(nodes.length)}
-                    onEdgesDelete={setEdgeCount(edges.length)}
+                    onNodesDelete={useCallback(()=>{setNodeCount(nodes.length)}, [setNodeCount, nodes])}
+                    onEdgesDelete={useCallback(()=>{setEdgeCount(edges.length)}, [setEdgeCount, edges])}
 
                     onPaneClick={clearEditor}
                     >
