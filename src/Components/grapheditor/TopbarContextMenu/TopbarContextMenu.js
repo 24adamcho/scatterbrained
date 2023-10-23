@@ -61,8 +61,7 @@ const TopbarContextMenu = (
     {
         selectedNodes,
         selectedEdges,
-        tool,
-        width
+        tool
     }
 ) => {
     const [selectionType, setSelectionType] = useState('')
@@ -84,7 +83,6 @@ const TopbarContextMenu = (
         }
     }, [selectedNodes.length, selectedEdges.length])
 
-    console.log(`${width}%`);
     return (
         <>
             <div class='topbarContextMenu'>
