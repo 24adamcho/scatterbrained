@@ -66,6 +66,12 @@ function TopBar(props) {
       reader.addEventListener('load', (event)=> {
         let data = JSON.parse(event.target.result)
 
+        let sanitizedNodes = data.nodes.map((node) => {
+          node.selected=false;
+          node.data.tool=props.tool;
+          return node;
+        })
+
         props.nodeRef.current.setNewNodes(data.nodes)
         props.nodeRef.current.setNewEdges(data.edges)
       });
