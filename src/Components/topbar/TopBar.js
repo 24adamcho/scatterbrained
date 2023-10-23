@@ -4,7 +4,33 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import './TopBar.css';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
+//custom keybinds for saving and opening
+function useKey(key, cb){
+  const callback = useRef(cb);
+
+  useEffect(() => {
+      callback.current = cb;
+  })
+
+  useEffect(() => {
+      function handle(event){
+          if(event.code === key){
+              callback.current(event);
+          } else if (key === 'ctrls' && event.key === 's' && event.ctrlKey) {
+              event.preventDefault();
+              callback.current(event);
+          } else if (key === 'ctrlo' && event.key === 'o' && event.ctrlKey) {
+              event.preventDefault();
+              callback.current(event);
+          }
+      }
+
+      document.addEventListener('keydown',handle);
+      return () => document.removeEventListener("keydown",handle)
+  },[key])
+}
 
 function TopBar(props) {
 
@@ -18,6 +44,9 @@ function TopBar(props) {
     else
       changeNightModeStateText('Night Mode');
   }
+
+  useKey('ctrls', () => save());
+  useKey('ctrlo', () => open())
 
   const openFile = async () => {
     return new Promise((resolve) => {
