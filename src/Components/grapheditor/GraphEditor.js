@@ -49,12 +49,24 @@ const GraphEditor = forwardRef((
     const [edges, setEdges, onEdgesChange] = useEdgesState(propEdges);
 
     const [newEdgeType, setNewEdgeType] = useState('straight');
+    const [newEdgeStyle, setNewEdgeStyle] = useState({
+        strokeWidth:2, 
+    })
 
     const [nodeId, setNodeId] = useState('');
     const [prevNodeId, setPrevNodeId] = useState(''); //used for when adding new notes
 
     const [selectedNodes, setSelectedNodes] = useState([]);
     const [selectedEdges, setSelectedEdges] = useState([]);
+
+    //on initialization
+    useEffect(()=>{
+        setNewEdgeStyle({
+            ...newEdgeStyle,
+            stroke:`${window.getComputedStyle(document.getElementById('App')).getPropertyValue('--color-low')}`
+        })
+        console.log(newEdgeStyle)
+    },[])
     
     useEffect(()=>{
         console.log(tool)
@@ -62,7 +74,7 @@ const GraphEditor = forwardRef((
             return nds.map((node)=>{
                 node.data = {
                     ...node.data,
-                    tool:tool,
+                    tool:tool
                 }
                 return node;
             });
@@ -89,7 +101,8 @@ const GraphEditor = forwardRef((
         (eds) => addEdge({
             ...params, 
             id:getTimeId(), 
-            type:newEdgeType
+            type:newEdgeType,
+            style:newEdgeStyle
         }, eds)); 
       }, [setEdges, newEdgeType, setEdgeCount, edges.length]
     );
@@ -266,6 +279,8 @@ const GraphEditor = forwardRef((
                         tool={tool}
                         newEdgeType={newEdgeType} 
                         setNewEdgeType={setNewEdgeType}
+                        newEdgeStyle={newEdgeStyle}
+                        setNewEdgeStyle={setNewEdgeStyle}
                     />
                 </div>
                 <ReactFlow
@@ -281,7 +296,7 @@ const GraphEditor = forwardRef((
                     onNodesDelete={clearEditor}
                     onConnect={onConnect}
                     connectionLineType={newEdgeType}
-                    connectionLineStyle={{stroke:'var(--color-low)', strokeWidth:2}}
+                    connectionLineStyle={newEdgeStyle}
 
                     onPaneClick={onPaneClick}
                     onSelectionChange={onSelectionChange}
