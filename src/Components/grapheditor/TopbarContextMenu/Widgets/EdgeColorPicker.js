@@ -8,7 +8,6 @@ const EdgeColorPicker = ({
     defaultColor
 }) => {
     const [color, setColor] = useState(defaultColor)
-    console.log(dataList)
 
     useEffect(() => {
         if(dataList.length === 1) 

@@ -38,7 +38,7 @@ export const transformEdges = (setEdges, selection, transformCallback) => {
             return edge;
         })
     })
-    console.log(`Transformation completed in ${c} steps.`)
+    // console.log(`Transformation completed in ${c} steps.`)
 }
 
 export const transformNodes = (setNodes, selection, transformCallback) => {
