@@ -9,7 +9,7 @@ import EdgeColorPicker from './Widgets/EdgeColorPicker'
 
 const NodesBar = ({
     className,
-    nodes,
+    selectedNodes,
     setNodes,
 }) => {
     
@@ -17,7 +17,7 @@ const NodesBar = ({
         <>
             <div className={className}>
                 <NodeColorPicker
-                    dataList={nodes}
+                    dataList={selectedNodes}
                     setDataList={setNodes}
                     defaultColor={window.getComputedStyle(
                                     document.getElementById('App')
@@ -43,7 +43,7 @@ const EdgesBar = ({
                     selectedEdges={selectedEdges}
                 />
                 <EdgeColorPicker
-                    dataList={edges}
+                    dataList={selectedEdges}
                     setDataList={setEdges}
                     defaultColor={window.getComputedStyle(
                                     document.getElementById('App')
