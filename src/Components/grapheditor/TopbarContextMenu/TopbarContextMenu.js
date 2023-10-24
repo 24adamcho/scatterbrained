@@ -33,13 +33,21 @@ const translateEdgeStyleName = (param) => {
     }
 }
 
-const transformEdges = (setEdges, selection, targetCallback, transformCallback) => {
+/*
+    transformEdges
+    uses a passed setEdges function to change selected edges (depending on the results of targetCallback), and then applies transformCallback
+    PARAMS:
+    setEdges - setEdges function from useEdgesState
+    selection - list of nodes to be targeted
+    transformCallback(edge) - transform to apply to edge, returns the new edge to replace the previous one
+*/
+const transformEdges = (setEdges, selection, transformCallback) => {
     let c = 0;
     setEdges((eds)=>{
         return eds.map((edge)=>{
             selection.forEach((selectedEdge)=>{
                 c++;
-                if(targetCallback(selectedEdge, edge)) {
+                if(selectedEdge.id === edge.id) {
                     edge = transformCallback(edge)
                     return edge;
                 }
@@ -63,9 +71,6 @@ const EdgesBar = ({
     const onClick = (param) => {
         transformEdges(setEdges,
                     edges,
-                    (selectedEdge, edge)=>{
-                        return selectedEdge.id===edge.id;
-                    },
                     (edge)=>{
                         return {
                             ...edge, 
