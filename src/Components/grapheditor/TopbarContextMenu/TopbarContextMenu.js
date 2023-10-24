@@ -1,18 +1,26 @@
 import { useState, useEffect } from 'react'
 import './TopbarContextMenu.css'
+import { transformNodes } from './Widgets/utils'
 import NewEdgeCurveSelector from './Widgets/NewEdgeCurveSelector'
 import EdgesCurveSelector from './Widgets/EdgesCurveSelector'
+import ColorPicker from './Widgets/ColorPicker'
 
 const NodesBar = ({
     className,
     nodes,
     setNodes,
 }) => {
-
+    
     return (
         <>
             <div className={className}>
-            <p>test nodesbar</p>
+                <ColorPicker
+                    nodes={nodes}
+                    setNodes={setNodes}
+                    defaultColor={window.getComputedStyle(
+                                    document.getElementById('App')
+                                  ).getPropertyValue('--color-high')}
+                />
             </div>
         </>
     )

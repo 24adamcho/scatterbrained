@@ -56,7 +56,7 @@ function App() {
   const [tool, setTool] = useState('pointer')
 
   return (
-    <div className={['App', style].join(" ")}>
+    <div id='App' className={['App', style].join(" ")}>
       <TopBar changeStyle={changeStyle} 
               nodeRef={nodeRef}
               setTitle={setTitle}
