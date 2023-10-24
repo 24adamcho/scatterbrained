@@ -104,7 +104,7 @@ const GraphEditor = forwardRef((
             type:newEdgeType,
             style:newEdgeStyle
         }, eds)); 
-      }, [setEdges, newEdgeType, setEdgeCount, edges.length]
+      }, [setEdges, newEdgeType, newEdgeStyle, setEdgeCount, edges.length]
     );
 
     //this is utterly fucking stupid, but there is no other way to put a node in the frame that doesn't involve
