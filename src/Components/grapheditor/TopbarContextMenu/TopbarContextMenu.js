@@ -36,10 +36,13 @@ const translateEdgeStyleName = (param) => {
 /*
     transformEdges
     uses a passed setEdges function to change selected edges (depending on the results of targetCallback), and then applies transformCallback
+    
     PARAMS:
     setEdges - setEdges function from useEdgesState
     selection - list of nodes to be targeted
     transformCallback(edge) - transform to apply to edge, returns the new edge to replace the previous one
+
+    it's a really really gross n^2 algorithm but i don't know how else to do it. it's not like it's sorting or anything, and the map function is probably the fast i can get.
 */
 const transformEdges = (setEdges, selection, transformCallback) => {
     let c = 0;
