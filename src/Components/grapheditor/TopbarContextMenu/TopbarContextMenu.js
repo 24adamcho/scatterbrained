@@ -32,6 +32,7 @@ const EdgesBar = ({
     className,
     edges,
     setEdges,
+    selectedEdges,
 }) => {
     return (
         <>
@@ -39,6 +40,7 @@ const EdgesBar = ({
                 <EdgesCurveSelector
                     edges={edges}
                     setEdges={setEdges}
+                    selectedEdges={selectedEdges}
                 />
                 <EdgeColorPicker
                     dataList={edges}
@@ -96,10 +98,12 @@ const LineToolBar = ({
 
 const TopbarContextMenu = (
     {
-        selectedNodes,
-        selectedEdges,
+        nodes,
+        edges,
         setNodes,
         setEdges,
+        selectedNodes,
+        selectedEdges,
         tool,
         newEdgeType,
         setNewEdgeType,
@@ -140,7 +144,8 @@ const TopbarContextMenu = (
                         :
                         (selectionType === 'edges') ?
                             <EdgesBar className={['edgesBar', 'topBarWidgetsMenu'].join(' ')}
-                                      edges={selectedEdges}
+                                      selectedEdges={selectedEdges}
+                                      edges={edges}
                                       setEdges={setEdges}
                             />
                         :

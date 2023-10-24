@@ -2,24 +2,28 @@ import { translateEdgeStyleName, transformEdges } from "./utils.js"
 import CurveDropdown from "./CurveDropdown.js";
 
 const EdgesCurveSelector = ({
+    edges,
     setEdges,
-    edges
+    selectedEdges,
 }) => {
     const getStyleName = () => {
-        if(edges.length < 1) return '';
-        else if(edges.length === 1) return `Curve: ${translateEdgeStyleName(edges[edges.length-1].type)}`;
-        else if(edges.length > 1) return 'Curve...';
+        if(selectedEdges === undefined) return '';
+        else if(selectedEdges.length < 1) return '';
+        else if(selectedEdges.length === 1) return `Curve: ${translateEdgeStyleName(edges[edges.length-1].type)}`;
+        else if(selectedEdges.length > 1) return 'Curve...';
     }
 
     const onClick = (param) => {
         transformEdges(setEdges,
-                       edges,
+                       selectedEdges,
                        (edge)=>{
                             return {
                                ...edge, 
                                type:param
                             };
         });
+        // console.log(translateStyleName(param))
+        // console.log(edgeSelection[edgeSelection.length-1])
     }
 
     return (
