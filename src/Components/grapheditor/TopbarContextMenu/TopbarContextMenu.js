@@ -33,6 +33,20 @@ const translateEdgeStyleName = (param) => {
     }
 }
 
+const transformEdges = (setEdges, selection, targetCallback, transformCallback) => {
+    setEdges((eds)=>{
+        return eds.map((edge)=>{
+            selection.forEach((selectedEdge)=>{
+                console.log(selectedEdge.id === edge.id)
+                if(targetCallback(selectedEdge, edge)) {
+                    edge = transformCallback(edge)
+                    return edge;
+                }
+            })
+            return edge;
+        })
+    })
+}
 const EdgesBar = ({
     className,
     edges,
@@ -45,18 +59,17 @@ const EdgesBar = ({
     }
 
     const onClick = (param) => {
-        setEdges((eds)=>{
-            return eds.map((edge)=>{
-                edges.forEach((selectedEdge)=>{
-                    console.log(selectedEdge.id === edge.id)
-                    if(selectedEdge.id === edge.id) {
-                        edge.type = param;
-                        return edge;
-                    }
-                })
-                return edge;
-            })
-        })
+        transformEdges(setEdges,
+                    edges,
+                    (selectedEdge, edge)=>{
+                        return selectedEdge.id===edge.id;
+                    },
+                    (edge)=>{
+                        return {
+                            ...edge, 
+                            type:param
+                        };
+                    })
     }
 
     return (
