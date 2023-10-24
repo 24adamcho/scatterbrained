@@ -86,7 +86,11 @@ const GraphEditor = forwardRef((
     const onConnect = useCallback((params) => {
         // console.log(params);
       setEdges(
-        (eds) => addEdge({...params, id:getTimeId(), type:newEdgeStyle}, eds)); 
+        (eds) => addEdge({
+            ...params, 
+            id:getTimeId(), 
+            type:newEdgeStyle
+        }, eds)); 
       }, [setEdges, newEdgeStyle, setEdgeCount, edges.length]
     );
 
