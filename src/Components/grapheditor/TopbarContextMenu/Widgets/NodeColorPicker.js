@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { transformEdges } from "./utils";
 import ColorPickerDropdown from "./ColorPickerDropdown";
 
-const ColorPicker = ({
+const NodeColorPicker = ({
     dataList,
     setDataList,
     defaultColor
@@ -22,8 +22,7 @@ const ColorPicker = ({
             return {
                 ...data,
                 style:{
-                    backgroundColor:color,
-                    stroke:color
+                    backgroundColor:color
                 }
             }
         })
@@ -36,4 +35,4 @@ const ColorPicker = ({
     )
 }
 
-export default ColorPicker;
+export default NodeColorPicker;

@@ -3,8 +3,9 @@ import './TopbarContextMenu.css'
 import { transformNodes } from './Widgets/utils'
 import NewEdgeCurveSelector from './Widgets/NewEdgeCurveSelector'
 import EdgesCurveSelector from './Widgets/EdgesCurveSelector'
-import ColorPicker from './Widgets/ColorPicker'
+import NodeColorPicker from './Widgets/NodeColorPicker'
 import NewEdgeColorPicker from './Widgets/NewEdgeColorPicker'
+import EdgeColorPicker from './Widgets/EdgeColorPicker'
 
 const NodesBar = ({
     className,
@@ -15,7 +16,7 @@ const NodesBar = ({
     return (
         <>
             <div className={className}>
-                <ColorPicker
+                <NodeColorPicker
                     dataList={nodes}
                     setDataList={setNodes}
                     defaultColor={window.getComputedStyle(
@@ -39,7 +40,7 @@ const EdgesBar = ({
                     edges={edges}
                     setEdges={setEdges}
                 />
-                <ColorPicker
+                <EdgeColorPicker
                     dataList={edges}
                     setDataList={setEdges}
                     defaultColor={window.getComputedStyle(
