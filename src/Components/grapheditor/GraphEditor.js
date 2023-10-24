@@ -67,6 +67,15 @@ const GraphEditor = forwardRef((
                 return node;
             });
         });
+        setEdges((eds)=> {
+            return eds.map((edge)=>{
+                edge={
+                    ...edge,
+                    interactionWidth:(tool==='pointer')?20:0
+                }
+                return edge;
+            })
+        })
     },[tool, setNodes])
 
     useEffect(()=>{

@@ -117,9 +117,6 @@
 .react-flow__edge.selected>.react-flow__edge-path {
     stroke:var(--color-alert-trans);
 }
-.react-flow__edge-interaction {
-    stroke-width: 5 !important;
-}
 
 .react-flow__handle {
     width:100%;
