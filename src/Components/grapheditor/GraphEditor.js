@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback, forwardRef, useEffect } from 'react';
+import React, { useMemo, useState, useCallback, forwardRef, useEffect, useRef } from 'react';
 
 import ReactFlow, { 
     Controls, 
@@ -183,6 +183,7 @@ const GraphEditor = forwardRef((
         }
     }),[addNoteIfBlanked, nodes, edges, setNodes, setEdges]);
 
+    const thisElement = useRef(null)
     const changeNoteId = (mouseEvent, node) => {
         setNodeId(node.id);
         setPrevNodeId(node.id);
@@ -196,11 +197,25 @@ const GraphEditor = forwardRef((
 
             return nds;
         });
+
+        thisElement.current.focus();
     }
 
     const clearEditor = () => {
         setNodeId('');
         editTextRef.current.editText(undefined);
+    }
+
+    const onPaneClick = () => {
+        clearEditor();
+        setNodes((nds)=>{
+            return nds.map((node)=>{
+                return {
+                    ...node,
+                    selected:false
+                }
+            })
+        })
     }
 
     const onSelectionChange = (params) => {
@@ -266,11 +281,12 @@ const GraphEditor = forwardRef((
                     onNodeClick={changeNoteId}
                     onNodeDoubleClick={onNodeDoubleClick}
                     onNodeDrag={(a, b) => {changeNoteId(a, b);}}
+                    onNodesDelete={clearEditor}
                     onConnect={onConnect}
                     connectionLineType={newEdgeStyle}
                     connectionLineStyle={{stroke:'var(--color-low)', strokeWidth:2}}
 
-                    onPaneClick={clearEditor}
+                    onPaneClick={onPaneClick}
                     onSelectionChange={onSelectionChange}
                     >
                     <Background variant={bgstyle}/>
