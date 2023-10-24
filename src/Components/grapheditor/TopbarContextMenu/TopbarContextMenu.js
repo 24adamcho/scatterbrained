@@ -70,13 +70,13 @@ const EdgesBar = ({
 
     const onClick = (param) => {
         transformEdges(setEdges,
-                    edges,
-                    (edge)=>{
-                        return {
-                            ...edge, 
-                            type:param
-                        };
-                    })
+                       edges,
+                       (edge)=>{
+                            return {
+                               ...edge, 
+                               type:param
+                            };
+        });
     }
 
     return (
