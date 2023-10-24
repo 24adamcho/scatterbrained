@@ -137,7 +137,7 @@ const TopbarContextMenu = (
                     (tool === 'pointer') ?
                         (selectionType === 'nodes') ?
                             <NodesBar className={['nodesBar', 'topBarWidgetsMenu'].join(' ')} 
-                                      nodes={selectedNodes}
+                                selectedNodes={selectedNodes}
                                       setNodes={setNodes}
                                       setEdges={setEdges}
                             />
