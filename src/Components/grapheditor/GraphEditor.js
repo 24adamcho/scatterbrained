@@ -103,13 +103,13 @@ const GraphEditor = forwardRef((
         
         // console.log(nodes);
         let center = [0, 0];
-        if(nodes.length <= 0) {
+        let previousNode = nodes.find((element) => element.id === prevNodeId)
+        if(nodes.length <= 0 || previousNode === undefined) {
             center = instance.project({x:window.innerWidth / 4, 
                                        y:window.innerHeight / 2});
             // console.log('nodes was empty! using ratio value');
         }
         else {
-            let previousNode = nodes.find((element) => element.id === prevNodeId);
             center = {x:previousNode.position.x-15, 
                       y:previousNode.position.y-15};
             // console.log('nodes had an element! using last known value touched')
