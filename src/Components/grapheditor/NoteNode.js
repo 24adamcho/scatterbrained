@@ -34,7 +34,12 @@ const NoteNode = ({data, selected}) => {
             <Handle
                 position={Position.Top}
                 type='target'
-                style={(data.tool === 'pointer')? handleStyle.pointer : handleStyle.line}
+                style={(data.tool === 'pointer')? //this really gross chunk is to have the outlines show up when a node is selected when the resizer is hidden
+                            handleStyle.pointer 
+                            : (selected)? 
+                                Object.assign({}, handleStyle.line, {border:'solid 2px var(--color-alert)'}) 
+                                : 
+                            handleStyle.line}
             />
             {!isConnecting && (
                 <Handle
