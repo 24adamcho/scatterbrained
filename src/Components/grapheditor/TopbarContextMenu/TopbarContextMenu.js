@@ -15,8 +15,8 @@ const NodesBar = ({
         <>
             <div className={className}>
                 <ColorPicker
-                    nodes={nodes}
-                    setNodes={setNodes}
+                    dataList={nodes}
+                    setDataList={setNodes}
                     defaultColor={window.getComputedStyle(
                                     document.getElementById('App')
                                   ).getPropertyValue('--color-high')}
@@ -37,6 +37,13 @@ const EdgesBar = ({
                 <EdgesCurveSelector
                     edges={edges}
                     setEdges={setEdges}
+                />
+                <ColorPicker
+                    dataList={edges}
+                    setDataList={setEdges}
+                    defaultColor={window.getComputedStyle(
+                                    document.getElementById('App')
+                                  ).getPropertyValue('--color-low')}
                 />
             </div>
         </>

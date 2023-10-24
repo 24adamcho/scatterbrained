@@ -1,28 +1,30 @@
 import { useCallback, useEffect, useState } from "react";
 import { HexColorInput, RgbStringColorPicker } from "react-colorful";
+import { Dropdown } from "react-bootstrap";
 import { transformNodes } from "./utils";
 
 const ColorPicker = ({
-    nodes,
-    setNodes,
+    dataList,
+    setDataList,
     defaultColor
 }) => {
     const [color, setColor] = useState(defaultColor)
 
     useEffect(() => {
-        if(nodes.length === 1) 
-            if(nodes[0].style !== undefined)
-                setColor(nodes[0].style.backgroundColor)
-        else if(nodes.length > 1) setColor(defaultColor)
-    },[nodes])
+        if(dataList.length === 1) 
+            if(dataList[0].style !== undefined)
+                setColor(dataList[0].style.backgroundColor)
+        else if(dataList.length > 1) setColor(defaultColor)
+    },[dataList])
 
     const onChange = (param)=>{
         setColor(param)
-        transformNodes(setNodes, nodes, (node)=>{
+        transformNodes(setDataList, dataList, (data)=>{
             return {
-                ...node,
+                ...data,
                 style:{
-                    backgroundColor:color
+                    backgroundColor:color,
+                    stroke:color
                 }
             }
         })
@@ -30,10 +32,15 @@ const ColorPicker = ({
 
     return (
         <>
-            <div className="colorPickerPopup">
-                <RgbStringColorPicker color={color} onChange={onChange}/>
-                <HexColorInput color={color} onChange={onChange}/>
-            </div>
+            <Dropdown>
+                <Dropdown.Toggle>
+                    Color picker
+                </Dropdown.Toggle>
+                <Dropdown.Menu className="colorPickerPopup">
+                    <RgbStringColorPicker color={color} onChange={onChange}/>
+                    <HexColorInput color={color} onChange={onChange}/>
+                </Dropdown.Menu>
+            </Dropdown>
         </>
     )
 }
