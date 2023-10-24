@@ -117,7 +117,7 @@
     stroke-width: 2px;
 }
 .react-flow__edge.selected>.react-flow__edge-path {
-    stroke:var(--color-alert-trans);
+    stroke:var(--color-alert-trans) !important;
 }
 
 .react-flow__handle {
