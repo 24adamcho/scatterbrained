@@ -48,7 +48,7 @@ const GraphEditor = forwardRef((
     const [nodes, setNodes, onNodesChange] = useNodesState(propNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(propEdges);
 
-    const [newEdgeStyle, setNewEdgeStyle] = useState('straight');
+    const [newEdgeType, setNewEdgeType] = useState('straight');
 
     const [nodeId, setNodeId] = useState('');
     const [prevNodeId, setPrevNodeId] = useState(''); //used for when adding new notes
@@ -89,9 +89,9 @@ const GraphEditor = forwardRef((
         (eds) => addEdge({
             ...params, 
             id:getTimeId(), 
-            type:newEdgeStyle
+            type:newEdgeType
         }, eds)); 
-      }, [setEdges, newEdgeStyle, setEdgeCount, edges.length]
+      }, [setEdges, newEdgeType, setEdgeCount, edges.length]
     );
 
     //this is utterly fucking stupid, but there is no other way to put a node in the frame that doesn't involve
@@ -264,8 +264,8 @@ const GraphEditor = forwardRef((
                         setNodes={setNodes}
                         setEdges={setEdges}
                         tool={tool}
-                        edgeStyle={newEdgeStyle} 
-                        edgeStyleCallback={setNewEdgeStyle}
+                        newEdgeType={newEdgeType} 
+                        setNewEdgeType={setNewEdgeType}
                     />
                 </div>
                 <ReactFlow
@@ -280,7 +280,7 @@ const GraphEditor = forwardRef((
                     onNodeDrag={(a, b) => {changeNoteId(a, b);}}
                     onNodesDelete={clearEditor}
                     onConnect={onConnect}
-                    connectionLineType={newEdgeStyle}
+                    connectionLineType={newEdgeType}
                     connectionLineStyle={{stroke:'var(--color-low)', strokeWidth:2}}
 
                     onPaneClick={onPaneClick}

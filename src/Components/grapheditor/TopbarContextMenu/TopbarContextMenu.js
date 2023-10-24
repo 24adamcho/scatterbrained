@@ -4,6 +4,7 @@ import { transformNodes } from './Widgets/utils'
 import NewEdgeCurveSelector from './Widgets/NewEdgeCurveSelector'
 import EdgesCurveSelector from './Widgets/EdgesCurveSelector'
 import ColorPicker from './Widgets/ColorPicker'
+import NewEdgeColorPicker from './Widgets/NewEdgeColorPicker'
 
 const NodesBar = ({
     className,
@@ -67,17 +68,18 @@ const BothBar = ({
 
 const LineToolBar = ({
     className,
-    edgeStyleCallback,
-    edgeStyle
+    setNewEdgeType,
+    newEdgeType
 }) => {
 
     return (
         <>
             <div className={className}>
                 <NewEdgeCurveSelector
-                    edgeStyle={edgeStyle}
-                    edgeStyleCallback={edgeStyleCallback}
+                    edgeStyle={newEdgeType}
+                    edgeStyleCallback={setNewEdgeType}
                 />
+                <NewEdgeColorPicker edgeStyle={newEdgeType} setEdgeStyle={setNewEdgeType}/>
             </div>
         </>
     )
@@ -90,8 +92,8 @@ const TopbarContextMenu = (
         setNodes,
         setEdges,
         tool,
-        edgeStyleCallback,
-        edgeStyle
+        setNewEdgeType,
+        newEdgeType
     }
 ) => {
     const [selectionType, setSelectionType] = useState('')
@@ -143,8 +145,8 @@ const TopbarContextMenu = (
                     : 
                     (tool === 'line') ?
                         <LineToolBar className={['lineToolBar', 'topBarWidgetsMenu'].join(' ')}
-                                     edgeStyleCallback={edgeStyleCallback}
-                                     edgeStyle={edgeStyle}
+                                     setNewEdgeType={setNewEdgeType}
+                                     newEdgeType={newEdgeType}
                         />
                     :
                     <></> //nothing selected or no tool context required
