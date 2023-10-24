@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
-import { HexColorInput, RgbStringColorPicker } from "react-colorful";
-import { Dropdown } from "react-bootstrap";
+import { useEffect, useState } from "react";
 import { transformNodes } from "./utils";
+import ColorPickerDropdown from "./ColorPickerDropdown";
 
 const ColorPicker = ({
     dataList,
@@ -32,15 +31,7 @@ const ColorPicker = ({
 
     return (
         <>
-            <Dropdown>
-                <Dropdown.Toggle>
-                    Color picker
-                </Dropdown.Toggle>
-                <Dropdown.Menu className="colorPickerPopup">
-                    <RgbStringColorPicker color={color} onChange={onChange}/>
-                    <HexColorInput color={color} onChange={onChange}/>
-                </Dropdown.Menu>
-            </Dropdown>
+            <ColorPickerDropdown color={color} onChange={onChange}/>
         </>
     )
 }
