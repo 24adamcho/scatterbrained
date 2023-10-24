@@ -228,6 +228,8 @@ const GraphEditor = forwardRef((
                     <TopbarContextMenu
                         selectedNodes={selectedNodes}
                         selectedEdges={selectedEdges}
+                        setNodes={setNodes}
+                        setEdges={setEdges}
                         tool={tool}
                         edgeStyle={newEdgeStyle} 
                         edgeStyleCallback={setNewEdgeStyle}

@@ -5,6 +5,7 @@ import './TopbarContextMenu.css'
 const NodesBar = ({
     className,
     nodes,
+    setNodes,
 }) => {
 
     return (
@@ -16,15 +17,61 @@ const NodesBar = ({
     )
 }
 
+
+const translateEdgeStyleName = (param) => {
+    switch(param) {
+        case 'default':
+            return 'Bezier';
+        case 'step':
+            return 'Stepped';
+        case 'smoothstep':
+            return 'Smooth Stepped';
+        case 'straight':
+            return 'Straight';
+        default:
+            return '???';
+    }
+}
+
 const EdgesBar = ({
     className,
     edges,
+    setEdges,
 }) => {
+    const getStyleName = () => {
+        if(edges.length === 0) return '';
+        else if(edges.length === 1) return `Curve: ${translateEdgeStyleName(edges[edges.length-1].type)}`;
+        else if(edges.length > 1) return 'Curve...';
+    }
+
+    const onClick = (param) => {
+        setEdges((eds)=>{
+            return eds.map((edge)=>{
+                edges.forEach((selectedEdge)=>{
+                    console.log(selectedEdge.id === edge.id)
+                    if(selectedEdge.id === edge.id) {
+                        edge.type = param;
+                        return edge;
+                    }
+                })
+                return edge;
+            })
+        })
+    }
 
     return (
         <>
             <div className={className}>
-                <p>test edgesbar</p>
+                <DropdownButton
+                    as={ButtonGroup}
+                    title={getStyleName()}
+                    id="bg-vertical-dropdown-1"
+                >
+                    <Dropdown.Item as='button' onClick={()=>onClick('straight')}>Straight</Dropdown.Item>
+                    <Dropdown.Item as='button' onClick={()=>onClick('default')}>Bezier</Dropdown.Item>
+                    <Dropdown.Item as='button' onClick={()=>onClick('step')}>Stepped</Dropdown.Item>
+                    <Dropdown.Item as='button' onClick={()=>onClick('smoothstep')}>Smooth Stepped</Dropdown.Item>
+                </DropdownButton>
             </div>
         </>
     )
@@ -52,27 +99,12 @@ const LineToolBar = ({
 }) => {
     const onClick = (arg) => {edgeStyleCallback(arg)}
 
-    const translateEdgeStyleName = () => {
-        switch(edgeStyle) {
-            case 'default':
-                return 'Bezier';
-            case 'step':
-                return 'Stepped';
-            case 'smoothstep':
-                return 'Smooth Stepped';
-            case 'straight':
-                return 'Straight';
-            default:
-                return '???';
-        }
-    }
-
     return (
         <>
             <div className={className}>
                 <DropdownButton
                     as={ButtonGroup}
-                    title={translateEdgeStyleName()}
+                    title={translateEdgeStyleName(edgeStyle)}
                     id="bg-vertical-dropdown-1"
                 >
                     <Dropdown.Item as='button' onClick={()=>onClick('straight')}>Straight</Dropdown.Item>
@@ -89,6 +121,8 @@ const TopbarContextMenu = (
     {
         selectedNodes,
         selectedEdges,
+        setNodes,
+        setEdges,
         tool,
         edgeStyleCallback,
         edgeStyle
@@ -121,6 +155,8 @@ const TopbarContextMenu = (
                         (selectionType === 'nodes') ?
                             <NodesBar className={['nodesBar', 'topBarWidgetsMenu'].join(' ')} 
                                       nodes={selectedNodes}
+                                      setNodes={setNodes}
+                                      setEdges={setEdges}
                             />
                         :
                         (selectionType === 'edges') ?
@@ -128,12 +164,16 @@ const TopbarContextMenu = (
                                       edges={selectedEdges}
                                       edgeStyleCallback={edgeStyleCallback}
                                       edgeStyle={edgeStyle}
+                                      setNodes={setNodes}
+                                      setEdges={setEdges}
                             />
                         :
                         (selectionType === 'both') ?
                             <BothBar className={['bothBar', 'topBarWidgetsMenu'].join(' ')}
                                      nodes={selectedNodes}
                                      edges={selectedEdges}
+                                     setNodes={setNodes}
+                                     setEdges={setEdges}
                             />
                         :
                         <></> //pointer but nothing selected
