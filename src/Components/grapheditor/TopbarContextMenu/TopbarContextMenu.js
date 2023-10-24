@@ -1,3 +1,4 @@
+import { DropdownButton, Dropdown, ButtonGroup } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import './TopbarContextMenu.css'
 
@@ -46,12 +47,39 @@ const BothBar = ({
 
 const LineToolBar = ({
     className,
+    edgeStyleCallback,
+    edgeStyle
 }) => {
+    const onClick = (arg) => {edgeStyleCallback(arg)}
+
+    const translateEdgeStyleName = () => {
+        switch(edgeStyle) {
+            case 'default':
+                return 'Bezier';
+            case 'step':
+                return 'Stepped';
+            case 'smoothstep':
+                return 'Smooth Stepped';
+            case 'straight':
+                return 'Straight';
+            default:
+                return '???';
+        }
+    }
 
     return (
         <>
             <div className={className}>
-                <p>test lineToolBar</p>
+                <DropdownButton
+                    as={ButtonGroup}
+                    title={translateEdgeStyleName()}
+                    id="bg-vertical-dropdown-1"
+                >
+                    <Dropdown.Item as='button' onClick={()=>onClick('straight')}>Straight</Dropdown.Item>
+                    <Dropdown.Item as='button' onClick={()=>onClick('default')}>Bezier</Dropdown.Item>
+                    <Dropdown.Item as='button' onClick={()=>onClick('step')}>Stepped</Dropdown.Item>
+                    <Dropdown.Item as='button' onClick={()=>onClick('smoothstep')}>Smooth Stepped</Dropdown.Item>
+                </DropdownButton>
             </div>
         </>
     )
@@ -61,7 +89,9 @@ const TopbarContextMenu = (
     {
         selectedNodes,
         selectedEdges,
-        tool
+        tool,
+        edgeStyleCallback,
+        edgeStyle
     }
 ) => {
     const [selectionType, setSelectionType] = useState('')
@@ -96,6 +126,8 @@ const TopbarContextMenu = (
                         (selectionType === 'edges') ?
                             <EdgesBar className={['edgesBar', 'topBarWidgetsMenu'].join(' ')}
                                       edges={selectedEdges}
+                                      edgeStyleCallback={edgeStyleCallback}
+                                      edgeStyle={edgeStyle}
                             />
                         :
                         (selectionType === 'both') ?
@@ -108,6 +140,8 @@ const TopbarContextMenu = (
                     : 
                     (tool === 'line') ?
                         <LineToolBar className={['lineToolBar', 'topBarWidgetsMenu'].join(' ')}
+                                     edgeStyleCallback={edgeStyleCallback}
+                                     edgeStyle={edgeStyle}
                         />
                     :
                     <></> //nothing selected or no tool context required

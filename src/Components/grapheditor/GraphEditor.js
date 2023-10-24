@@ -219,14 +219,14 @@ const GraphEditor = forwardRef((
                 </Button>
                 <div className='toolsetOverlay' style={{width:width + '%'}}>
                     <SidebarContextMenu 
-                        edgeStyle={newEdgeStyle} 
-                        edgeStyleCallback={setNewEdgeStyle}
                         setToolCallback={setTool}
                     />
                     <TopbarContextMenu
                         selectedNodes={selectedNodes}
                         selectedEdges={selectedEdges}
                         tool={tool}
+                        edgeStyle={newEdgeStyle} 
+                        edgeStyleCallback={setNewEdgeStyle}
                     />
                 </div>
                 <ReactFlow
