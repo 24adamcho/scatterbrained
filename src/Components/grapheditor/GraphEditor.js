@@ -183,7 +183,6 @@ const GraphEditor = forwardRef((
         }
     }),[addNoteIfBlanked, nodes, edges, setNodes, setEdges]);
 
-    const thisElement = useRef(null)
     const changeNoteId = (mouseEvent, node) => {
         setNodeId(node.id);
         setPrevNodeId(node.id);
@@ -197,8 +196,6 @@ const GraphEditor = forwardRef((
 
             return nds;
         });
-
-        thisElement.current.focus();
     }
 
     const clearEditor = () => {
