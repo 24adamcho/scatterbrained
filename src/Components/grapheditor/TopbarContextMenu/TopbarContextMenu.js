@@ -34,10 +34,11 @@ const translateEdgeStyleName = (param) => {
 }
 
 const transformEdges = (setEdges, selection, targetCallback, transformCallback) => {
+    let c = 0;
     setEdges((eds)=>{
         return eds.map((edge)=>{
             selection.forEach((selectedEdge)=>{
-                console.log(selectedEdge.id === edge.id)
+                c++;
                 if(targetCallback(selectedEdge, edge)) {
                     edge = transformCallback(edge)
                     return edge;
@@ -46,6 +47,7 @@ const transformEdges = (setEdges, selection, targetCallback, transformCallback) 
             return edge;
         })
     })
+    console.log(`Transformation completed in ${c} steps.`)
 }
 const EdgesBar = ({
     className,
