@@ -208,6 +208,27 @@ const GraphEditor = forwardRef((
         setSelectedEdges(params.edges);
     }
 
+    const onNodeDoubleClick = (_, node) => {
+        let connectedEdges = []
+        edges.forEach((edge)=>{
+            if(edge.source === node.id || edge.target === node.id) { 
+                setEdges((eds)=>{
+                    return eds.map((edgeModifiable)=>{
+                        if(edgeModifiable == edge) {
+                            edgeModifiable = {
+                                ...edgeModifiable,
+                                selected:true,
+                            }
+                        }
+                        return edgeModifiable;
+                    })
+                })
+                connectedEdges.push(edge);
+            }
+        })
+        setSelectedEdges(connectedEdges);
+    }
+
     return (
         <>
             <div className='flowInterfaceWrapper' style={{height:'100%'}}>
@@ -243,6 +264,7 @@ const GraphEditor = forwardRef((
                     onInit={onInit}
                     nodeTypes={nodeTypes}
                     onNodeClick={changeNoteId}
+                    onNodeDoubleClick={onNodeDoubleClick}
                     onNodeDrag={(a, b) => {changeNoteId(a, b);}}
                     onConnect={onConnect}
                     connectionLineType={newEdgeStyle}
