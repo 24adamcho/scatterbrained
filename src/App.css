@@ -36,5 +36,15 @@
   bottom: 0;
 }
 
+.dropdown-menu {
+  /* box-shadow: -4px 0 var(--color-low),
+              -6px  0 var(--color-high),
+              -11px  0 var(--color-low); */
+  box-shadow: 4px 4px var(--color-low-trans), -2px 0 var(--color-low), -4px 0 var(--color-high), -8px 0 var(--color-low) !important;
+  border:none !important;
+  background-color: var(--color-high) !important;
+  border-radius:0 !important;
+}
+
 
 iframe#webpack-dev-server-client-overlay{display:none!important}

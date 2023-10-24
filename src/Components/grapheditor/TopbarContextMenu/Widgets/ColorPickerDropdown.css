@@ -1,0 +1,23 @@
+.colorPickerPopup {
+    padding:4px !important;
+}
+.react-colorful >* {
+    border-radius:0 !important;
+}
+.colorPickerFields {
+    display:flex;
+    width:100%;
+    overflow:hidden;
+    padding-top:4px;
+    gap:4px
+}
+.colorPickerFields>input {
+    float:none;
+    overflow:hidden;
+    width:0;
+    flex-grow:1;
+}
+.colorPickerFields>button {
+    float:right;
+    flex-grow:0;
+}
