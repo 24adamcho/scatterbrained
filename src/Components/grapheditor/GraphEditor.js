@@ -65,7 +65,7 @@ const GraphEditor = forwardRef((
             ...newEdgeStyle,
             stroke:`${window.getComputedStyle(document.getElementById('App')).getPropertyValue('--color-low')}`
         })
-        console.log(newEdgeStyle)
+        // console.log(newEdgeStyle)
     },[])
     
     useEffect(()=>{

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { transformNodes } from "./utils";
+import { transformEdges } from "./utils";
 import ColorPickerDropdown from "./ColorPickerDropdown";
 
 const ColorPicker = ({
@@ -18,7 +18,7 @@ const ColorPicker = ({
 
     const onChange = (param)=>{
         setColor(param)
-        transformNodes(setDataList, dataList, (data)=>{
+        transformEdges(setDataList, dataList, (data)=>{
             return {
                 ...data,
                 style:{

@@ -69,9 +69,10 @@ const BothBar = ({
 const LineToolBar = ({
     className,
     setNewEdgeType,
-    newEdgeType
+    newEdgeType,
+    newEdgeStyle,
+    setNewEdgeStyle
 }) => {
-
     return (
         <>
             <div className={className}>
@@ -79,7 +80,14 @@ const LineToolBar = ({
                     edgeStyle={newEdgeType}
                     edgeStyleCallback={setNewEdgeType}
                 />
-                <NewEdgeColorPicker edgeStyle={newEdgeType} setEdgeStyle={setNewEdgeType}/>
+                <NewEdgeColorPicker 
+                    newEdgeStyle={newEdgeStyle} 
+                    setNewEdgeStyle={setNewEdgeStyle}
+                    defaultColor={window.getComputedStyle(
+                                    document.getElementById('App')
+                                  ).getPropertyValue('--color-low-trans')
+                    }
+                />
             </div>
         </>
     )
@@ -92,8 +100,10 @@ const TopbarContextMenu = (
         setNodes,
         setEdges,
         tool,
+        newEdgeType,
         setNewEdgeType,
-        newEdgeType
+        newEdgeStyle,
+        setNewEdgeStyle,
     }
 ) => {
     const [selectionType, setSelectionType] = useState('')
@@ -145,8 +155,10 @@ const TopbarContextMenu = (
                     : 
                     (tool === 'line') ?
                         <LineToolBar className={['lineToolBar', 'topBarWidgetsMenu'].join(' ')}
-                                     setNewEdgeType={setNewEdgeType}
                                      newEdgeType={newEdgeType}
+                                     setNewEdgeType={setNewEdgeType}
+                                     newEdgeStyle={newEdgeStyle}
+                                     setNewEdgeStyle={setNewEdgeStyle}
                         />
                     :
                     <></> //nothing selected or no tool context required
