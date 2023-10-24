@@ -40,3 +40,17 @@ export const transformEdges = (setEdges, selection, transformCallback) => {
     })
     console.log(`Transformation completed in ${c} steps.`)
 }
+
+export const transformNodes = (setNodes, selection, transformCallback) => {
+    setNodes((nds)=>{
+        return nds.map((node)=>{
+            selection.forEach((selectedNode)=>{
+                if(selectedNode.id === node.id) {
+                    node=transformCallback(node)
+                    return node;
+                }
+            })
+            return node;
+        })
+    })
+}
