@@ -172,7 +172,7 @@ const TopbarContextMenu = (
 
     return (
         <>
-            <div class='topbarContextMenu'>
+            <div className='topbarContextMenu'>
                 {
                     (tool === 'pointer') ?
                         (selectionType === 'nodes') ?
