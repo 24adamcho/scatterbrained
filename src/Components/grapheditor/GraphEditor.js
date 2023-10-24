@@ -71,7 +71,7 @@ const GraphEditor = forwardRef((
             return eds.map((edge)=>{
                 edge={
                     ...edge,
-                    interactionWidth:(tool==='pointer')?20:0
+                    interactionWidth:(tool==='pointer')?10:0
                 }
                 return edge;
             })
