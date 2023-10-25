@@ -35,7 +35,8 @@ const GraphEditor = forwardRef((
             enableMiniMap,
             tool,
             setTool,
-            width
+            width,
+            keyBinds
         },
         ref
     ) => {
@@ -271,6 +272,7 @@ const GraphEditor = forwardRef((
                     <SidebarContextMenu 
                         tool={tool}
                         setToolCallback={setTool}
+                        keyBinds={keyBinds}
                     />
                     <TopbarContextMenu
                         nodes={nodes}
@@ -303,6 +305,10 @@ const GraphEditor = forwardRef((
 
                     onPaneClick={onPaneClick}
                     onSelectionChange={onSelectionChange}
+
+                    deleteKeyCode={keyBinds.delete}
+                    selectionKeyCode={[keyBinds.dragSelect]}
+                    multiSelectionKeyCode={keyBinds.multiSelect}
                     >
                     <Background variant={bgstyle}/>
                     <Controls></Controls>

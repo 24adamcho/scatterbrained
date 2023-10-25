@@ -55,6 +55,15 @@ function App() {
   
   const [tool, setTool] = useState('pointer')
 
+  const [keyBinds, setKeyBinds] = useState({
+    pointer:'v',
+    line:'t',
+    delete:['Backspace', 'g', 'Delete'],
+    addNote:'insert',
+    multiSelect:'Shift',
+    dragSelect:'Meta',
+  })
+
   return (
     <div id='App' className={['App', style].join(" ")}>
       <TopBar changeStyle={changeStyle} 
@@ -81,6 +90,7 @@ function App() {
               tool={tool}
               setTool={setTool}
               width={sizes[0]}
+              keyBinds={keyBinds}
             />
           </div>
           <div className='rightContentWrapper'>

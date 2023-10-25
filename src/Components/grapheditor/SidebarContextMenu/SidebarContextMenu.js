@@ -42,11 +42,12 @@ function useKey(key, cb){
 const SidebarContextMenu = (
     {
         tool,
-        setToolCallback
+        setToolCallback,
+        keyBinds
     }
 ) => {
-    useKey('v', ()=>setToolCallback('pointer'))
-    useKey('t', ()=>setToolCallback('line'))
+    useKey(keyBinds.pointer, ()=>setToolCallback('pointer'))
+    useKey(keyBinds.line, ()=>setToolCallback('line'))
 
     return (
         <>
