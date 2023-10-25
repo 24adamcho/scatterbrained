@@ -16,27 +16,24 @@ const NodeColorPicker = ({
         else if(dataList.length > 1) setColor(defaultColor)
     },[dataList])
 
-    useEffect(() => {
+    const onChange = (param)=>{
+        setColor(param)
         transformEdges(setDataList, dataList, (data)=>{
             return {
                 ...data,
                 style:{
-                    backgroundColor:color
+                    backgroundColor:param
                 }
             }
         })
-    }, [dataList, setDataList, color])
-
-    const onChange = (param)=>{
-        setColor(param)
     }
 
     return (
         <>
             <ColorPickerDropdown 
                 color={color} 
-                onChange={(param)=>setColor(param)} 
-                onReset={()=>setColor(defaultColor)}
+                onChange={onChange} 
+                onReset={()=>onChange(defaultColor)}
             />
         </>
     )
