@@ -9,8 +9,11 @@ const EdgesCurveSelector = ({
     const getStyleName = () => {
         if(selectedEdges === undefined) return '';
         else if(selectedEdges.length < 1) return '';
-        else if(selectedEdges.length === 1) return `Curve: ${translateEdgeStyleName(edges[edges.length-1].type)}`;
-        else if(selectedEdges.length > 1) return 'Curve...';
+        else if(selectedEdges.length === 1) 
+            if(edges[edges.length-1]!== undefined)
+                return `Curve: ${translateEdgeStyleName(edges[edges.length-1].type)}`;
+            else return '???'
+        else return 'Curve...';
     }
 
     const onClick = (param) => {
