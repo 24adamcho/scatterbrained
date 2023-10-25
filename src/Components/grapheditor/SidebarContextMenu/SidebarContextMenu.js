@@ -13,7 +13,6 @@ function useKey(key, cb){
     useEffect(() => {
         function handle(event){
             if(document.activeElement === document.body) {
-                console.log('bee');
                 if(event.code === key){
                     callback.current(event);
                 } else if (key === 'v' && event.key === 'v') {
