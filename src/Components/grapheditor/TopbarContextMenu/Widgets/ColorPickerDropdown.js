@@ -10,7 +10,7 @@ const ColorPickerDropdown = ({
 })=>{
     return (
         <>
-            <Dropdown autoclose={true}>
+            <Dropdown autoclose="true">
                 <Dropdown.Toggle className="colorPickerButton">
                     Color picker
                 </Dropdown.Toggle>
