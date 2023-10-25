@@ -9,6 +9,7 @@ import ReactFlow, {
     ReactFlowProvider,
     useStoreApi,
     MiniMap,
+    useReactFlow,
 } from 'reactflow';
 import { Button } from 'react-bootstrap';
 
@@ -41,7 +42,8 @@ const GraphEditor = forwardRef((
         ref
     ) => {
     const nodeTypes= useMemo(() => ({note: NoteNode}), []);
-    const store = useStoreApi();
+    const reactFlowWrapper = useRef(null);
+    const {project} = useReactFlow();
 
     const [instance, setInstance] = useState();
     const onInit = (reactFlowInstance) => setInstance(reactFlowInstance);
@@ -109,6 +111,39 @@ const GraphEditor = forwardRef((
         }, eds)); 
       }, [setEdges, newEdgeType, newEdgeStyle, setEdgeCount, edges.length]
     );
+
+    const connectingNodeId = useRef(null);
+    const onConnectStart = useCallback((_, { nodeId }) => {
+        connectingNodeId.current = nodeId;
+      }, []);
+    const onConnectEnd = useCallback((params) => {
+        if(tool === 'line') return;
+        const targetIsPane = params.target.classList.contains('react-flow__pane')
+        console.log(params);
+        if(targetIsPane) {
+            const { top, left } = reactFlowWrapper.current.getBoundingClientRect();
+            const newId = getTimeId();
+            const newNode = {
+                id:newId,
+                type:'note',
+                position: project({ x: params.clientX - left - 75, y: params.clientY - top }),
+                data:{
+                    content:'', 
+                    tool:tool
+                },
+            }
+            const newEdge = { 
+                id:newId, 
+                source:connectingNodeId.current,
+                target:newId,
+                type:newEdgeType,
+                style:newEdgeStyle
+            }
+
+            setNodes((nds)=>nds.concat(newNode));
+            setEdges((eds)=>eds.concat(newEdge));
+        }
+    }, [tool, setEdges, newEdgeType, newEdgeStyle])
 
     //this is utterly fucking stupid, but there is no other way to put a node in the frame that doesn't involve
     //lacing hook spaghetti code through the whole project
@@ -264,7 +299,7 @@ const GraphEditor = forwardRef((
 
     return (
         <>
-            <div className='flowInterfaceWrapper' style={{height:'100%'}}>
+            <div className='flowInterfaceWrapper' style={{height:'100%'}} ref={reactFlowWrapper}>
                 <Button className='addNoteButton' 
                         variant='primary' 
                         onClick={()=>{
@@ -307,6 +342,8 @@ const GraphEditor = forwardRef((
                     onNodeDrag={(a, b) => {changeNoteId(a, b);}}
                     onNodesDelete={clearEditor}
                     onConnect={onConnect}
+                    onConnectStart={onConnectStart}
+                    onConnectEnd={onConnectEnd}
                     connectionLineType={newEdgeType}
                     connectionLineStyle={newEdgeStyle}
 
