@@ -19,10 +19,10 @@ function useKey(key, cb){
   
     useEffect(() => {
         function handle(event){
-            console.log(document.activeElement)
-            if(document.activeElement === document.body
-            || contains(document.activeElement, document.getElementsByClassName('react-flow__node'))
-            || contains(document.activeElement, document.getElementsByClassName('react-flow__edge'))
+            const currentElement = document.activeElement;
+            if(currentElement === document.body
+            || contains(currentElement, document.getElementsByClassName('react-flow__node'))
+            || contains(currentElement, document.getElementsByClassName('react-flow__edge'))
             ) {
                 if(event.code === key){
                     callback.current(event);
