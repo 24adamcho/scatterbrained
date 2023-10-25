@@ -2,15 +2,20 @@ import { translateEdgeStyleName } from "./utils.js"
 import CurveDropdown from "./CurveDropdown.js";
 
 const NewEdgeCurveSelector = ({
-    edgeStyleCallback,
-    edgeStyle
+    newEdge,
+    setNewEdge,
 }) => {    
-    const onClick = (param) => {edgeStyleCallback(param)}
+    const onClick = (param) => {
+        setNewEdge({
+            ...newEdge, 
+            type:param}
+        )
+    }
 
     return (
         <>
             <CurveDropdown
-                title={translateEdgeStyleName(edgeStyle)}
+                title={translateEdgeStyleName(newEdge.type)}
                 onClickCallback={onClick}
             />
         </>

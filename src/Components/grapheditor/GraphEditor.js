@@ -49,9 +49,12 @@ const GraphEditor = forwardRef((
     const [nodes, setNodes, onNodesChange] = useNodesState(propNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(propEdges);
 
-    const [newEdgeType, setNewEdgeType] = useState('straight');
-    const [newEdgeStyle, setNewEdgeStyle] = useState({
-        strokeWidth:2, 
+    const [newEdge, setNewEdge] = useState({
+        type:'straight',
+        style: {
+            strokeWidth:2,
+            stroke:window.getComputedStyle(document.getElementById('App')).getPropertyValue('--color-low-trans')
+        }
     })
 
     const [nodeId, setNodeId] = useState('');
@@ -59,15 +62,6 @@ const GraphEditor = forwardRef((
 
     const [selectedNodes, setSelectedNodes] = useState([]);
     const [selectedEdges, setSelectedEdges] = useState([]);
-
-    //on initialization
-    useEffect(()=>{
-        setNewEdgeStyle({
-            ...newEdgeStyle,
-            stroke:window.getComputedStyle(document.getElementById('App')).getPropertyValue('--color-low-trans')
-        })
-        // console.log(newEdgeStyle)
-    },[])
     
     //update nodes with tool data on change
     useEffect(()=>{
@@ -103,11 +97,10 @@ const GraphEditor = forwardRef((
       setEdges(
         (eds) => addEdge({
             ...params, 
-            id:getTimeId(), 
-            type:newEdgeType,
-            style:newEdgeStyle
+            ...newEdge,
+            id:getTimeId()
         }, eds)); 
-      }, [setEdges, newEdgeType, newEdgeStyle, setEdgeCount, edges.length]
+      }, [setEdges, newEdge]
     );
 
     const connectingNodeId = useRef(null);
@@ -130,18 +123,17 @@ const GraphEditor = forwardRef((
                     tool:tool
                 },
             }
-            const newEdge = { 
+            const tempNewEdge = { 
+                ...newEdge,
                 id:newId, 
                 source:connectingNodeId.current,
-                target:newId,
-                type:newEdgeType,
-                style:newEdgeStyle
+                target:newId
             }
 
             setNodes((nds)=>nds.concat(newNode));
-            setEdges((eds)=>eds.concat(newEdge));
+            setEdges((eds)=>eds.concat(tempNewEdge));
         }
-    }, [tool, setEdges, newEdgeType, newEdgeStyle])
+    }, [tool, setEdges, newEdge])
 
     //this is utterly fucking stupid, but there is no other way to put a node in the frame that doesn't involve
     //lacing hook spaghetti code through the whole project
@@ -322,10 +314,8 @@ const GraphEditor = forwardRef((
                         selectedNodes={selectedNodes}
                         selectedEdges={selectedEdges}
                         tool={tool}
-                        newEdgeType={newEdgeType} 
-                        setNewEdgeType={setNewEdgeType}
-                        newEdgeStyle={newEdgeStyle}
-                        setNewEdgeStyle={setNewEdgeStyle}
+                        newEdge={newEdge}
+                        setNewEdge={setNewEdge}
                     />
                 </div>
                 <ReactFlow
@@ -341,8 +331,8 @@ const GraphEditor = forwardRef((
                     onConnect={onConnect}
                     onConnectStart={onConnectStart}
                     onConnectEnd={onConnectEnd}
-                    connectionLineType={newEdgeType}
-                    connectionLineStyle={newEdgeStyle}
+                    connectionLineType={newEdge.type}
+                    connectionLineStyle={newEdge.style}
 
                     onPaneClick={onPaneClick}
                     onSelectionChange={onSelectionChange}

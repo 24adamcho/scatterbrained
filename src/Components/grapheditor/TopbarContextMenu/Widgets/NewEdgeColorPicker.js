@@ -3,22 +3,25 @@ import { transformNodes } from "./utils";
 import ColorPickerDropdown from "./ColorPickerDropdown";
 
 const NewEdgeColorPicker = ({
-    newEdgeStyle,
-    setNewEdgeStyle,
+    newEdge,
+    setNewEdge,
     defaultColor
 }) => {
     const [color, setColor] = useState(defaultColor)
 
     useEffect(() => {
-        if(newEdgeStyle.backgroundColor !== undefined)
-            setColor(newEdgeStyle.backgroundColor)
+        if(newEdge.style.stroke !== undefined)
+            setColor(newEdge.style.stroke)
     },[])
 
     const onChange = (param)=>{
         setColor(param)
-        setNewEdgeStyle({
-            ...newEdgeStyle,
-            stroke:param
+        setNewEdge({
+            ...newEdge,
+            style:{
+                ...newEdge.style,
+                stroke:param
+            }
         })
     }
 

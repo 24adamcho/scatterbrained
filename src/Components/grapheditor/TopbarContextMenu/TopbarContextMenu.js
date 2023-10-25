@@ -71,21 +71,19 @@ const BothBar = ({
 
 const LineToolBar = ({
     className,
-    setNewEdgeType,
-    newEdgeType,
-    newEdgeStyle,
-    setNewEdgeStyle
+    newEdge,
+    setNewEdge,
 }) => {
     return (
         <>
             <div className={className}>
                 <NewEdgeCurveSelector
-                    edgeStyle={newEdgeType}
-                    edgeStyleCallback={setNewEdgeType}
+                    newEdge={newEdge}
+                    setNewEdge={setNewEdge}
                 />
                 <NewEdgeColorPicker 
-                    newEdgeStyle={newEdgeStyle} 
-                    setNewEdgeStyle={setNewEdgeStyle}
+                    newEdge={newEdge}
+                    setNewEdge={setNewEdge}
                     defaultColor={window.getComputedStyle(
                                     document.getElementById('App')
                                   ).getPropertyValue('--color-low-trans')
@@ -105,10 +103,8 @@ const TopbarContextMenu = (
         selectedNodes,
         selectedEdges,
         tool,
-        newEdgeType,
-        setNewEdgeType,
-        newEdgeStyle,
-        setNewEdgeStyle,
+        newEdge,
+        setNewEdge,
     }
 ) => {
     const [selectionType, setSelectionType] = useState('')
@@ -144,9 +140,9 @@ const TopbarContextMenu = (
                         :
                         (selectionType === 'edges') ?
                             <EdgesBar className={['edgesBar', 'topBarWidgetsMenu'].join(' ')}
-                                      selectedEdges={selectedEdges}
                                       edges={edges}
                                       setEdges={setEdges}
+                                      selectedEdges={selectedEdges}
                             />
                         :
                         (selectionType === 'both') ?
@@ -161,10 +157,8 @@ const TopbarContextMenu = (
                     : 
                     (tool === 'line') ?
                         <LineToolBar className={['lineToolBar', 'topBarWidgetsMenu'].join(' ')}
-                                     newEdgeType={newEdgeType}
-                                     setNewEdgeType={setNewEdgeType}
-                                     newEdgeStyle={newEdgeStyle}
-                                     setNewEdgeStyle={setNewEdgeStyle}
+                                     newEdge={newEdge}
+                                     setNewEdge={setNewEdge}
                         />
                     :
                     <></> //nothing selected or no tool context required
