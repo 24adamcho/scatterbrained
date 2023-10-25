@@ -24,7 +24,11 @@ const NewEdgeColorPicker = ({
 
     return (
         <>
-            <ColorPickerDropdown color={color} onChange={onChange}/>
+            <ColorPickerDropdown 
+                color={color} 
+                onChange={onChange} 
+                onReset={()=>setColor(defaultColor)}
+            />
         </>
     )
 }
