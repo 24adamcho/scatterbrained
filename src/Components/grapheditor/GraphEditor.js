@@ -17,7 +17,7 @@ import 'reactflow/dist/style.css';
 import './GraphEditor.css'
 import {ReactComponent as AddNoteIcon } from './add-note-svgrepo-com.svg'
 import SidebarContextMenu from './SidebarContextMenu/SidebarContextMenu';
-
+import CustomConnectionLines from './ConnectionLines/CustomConnectionLines';
 import NoteNode from './NoteNode';
 import TopbarContextMenu from './TopbarContextMenu/TopbarContextMenu';
 
@@ -344,6 +344,8 @@ const GraphEditor = forwardRef((
                     onConnectEnd={onConnectEnd}
                     connectionLineType={newEdge.type}
                     connectionLineStyle={newEdge.style}
+                    connectionLineComponent={CustomConnectionLines}
+                    // connectionLineWrapperStyles={(newEdge.animated)?'animated':''}
 
                     onPaneClick={onPaneClick}
                     onSelectionChange={onSelectionChange}
