@@ -37,7 +37,7 @@ const NoteNode = ({data, selected}) => {
                 style={(data.tool === 'pointer')? //this really gross chunk is to have the outlines show up when a node is selected when the resizer is hidden
                             handleStyle.pointer 
                             : (selected)? 
-                                Object.assign({}, handleStyle.line, {border:'solid 2px var(--color-alert)'}) 
+                                Object.assign({}, handleStyle.line, {outline:'solid 2px var(--color-alert)'}) 
                                 : 
                             handleStyle.line}
             />
