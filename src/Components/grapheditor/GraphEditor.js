@@ -269,6 +269,7 @@ const GraphEditor = forwardRef((
                 </Button>
                 <div className='toolsetOverlay' style={{width:width + '%'}}>
                     <SidebarContextMenu 
+                        tool={tool}
                         setToolCallback={setTool}
                     />
                     <TopbarContextMenu
