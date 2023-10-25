@@ -24,12 +24,10 @@ const EdgeAnimationToggle = ({
         transformEdges(setEdges, selectedEdges, (data)=>{
             return {
                 ...data,
-                style:{
-                    ...data.style,
-                    animated:!boolstate,
-                }
+                animated:!boolstate,
             }
         })
+        console.log(edges);
     }
 
     return (

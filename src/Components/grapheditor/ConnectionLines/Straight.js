@@ -11,10 +11,9 @@ export default ({
   return (
     <g>
       <path
-        fill="none"
         style={connectionLineStyle}
         className={(connectionLineStyle.animated)?"animated":''}
-        d={`M${fromX},${fromY} C ${fromX} ${toY} ${fromX} ${toY} ${toX},${toY}`}
+        d={`M${fromX},${fromY} ${toX},${toY}`}
       />
     </g>
   );

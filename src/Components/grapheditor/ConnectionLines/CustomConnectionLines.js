@@ -10,26 +10,13 @@ export default ({
   connectionLineType,
   connectionLineStyle,
 }) => {
-  switch(connectionLineType) {
-    case 'straight': return Straight({
-      fromX,
-      fromY,
-      fromPosition,
-      toX,
-      toY,
-      toPosition,
-      connectionLineType,
-      connectionLineStyle,
-  })
-    default: return Straight({
-      fromX,
-      fromY,
-      fromPosition,
-      toX,
-      toY,
-      toPosition,
-      connectionLineType,
-      connectionLineStyle,
-  })
-  }
+  return (
+    <g>
+      <path
+        style={connectionLineStyle}
+        className={(connectionLineStyle.animated)?"animated":''}
+        d={`M${fromX},${fromY} ${toX},${toY}`}
+      />
+    </g>
+  );
 };
