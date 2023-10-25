@@ -3,6 +3,13 @@ import { Button, ButtonGroup, Dropdown, DropdownItem, DropdownButton, ToggleButt
 import "./SidebarContextMenu.css"
 import { useState, useRef, useEffect } from "react"
 
+function contains(activeElement, HTMLCollection) {
+    for(var i = 0; i < HTMLCollection.length; i++)
+        if(activeElement == HTMLCollection.item(i))
+            return true;
+    return false;
+}
+
 function useKey(key, cb){
     const callback = useRef(cb);
   
@@ -12,7 +19,11 @@ function useKey(key, cb){
   
     useEffect(() => {
         function handle(event){
-            if(document.activeElement === document.body) {
+            console.log(document.activeElement)
+            if(document.activeElement === document.body
+            || contains(document.activeElement, document.getElementsByClassName('react-flow__node'))
+            || contains(document.activeElement, document.getElementsByClassName('react-flow__edge'))
+            ) {
                 if(event.code === key){
                     callback.current(event);
                 } else if (key === 'v' && event.key === 'v') {
