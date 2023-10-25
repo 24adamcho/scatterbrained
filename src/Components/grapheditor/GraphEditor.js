@@ -121,7 +121,7 @@ const GraphEditor = forwardRef((
     const onConnectEnd = useCallback((params) => {
         if(tool === 'line') return;
         const targetIsPane = params.target.classList.contains('react-flow__pane')
-        console.log(params);
+        // console.log(params);
         if(targetIsPane) {
             const { top, left } = reactFlowWrapper.current.getBoundingClientRect();
             const newId = getTimeId();
@@ -187,7 +187,7 @@ const GraphEditor = forwardRef((
         //sidestep this by *just* changing the node id
         setPrevNodeId(newNoteNode.id)
         
-        console.log(`New note ${newid} added at ${center.x}, ${center.y}`)
+        // console.log(`New note ${newid} added at ${center.x}, ${center.y}`)
 
         return newNoteNode;
     }
