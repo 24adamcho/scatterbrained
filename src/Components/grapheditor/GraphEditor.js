@@ -69,8 +69,8 @@ const GraphEditor = forwardRef((
         // console.log(newEdgeStyle)
     },[])
     
+    //update nodes with tool data on change
     useEffect(()=>{
-        // console.log(tool)
         setNodes((nds)=>{
             return nds.map((node)=>{
                 node.data = {
@@ -91,11 +91,13 @@ const GraphEditor = forwardRef((
         })
     },[tool, setNodes])
 
+    //change node count for bottombar
     useEffect(()=>{
         setNodeCount(nodes.length)
         setEdgeCount(edges.length)
     }, [nodes.length, edges.length])
 
+    //on connecting a new edge
     const onConnect = useCallback((params) => {
         // console.log(params);
       setEdges(
@@ -111,6 +113,7 @@ const GraphEditor = forwardRef((
     //this is utterly fucking stupid, but there is no other way to put a node in the frame that doesn't involve
     //lacing hook spaghetti code through the whole project
     //oh, it also does some weird rart shit with importing presumably the entirety of react
+    //adds a note at either some ratio of the window width and height or above and to the left of the previously inserted node
     const addNote = () => {
         if(instance === undefined) return; //line is really goofy, but whole app crashes without it because editNote() gets called by TextEditor before instance is ready or something.
         const newid = getTimeId();
@@ -153,6 +156,7 @@ const GraphEditor = forwardRef((
         return newNoteNode;
     }
 
+    //adds a note if no node is selected, ie when the pane is clicked
     const addNoteIfBlanked = (content) => {
         const shorthand = () => {
             let newnote = addNote();  //TROUBLESOME LINE
@@ -198,6 +202,7 @@ const GraphEditor = forwardRef((
         }
     }),[addNoteIfBlanked, nodes, edges, setNodes, setEdges]);
 
+    //changes node id when a node is clicked
     const changeNoteId = (mouseEvent, node) => {
         setNodeId(node.id);
         setPrevNodeId(node.id);
@@ -218,6 +223,7 @@ const GraphEditor = forwardRef((
         editTextRef.current.editText(undefined);
     }
 
+    //on clicking the background instead of a node or edge
     const onPaneClick = () => {
         clearEditor();
         setNodes((nds)=>{
