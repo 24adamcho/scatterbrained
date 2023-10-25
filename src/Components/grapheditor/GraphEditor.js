@@ -150,7 +150,7 @@ const GraphEditor = forwardRef((
     //lacing hook spaghetti code through the whole project
     //oh, it also does some weird rart shit with importing presumably the entirety of react
     //adds a note at either some ratio of the window width and height or above and to the left of the previously inserted node
-    const addNote = () => {
+    const addNote = (data) => {
         const newid = getTimeId();
         // console.log(reactFlowWrapper.current)
         
@@ -175,7 +175,7 @@ const GraphEditor = forwardRef((
             type:'note',
             position:center,
             data:{
-                content:'', 
+                content:data, 
                 tool:tool
             },
             selected:true,
@@ -195,7 +195,7 @@ const GraphEditor = forwardRef((
     //adds a note if no node is selected, ie when the pane is clicked
     const addNoteIfBlanked = (content) => {
         const shorthand = () => {
-            let newnote = addNote();  //TROUBLESOME LINE
+            let newnote = addNote(content);  //TROUBLESOME LINE
             if(newnote === undefined) return;
             setNodeId(newnote.id);
             setPrevNodeId(newnote.id);
@@ -304,7 +304,7 @@ const GraphEditor = forwardRef((
                 <Button className='addNoteButton' 
                         variant='primary' 
                         onClick={()=>{
-                            let newNote = addNote();
+                            let newNote = addNote('');
                             clearEditor();
                             changeNoteId(undefined, newNote);
                         }} 
