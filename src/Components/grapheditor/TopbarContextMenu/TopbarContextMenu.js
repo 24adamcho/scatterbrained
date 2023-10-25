@@ -6,6 +6,8 @@ import EdgesCurveSelector from './Widgets/EdgesCurveSelector'
 import NodeColorPicker from './Widgets/NodeColorPicker'
 import NewEdgeColorPicker from './Widgets/NewEdgeColorPicker'
 import EdgeColorPicker from './Widgets/EdgeColorPicker'
+import EdgeAnimationToggle from './Widgets/EdgeAnimationToggle'
+import NewEdgeAnimationToggle from './Widgets/NewEdgeAnimationToggle'
 
 const NodesBar = ({
     className,
@@ -49,6 +51,11 @@ const EdgesBar = ({
                                     document.getElementById('App')
                                   ).getPropertyValue('--color-low')}
                 />
+                <EdgeAnimationToggle
+                    edges={edges}
+                    setEdges={setEdges}
+                    selectedEdges={selectedEdges}
+                />
             </div>
         </>
     )
@@ -88,6 +95,10 @@ const LineToolBar = ({
                                     document.getElementById('App')
                                   ).getPropertyValue('--color-low-trans')
                     }
+                />
+                <NewEdgeAnimationToggle
+                    newEdge={newEdge}
+                    setNewEdge={setNewEdge}
                 />
             </div>
         </>
