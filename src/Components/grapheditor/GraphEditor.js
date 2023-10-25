@@ -308,8 +308,8 @@ const GraphEditor = forwardRef((
                     onSelectionChange={onSelectionChange}
 
                     deleteKeyCode={keyBinds.delete}
-                    selectionKeyCode={[keyBinds.dragSelect]}
-                    multiSelectionKeyCode={keyBinds.multiSelect}
+                    // selectionKeyCode={[keyBinds.dragSelect]}
+                    // multiSelectionKeyCode={keyBinds.multiSelect}
                     >
                     <Background variant={bgstyle}/>
                     <Controls></Controls>
