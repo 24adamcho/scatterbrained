@@ -69,7 +69,7 @@ const GraphEditor = forwardRef((
     },[])
     
     useEffect(()=>{
-        console.log(tool)
+        // console.log(tool)
         setNodes((nds)=>{
             return nds.map((node)=>{
                 node.data = {
