@@ -53,9 +53,17 @@ const GraphEditor = forwardRef((
         type:'straight',
         style: {
             strokeWidth:2,
-            stroke:window.getComputedStyle(document.getElementById('App')).getPropertyValue('--color-low-trans')
         }
     })
+    
+    //loads edge stroke on init, because for whatever reason if you don't do it this very specific and very ugly way,
+    //everything shits itself.
+    useEffect(()=>{
+        setNewEdge({
+            ...newEdge,
+            stroke:window.getComputedStyle(document.getElementById('App')).getPropertyValue('--color-low-trans')
+        })
+    },[])
 
     const [nodeId, setNodeId] = useState('');
     const [prevNodeId, setPrevNodeId] = useState(''); //used for when adding new notes
