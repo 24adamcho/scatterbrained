@@ -45,8 +45,6 @@ const GraphEditor = forwardRef((
     const reactFlowWrapper = useRef(null);
     const {project} = useReactFlow();
 
-    const [instance, setInstance] = useState();
-    const onInit = (reactFlowInstance) => setInstance(reactFlowInstance);
     const [bgstyle, setBgstyle] = useState('cross');
     const [nodes, setNodes, onNodesChange] = useNodesState(propNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(propEdges);
@@ -150,15 +148,15 @@ const GraphEditor = forwardRef((
     //oh, it also does some weird rart shit with importing presumably the entirety of react
     //adds a note at either some ratio of the window width and height or above and to the left of the previously inserted node
     const addNote = () => {
-        if(instance === undefined) return; //line is really goofy, but whole app crashes without it because editNote() gets called by TextEditor before instance is ready or something.
         const newid = getTimeId();
+        console.log(reactFlowWrapper.current)
         
         // console.log(nodes);
         let center = [0, 0];
         let previousNode = nodes.find((element) => element.id === prevNodeId)
         if(nodes.length <= 0 || previousNode === undefined) {
-            center = instance.project({x:window.innerWidth / 4, 
-                                       y:window.innerHeight / 2});
+            center = project({x:(reactFlowWrapper.current.clientWidth / 2)-75, 
+                                       y:reactFlowWrapper.current.clientHeight / 2});
             // console.log('nodes was empty! using ratio value');
         }
         else {
@@ -335,7 +333,6 @@ const GraphEditor = forwardRef((
                     edges={edges}
                     onNodesChange={onNodesChange}
                     onEdgesChange={onEdgesChange}
-                    onInit={onInit}
                     nodeTypes={nodeTypes}
                     onNodeClick={changeNoteId}
                     onNodeDoubleClick={onNodeDoubleClick}
