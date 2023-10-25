@@ -23,7 +23,6 @@ const NewEdgeAnimationToggle = ({
                 animated:!boolstate,
             }
         })
-        console.log(newEdge)
     }
 
     return (

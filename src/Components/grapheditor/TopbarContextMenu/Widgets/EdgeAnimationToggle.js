@@ -27,7 +27,6 @@ const EdgeAnimationToggle = ({
                 animated:!boolstate,
             }
         })
-        console.log(edges);
     }
 
     return (
