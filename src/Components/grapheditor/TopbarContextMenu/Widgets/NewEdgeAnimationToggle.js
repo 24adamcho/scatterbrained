@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { transformEdges } from "./utils";
+import './EdgeAnimationKeyframes.css'
 
 const NewEdgeAnimationToggle = ({
     newEdge,
@@ -20,8 +21,12 @@ const NewEdgeAnimationToggle = ({
             animated:!boolstate,
             style:{
                 ...newEdge.style,
-                animated:!boolstate,
-            }
+            },
+            svgWrapperStyle:(!boolstate)?{
+                vectorEffect:'non-scaling-stroke',
+                strokeDasharray:'5',
+                animation:'dashdraw 0.5s linear infinite'
+            }:undefined
         })
     }
 

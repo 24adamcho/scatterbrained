@@ -17,7 +17,6 @@ import 'reactflow/dist/style.css';
 import './GraphEditor.css'
 import {ReactComponent as AddNoteIcon } from './add-note-svgrepo-com.svg'
 import SidebarContextMenu from './SidebarContextMenu/SidebarContextMenu';
-import CustomConnectionLines from './ConnectionLines/CustomConnectionLines';
 import NoteNode from './NoteNode';
 import TopbarContextMenu from './TopbarContextMenu/TopbarContextMenu';
 
@@ -68,6 +67,18 @@ const GraphEditor = forwardRef((
         })
     },[])
 
+    //remove svgWrapperStyles for sanity's sake, since it's only used for connectionLines
+    const sanitizeEdge = () => {
+        console.log({...newEdge.style, ...newEdge.svgWrapperStyle});
+        const tempNewEdge = {};
+        Object.assign(tempNewEdge, newEdge);
+        
+        if(tempNewEdge.svgWrapperStyle !== undefined) delete tempNewEdge.svgWrapperStyle;
+        console.log(tempNewEdge)
+
+        return tempNewEdge;
+    }
+
     const [nodeId, setNodeId] = useState('');
     const [prevNodeId, setPrevNodeId] = useState(''); //used for when adding new notes
 
@@ -105,12 +116,13 @@ const GraphEditor = forwardRef((
     //on connecting a new edge
     const onConnect = useCallback((params) => {
         // console.log(params);
-      setEdges(
-        (eds) => addEdge({
-            ...params, 
-            ...newEdge,
-            id:getTimeId()
-        }, eds)); 
+        const sanitizedEdge = sanitizeEdge();
+        setEdges(
+            (eds) => addEdge({
+                ...params, 
+                ...sanitizedEdge,
+                id:getTimeId()
+            }, eds)); 
       }, [setEdges, newEdge]
     );
 
@@ -134,8 +146,10 @@ const GraphEditor = forwardRef((
                     tool:tool
                 },
             }
+
+            const sanitizedEdge = sanitizeEdge()
             const tempNewEdge = { 
-                ...newEdge,
+                ...sanitizedEdge,
                 id:newId, 
                 source:connectingNodeId.current,
                 target:newId
@@ -343,8 +357,8 @@ const GraphEditor = forwardRef((
                     onConnectStart={onConnectStart}
                     onConnectEnd={onConnectEnd}
                     connectionLineType={newEdge.type}
-                    connectionLineStyle={newEdge.style}
-                    connectionLineComponent={CustomConnectionLines}
+                    connectionLineStyle={{...newEdge.style, ...newEdge.svgWrapperStyle}}
+                    // connectionLineWrapperStyle={newEdge.svgWrapperStyle}
                     // connectionLineWrapperStyles={(newEdge.animated)?'animated':''}
 
                     onPaneClick={onPaneClick}
