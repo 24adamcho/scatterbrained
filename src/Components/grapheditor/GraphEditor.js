@@ -139,6 +139,7 @@ const GraphEditor = forwardRef((
                 content:'', 
                 tool:tool
             },
+            selected:true,
             // style:{backgroundColor:'green'},
         }
         // console.log(newNoteNode);
