@@ -152,7 +152,7 @@ const GraphEditor = forwardRef((
     //adds a note at either some ratio of the window width and height or above and to the left of the previously inserted node
     const addNote = () => {
         const newid = getTimeId();
-        console.log(reactFlowWrapper.current)
+        // console.log(reactFlowWrapper.current)
         
         // console.log(nodes);
         let center = [0, 0];
@@ -200,7 +200,7 @@ const GraphEditor = forwardRef((
             setNodeId(newnote.id);
             setPrevNodeId(newnote.id);
         }
-        if(prevNodeId === '') {
+        if(prevNodeId === '' && content !== undefined) {
             shorthand();
         }
         else if(content !== undefined && content !== '<p><br></p>' && nodeId === '' && prevNodeId !== '') {
