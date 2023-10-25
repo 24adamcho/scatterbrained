@@ -18,7 +18,7 @@ const NewEdgeColorPicker = ({
         setColor(param)
         setNewEdgeStyle({
             ...newEdgeStyle,
-            stroke:color
+            stroke:param
         })
     }
 
@@ -27,7 +27,7 @@ const NewEdgeColorPicker = ({
             <ColorPickerDropdown 
                 color={color} 
                 onChange={onChange} 
-                onReset={()=>setColor(defaultColor)}
+                onReset={()=>onChange(defaultColor)}
             />
         </>
     )
