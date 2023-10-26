@@ -35,7 +35,8 @@ export function useKey(key, cb) {
             if (currentElement === document.body
                 || contains(currentElement, document.getElementsByClassName('react-flow__node'))
                 || contains(currentElement, document.getElementsByClassName('react-flow__edge'))
-                || contains(currentElement, document.getElementsByClassName('addNoteButton'))) {
+                || contains(currentElement, document.getElementsByClassName('addNoteButton'))
+                || contains(currentElement, document.getElementsByClassName('react-flow__nodesselection-rect'))) {
                 if (keyCompare(event) || event.code == key.key) {
                     callback.current(event);
                 }
