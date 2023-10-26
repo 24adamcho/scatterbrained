@@ -68,12 +68,19 @@ function TopBar(props) {
 
         let sanitizedNodes = data.nodes.map((node) => {
           node.selected=false;
+          if(node.data === undefined) node.data = {};
           node.data.tool=props.tool;
+          if(node.data.content === undefined) node.data.content='';
+
           return node;
         })
+        let sanitizedEdges = data.edges.map((edge) => {
+          edge.interactionWidth=(props.tool === 'pointer')?10:1;
+          return edge;
+        })
 
-        props.nodeRef.current.setNewNodes(data.nodes)
-        props.nodeRef.current.setNewEdges(data.edges)
+        props.nodeRef.current.setNewNodes(sanitizedNodes)
+        props.nodeRef.current.setNewEdges(sanitizedEdges)
       });
       reader.readAsText(file);
     })
@@ -89,19 +96,55 @@ function TopBar(props) {
     a.click();
   }
   const save = () => {
-    let sanitizedNodes = props.nodeRef.current.getNodes().map((node) => {
-      node.selected=false;
-      node.data.tool=props.tool;
-      return node;
+    let sanitizedNodes = props.nodeRef.current.getNodes()
+    // Object.assign(sanitizedNodes, props.nodeRef.current.getNodes())
+    sanitizedNodes = sanitizedNodes.map((node) => {
+      const {
+        selected:_,
+        dragging:__,
+        positionAbsolute,___,
+        data:____,
+        ...newNode
+      } = node;
+      const {
+        tool:_____,
+        ...newNodeData
+      } = node.data;
+      if(newNodeData.content !== "" 
+      && newNodeData.content !== "<p><br></p>")
+        newNode.data = newNodeData;
+      return newNode
     })
-    console.log(sanitizedNodes);
+
+    let sanitizedEdges = props.nodeRef.current.getEdges()
+    sanitizedEdges = sanitizedEdges.map((edge) => {
+      const {
+        selected:_,
+        interactionWidth:__,
+        ...newEdge
+      } = edge;
+
+      if(newEdge.animated === undefined) delete newEdge.animated
+      if(newEdge.svgWrapperStyle === undefined) delete newEdge.svgWrapperStyle
+
+      if(edge.style !== undefined){
+        const {
+          ...newEdgeStyle
+        } = edge.style
+        newEdge.style = newEdgeStyle
+      }
+
+      return newEdge;
+    })
     
     let slug = {metadata:`
 SCATTERBRAINED
 `,//TODO: add git repo link
                 title: props.title,
-                nodes:props.nodeRef.current.getNodes(),
-                edges:props.nodeRef.current.getEdges()}
+                nodes:sanitizedNodes,
+                edges:sanitizedEdges
+    }
+    console.log(slug)
     
     const blob = new Blob([JSON.stringify(slug, null,2)], {type:'application/json'});
 

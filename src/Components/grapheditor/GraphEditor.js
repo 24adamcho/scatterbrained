@@ -50,31 +50,30 @@ const GraphEditor = forwardRef((
 
     const [newEdge, setNewEdge] = useState({
         type:'straight',
-        style: {
-            strokeWidth:2,
-        }
+        // style: {
+        //     strokeWidth:2,
+        // }
     })
     
     //loads edge stroke on init, because for whatever reason if you don't do it this very specific and very ugly way,
     //everything shits itself.
-    useEffect(()=>{
-        setNewEdge({
-            ...newEdge,
-            style:{
-                ...newEdge.style,
-                stroke:window.getComputedStyle(document.getElementById('App')).getPropertyValue('--color-low-trans')
-            }
-        })
-    },[])
+    // useEffect(()=>{
+    //     setNewEdge({
+    //         ...newEdge,
+    //         // style:{
+    //         //     ...newEdge.style,
+    //         //     stroke:window.getComputedStyle(document.getElementById('App')).getPropertyValue('--color-low-trans')
+    //         // }
+    //     })
+    // },[])
 
     //remove svgWrapperStyles for sanity's sake, since it's only used for connectionLines
     const sanitizeEdge = () => {
-        console.log({...newEdge.style, ...newEdge.svgWrapperStyle});
         const tempNewEdge = {};
         Object.assign(tempNewEdge, newEdge);
-        
+        if(tempNewEdge.style !== undefined)
+            if(Object.keys(tempNewEdge.style).length === 0) delete tempNewEdge.style;
         if(tempNewEdge.svgWrapperStyle !== undefined) delete tempNewEdge.svgWrapperStyle;
-        console.log(tempNewEdge)
 
         return tempNewEdge;
     }
@@ -119,9 +118,10 @@ const GraphEditor = forwardRef((
         const sanitizedEdge = sanitizeEdge();
         setEdges(
             (eds) => addEdge({
-                ...params, 
                 ...sanitizedEdge,
-                id:getTimeId()
+                id:getTimeId(),
+                source:params.source,
+                target:params.target, 
             }, eds)); 
       }, [setEdges, newEdge]
     );

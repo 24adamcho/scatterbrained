@@ -10,8 +10,9 @@ const NewEdgeColorPicker = ({
     const [color, setColor] = useState(defaultColor)
 
     useEffect(() => {
-        if(newEdge.style.stroke !== undefined)
-            setColor(newEdge.style.stroke)
+        if(newEdge.style !== undefined)
+            if(newEdge.style.stroke !== undefined)
+                setColor(newEdge.style.stroke)
     },[])
 
     const onChange = (param)=>{
@@ -24,13 +25,26 @@ const NewEdgeColorPicker = ({
             }
         })
     }
+    
+    const onReset = () => {
+        setColor(defaultColor)
+        if(newEdge.style !== undefined) {
+            const {stroke: _, ...newStyle} = newEdge.style
+            setNewEdge({
+                ...newEdge,
+                style:newStyle
+            })
+            if(Object.keys(newEdge.style).length === 0)
+                setNewEdge({style:_, ...newEdge})
+        }
+    }
 
     return (
         <>
             <ColorPickerDropdown 
                 color={color} 
                 onChange={onChange} 
-                onReset={()=>onChange(defaultColor)}
+                onReset={()=>onReset()}
             />
         </>
     )

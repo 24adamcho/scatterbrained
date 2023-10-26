@@ -23,9 +23,22 @@ const EdgeColorPicker = ({
             return {
                 ...data,
                 style:{
+                    ...data.style,
                     stroke:param
                 }
             }
+        })
+    }
+
+    const onReset = () => {
+        setColor(defaultColor)
+        transformEdges(setDataList, dataList, (edge)=>{
+            const {stroke: _, ...newStyle} = edge.style
+            if(Object.keys(newStyle).length === 0){
+                delete edge.style;
+                return edge;
+            }
+            return {...edge, style:newStyle};
         })
     }
 
@@ -34,7 +47,7 @@ const EdgeColorPicker = ({
             <ColorPickerDropdown 
                 color={color} 
                 onChange={onChange} 
-                onReset={()=>onChange(defaultColor)}
+                onReset={()=>onReset()}
             />
         </>
     )

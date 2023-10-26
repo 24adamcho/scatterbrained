@@ -22,9 +22,22 @@ const NodeColorPicker = ({
             return {
                 ...data,
                 style:{
+                    ...data.style,
                     backgroundColor:param
                 }
             }
+        })
+    }
+
+    const onReset = () => {
+        setColor(defaultColor)
+        transformEdges(setDataList, dataList, (node)=>{
+            const {backgroundColor: _, ...newStyle} = node.style
+            if(Object.keys(newStyle).length === 0){
+                delete node.style
+                return node;
+            }
+            return {...node, style:newStyle};
         })
     }
 
@@ -33,7 +46,7 @@ const NodeColorPicker = ({
             <ColorPickerDropdown 
                 color={color} 
                 onChange={onChange} 
-                onReset={()=>onChange(defaultColor)}
+                onReset={()=>onReset()}
             />
         </>
     )

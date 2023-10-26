@@ -18,7 +18,7 @@ const NewEdgeAnimationToggle = ({
         setBoolstate(!boolstate)
         setNewEdge({
             ...newEdge,
-            animated:!boolstate,
+            animated:(!boolstate)?!boolstate:undefined,
             style:{
                 ...newEdge.style,
             },

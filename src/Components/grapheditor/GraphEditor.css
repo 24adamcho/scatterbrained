@@ -113,7 +113,7 @@
     z-index: -1;
 }
 .react-flow__edge-path {
-    stroke:var(--color-low);
+    stroke:var(--color-low-trans);
     stroke-width: 2px;
 }
 .react-flow__edge.selected>.react-flow__edge-path {
@@ -125,6 +125,10 @@
     stroke-opacity:0.5 !important;
     stroke:var(--color-alert-trans);
     z-index:1 !important;
+}
+.react-flow__connection-path {
+    stroke:var(--color-low-trans);
+    stroke-width: 2px;
 }
 
 .react-flow__handle {
