@@ -8,7 +8,6 @@ export function sanitizeEdgesFromStorage(data, props) {
 }
 export function sanitizeNodesFromStorage(data, props) {
   return data.map((node) => {
-    console.log(node);
     node.selected = false;
     if (node.data === undefined) node.data = {};
     node.data.tool = props.tool;

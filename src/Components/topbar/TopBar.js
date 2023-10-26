@@ -98,7 +98,6 @@ SCATTERBRAINED
                 nodes:sanitizedNodes,
                 edges:sanitizedEdges
     }
-    console.log(slug)
     
     const blob = new Blob([JSON.stringify(slug, null,2)], {type:'application/json'});
 
