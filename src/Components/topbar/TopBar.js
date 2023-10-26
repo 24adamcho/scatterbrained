@@ -5,6 +5,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import './TopBar.css';
 import { useState, useEffect, useRef } from 'react';
+import { sanitizeNodesFromStorage, sanitizeEdgesFromStorage, sanitizeNodesForStorage, sanitizeEdgesForStorage } from '../utils';
 
 //custom keybinds for saving and opening
 function useKey(key, cb){
@@ -66,18 +67,8 @@ function TopBar(props) {
       reader.addEventListener('load', (event)=> {
         let data = JSON.parse(event.target.result)
 
-        let sanitizedNodes = data.nodes.map((node) => {
-          node.selected=false;
-          if(node.data === undefined) node.data = {};
-          node.data.tool=props.tool;
-          if(node.data.content === undefined) node.data.content='';
-
-          return node;
-        })
-        let sanitizedEdges = data.edges.map((edge) => {
-          edge.interactionWidth=(props.tool === 'pointer')?10:1;
-          return edge;
-        })
+        let sanitizedNodes = sanitizeNodesFromStorage(data.nodes, props)
+        let sanitizedEdges = sanitizeEdgesFromStorage(data.edges, props)
 
         props.nodeRef.current.setNewNodes(sanitizedNodes)
         props.nodeRef.current.setNewEdges(sanitizedEdges)
@@ -96,46 +87,9 @@ function TopBar(props) {
     a.click();
   }
   const save = () => {
-    let sanitizedNodes = props.nodeRef.current.getNodes()
-    // Object.assign(sanitizedNodes, props.nodeRef.current.getNodes())
-    sanitizedNodes = sanitizedNodes.map((node) => {
-      const {
-        selected:_,
-        dragging:__,
-        positionAbsolute,___,
-        data:____,
-        ...newNode
-      } = node;
-      const {
-        tool:_____,
-        ...newNodeData
-      } = node.data;
-      if(newNodeData.content !== "" 
-      && newNodeData.content !== "<p><br></p>")
-        newNode.data = newNodeData;
-      return newNode
-    })
+    let sanitizedNodes = sanitizeNodesForStorage(props.nodeRef.current.getNodes())
 
-    let sanitizedEdges = props.nodeRef.current.getEdges()
-    sanitizedEdges = sanitizedEdges.map((edge) => {
-      const {
-        selected:_,
-        interactionWidth:__,
-        ...newEdge
-      } = edge;
-
-      if(newEdge.animated === undefined) delete newEdge.animated
-      if(newEdge.svgWrapperStyle === undefined) delete newEdge.svgWrapperStyle
-
-      if(edge.style !== undefined){
-        const {
-          ...newEdgeStyle
-        } = edge.style
-        newEdge.style = newEdgeStyle
-      }
-
-      return newEdge;
-    })
+    let sanitizedEdges = sanitizeEdgesForStorage(props.nodeRef.current.getEdges());
     
     let slug = {metadata:`
 SCATTERBRAINED
@@ -174,3 +128,5 @@ SCATTERBRAINED
 }
 
 export default TopBar;
+
+
