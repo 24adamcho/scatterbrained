@@ -60,6 +60,7 @@ const GraphEditor = forwardRef((
         if(tempNewEdge.style !== undefined)
             if(Object.keys(tempNewEdge.style).length === 0) delete tempNewEdge.style;
         if(tempNewEdge.svgWrapperStyle !== undefined) delete tempNewEdge.svgWrapperStyle;
+        if(tempNewEdge.reversed !== undefined) delete tempNewEdge.reversed;
 
         return tempNewEdge;
     }
@@ -102,6 +103,7 @@ const GraphEditor = forwardRef((
     const onConnect = useCallback((params) => {
         // console.log(params);
         const sanitizedEdge = sanitizeNewEdge();
+        if(newEdge.reversed === true) { const temp = params.source; params.source = params.target; params.target = temp}
         setEdges(
             (eds) => addEdge({
                 ...sanitizedEdge,
@@ -141,6 +143,7 @@ const GraphEditor = forwardRef((
                 source:connectingNodeId.current,
                 target:newId
             }
+            if(newEdge.reversed === true) { const temp = tempNewEdge.source; tempNewEdge.source = tempNewEdge.target; tempNewEdge.target = temp}
 
             setNodes((nds)=>nds.concat(newNode));
             setEdges((eds)=>eds.concat(tempNewEdge));

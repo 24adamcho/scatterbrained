@@ -7,6 +7,8 @@ import NewEdgeColorPicker from './Widgets/NewEdgeColorPicker'
 import EdgeColorPicker from './Widgets/EdgeColorPicker'
 import EdgeAnimationToggle from './Widgets/EdgeAnimationToggle'
 import NewEdgeAnimationToggle from './Widgets/NewEdgeAnimationToggle'
+import NewEdgeReverse from './Widgets/NewEdgeReverse'
+import EdgesReverse from './Widgets/EdgesReverse'
 
 const NodesBar = ({
     className,
@@ -55,6 +57,10 @@ const EdgesBar = ({
                     setEdges={setEdges}
                     selectedEdges={selectedEdges}
                 />
+                <EdgesReverse
+                    selectedEdges={selectedEdges}
+                    setEdges={setEdges}
+                />
             </div>
         </>
     )
@@ -96,6 +102,10 @@ const LineToolBar = ({
                     }
                 />
                 <NewEdgeAnimationToggle
+                    newEdge={newEdge}
+                    setNewEdge={setNewEdge}
+                />
+                <NewEdgeReverse
                     newEdge={newEdge}
                     setNewEdge={setNewEdge}
                 />

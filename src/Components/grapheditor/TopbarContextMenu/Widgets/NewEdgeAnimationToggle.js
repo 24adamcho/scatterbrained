@@ -14,19 +14,32 @@ const NewEdgeAnimationToggle = ({
             setBoolstate(newEdge.animated)
     }, [])
 
+    useEffect(()=>{
+        if(newEdge.reversed === undefined) 
+            setNewEdge({
+                ...newEdge,
+                svgWrapperStyle:(boolstate)?{
+                    vectorEffect:'non-scaling-stroke',
+                    strokeDasharray:'5',
+                    animation:'dashdraw 0.5s linear infinite'
+                }:undefined
+            })
+        else
+            setNewEdge({
+                ...newEdge,
+                svgWrapperStyle:(boolstate)?{
+                    vectorEffect:'non-scaling-stroke',
+                    strokeDasharray:'5',
+                    animation:'reversed-dashdraw 0.5s linear infinite'
+                }:undefined
+            })
+    }, [setNewEdge, newEdge.reversed, newEdge.animated])
+
     const onClick = () => {
         setBoolstate(!boolstate)
         setNewEdge({
             ...newEdge,
             animated:(!boolstate)?!boolstate:undefined,
-            style:{
-                ...newEdge.style,
-            },
-            svgWrapperStyle:(!boolstate)?{
-                vectorEffect:'non-scaling-stroke',
-                strokeDasharray:'5',
-                animation:'dashdraw 0.5s linear infinite'
-            }:undefined
         })
     }
 

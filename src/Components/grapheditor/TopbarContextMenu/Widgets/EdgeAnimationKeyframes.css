@@ -3,3 +3,9 @@
         stroke-dashoffset: 10;
     }
 }
+
+@keyframes reversed-dashdraw {
+    to {
+        stroke-dashoffset: 10;
+    }
+}
