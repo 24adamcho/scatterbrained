@@ -19,11 +19,11 @@ import {ReactComponent as AddNoteIcon } from './add-note-svgrepo-com.svg'
 import SidebarContextMenu from './SidebarContextMenu/SidebarContextMenu';
 import NoteNode from './NoteNode';
 import TopbarContextMenu from './TopbarContextMenu/TopbarContextMenu';
+import { useKey } from './GraphEditorKeyhook';
 
 const getTimeId = () => `${String(+new Date()).slice(6)}`;
 
 const MIN_DISTANCE = 100;
-
 const GraphEditor = forwardRef((
         { //properties
             propNodes, 
@@ -50,25 +50,10 @@ const GraphEditor = forwardRef((
 
     const [newEdge, setNewEdge] = useState({
         type:'straight',
-        // style: {
-        //     strokeWidth:2,
-        // }
     })
-    
-    //loads edge stroke on init, because for whatever reason if you don't do it this very specific and very ugly way,
-    //everything shits itself.
-    // useEffect(()=>{
-    //     setNewEdge({
-    //         ...newEdge,
-    //         // style:{
-    //         //     ...newEdge.style,
-    //         //     stroke:window.getComputedStyle(document.getElementById('App')).getPropertyValue('--color-low-trans')
-    //         // }
-    //     })
-    // },[])
 
     //remove svgWrapperStyles for sanity's sake, since it's only used for connectionLines
-    const sanitizeEdge = () => {
+    const sanitizeNewEdge = () => {
         const tempNewEdge = {};
         Object.assign(tempNewEdge, newEdge);
         if(tempNewEdge.style !== undefined)
@@ -115,7 +100,7 @@ const GraphEditor = forwardRef((
     //on connecting a new edge
     const onConnect = useCallback((params) => {
         // console.log(params);
-        const sanitizedEdge = sanitizeEdge();
+        const sanitizedEdge = sanitizeNewEdge();
         setEdges(
             (eds) => addEdge({
                 ...sanitizedEdge,
@@ -148,7 +133,7 @@ const GraphEditor = forwardRef((
                 selected:true,
             }
 
-            const sanitizedEdge = sanitizeEdge()
+            const sanitizedEdge = sanitizeNewEdge()
             const tempNewEdge = { 
                 ...sanitizedEdge,
                 id:newId, 
@@ -336,6 +321,27 @@ const GraphEditor = forwardRef((
         setSelectedEdges(connectedEdges);
     }
 
+    const selectAll = useCallback((event)=>{
+        event.preventDefault()
+
+        setNodes(nds=>nds.map(node=>{
+            return {...node, selected:true}
+        }))
+        setEdges(eds=>eds.map(edge=>{
+            return {...edge, selected:true}
+        }))
+        onSelectionChange({nodes: nodes, edges:edges})
+    },[nodes, edges, setNodes, setEdges, onSelectionChange])
+
+    const insertEvent = useCallback(()=>{
+        const newNote = addNote('');
+        changeNoteId(undefined, newNote);
+    }, [addNote, changeNoteId])
+
+    useKey(keyBinds.pointer, ()=>setTool('pointer'))
+    useKey(keyBinds.line, ()=>setTool('line'))
+    useKey(keyBinds.selectAll, (event)=>selectAll(event))
+    useKey(keyBinds.addNote, (event)=>insertEvent())
     return (
         <>
             <div className='flowInterfaceWrapper' style={{height:'100%'}} ref={reactFlowWrapper}>
@@ -389,8 +395,8 @@ const GraphEditor = forwardRef((
                     onSelectionChange={onSelectionChange}
 
                     deleteKeyCode={keyBinds.delete}
-                    // selectionKeyCode={[keyBinds.dragSelect]}
-                    // multiSelectionKeyCode={keyBinds.multiSelect}
+                    selectionKeyCode={keyBinds.dragSelect}
+                    multiSelectionKeyCode={keyBinds.multiSelect}
                     >
                     <Background variant={bgstyle}/>
                     <Controls></Controls>

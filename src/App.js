@@ -56,12 +56,13 @@ function App() {
   const [tool, setTool] = useState('pointer')
 
   const [keyBinds, setKeyBinds] = useState({
-    pointer:'t',
-    line:'v',
+    pointer:{key:'t'},
+    line:{key:'v'},
+    selectAll:{key:'a', ctrlKey:true},
+    addNote:{key:'Insert'},
     delete:['Backspace', 'g', 'Delete'],
-    addNote:'insert',
     multiSelect:'Shift',
-    dragSelect:'Meta',
+    dragSelect:'Control',
   })
 
   return (
