@@ -33,7 +33,7 @@ const NewEdgeAnimationToggle = ({
                     animation:'reversed-dashdraw 0.5s linear infinite'
                 }:undefined
             })
-    }, [setNewEdge, newEdge.reversed, newEdge.animated])
+    }, [setNewEdge, newEdge.reversed, newEdge.animated, boolstate])
 
     const onClick = () => {
         setBoolstate(!boolstate)
