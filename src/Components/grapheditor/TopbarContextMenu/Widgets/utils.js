@@ -48,16 +48,16 @@ export const getById = (list, selectorId) => {
     })
 }
 
-export const allEdgesSameType = (edges, selectedEdges) => {
-    if(edges.length <= 0) return false;
-    if(selectedEdges.length <= 0) return false;
-    if(selectedEdges.length === 1) return true;
+export const allDataSimilar = (data, selectedData, propertyTest) => {
+    if(data.length <= 0) return false;
+    if(selectedData.length <= 0) return false;
+    if(selectedData.length === 1) return true;
 
-    const target = selectedEdges[0].type;
+    const target = selectedData[0][propertyTest];
 
     //complete gobbeldeygook
     //basically,
       //get current states of only relevant edges        //if even a single one doesn't match   //return false
-    if(edges.filter(e=>selectedEdges.some(se=>e.id===se.id)).some(e=>e.type !== target)) return false;
+    if(data.filter(e=>selectedData.some(se=>e.id===se.id)).some(e=>e[propertyTest] !== target)) return false;
     else return true;
 }

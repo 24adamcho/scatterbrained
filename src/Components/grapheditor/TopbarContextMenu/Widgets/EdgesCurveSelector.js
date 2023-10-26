@@ -1,4 +1,4 @@
-import { translateEdgeStyleName, transform, getById, allEdgesSameType } from "./utils.js"
+import { translateEdgeStyleName, transform, getById, allDataSimilar } from "./utils.js"
 import CurveDropdown from "./CurveDropdown.js";
 import { useEffect, useState } from "react";
 
@@ -11,7 +11,7 @@ const EdgesCurveSelector = ({
         if(selectedEdges === undefined) return '';
             if(selectedEdges.length < 1) return '';
             else if(selectedEdges.length >= 1)
-                if(allEdgesSameType(edges, selectedEdges)){
+                if(allDataSimilar(edges, selectedEdges, 'type')){
                     return `Curve: ${translateEdgeStyleName(edges.filter(e=>e.id===selectedEdges[0].id)[0].type)}`
                 }
                 else
