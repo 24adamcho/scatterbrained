@@ -318,21 +318,20 @@ const GraphEditor = forwardRef((
 
     const onNodeDoubleClick = (_, node) => {
         let connectedEdges = []
-        edges.forEach((edge)=>{
-            if(edge.source === node.id || edge.target === node.id) { 
-                setEdges((eds)=>{
-                    return eds.map((edgeModifiable)=>{
-                        if(edgeModifiable == edge) {
-                            edgeModifiable = {
-                                ...edgeModifiable,
-                                selected:true,
-                            }
-                        }
-                        return edgeModifiable;
-                    })
-                })
-                connectedEdges.push(edge);
+        connectedEdges = edges.filter((edge)=>{
+            if(edge.source === node.id
+            || edge.target === node.id) {
+                setEdges((eds)=>eds.map((ed)=>{
+                    if(ed.source === node.id
+                    || ed.target === node.id
+                    ) {
+                        ed.selected=true;
+                    }
+                    return ed;
+                }))
+                return edge;
             }
+            return;
         })
         setSelectedEdges(connectedEdges);
     }
