@@ -33,6 +33,7 @@ const EdgeColorPicker = ({
     const onReset = () => {
         setColor(defaultColor)
         transformEdges(setDataList, dataList, (edge)=>{
+            if(edge.style === undefined) return edge; //if we don't need to delete anything we gucci
             const {stroke: _, ...newStyle} = edge.style
             if(Object.keys(newStyle).length === 0){
                 delete edge.style;
