@@ -20,8 +20,9 @@ import SidebarContextMenu from './SidebarContextMenu/SidebarContextMenu';
 import NoteNode from './NoteNode';
 import TopbarContextMenu from './TopbarContextMenu/TopbarContextMenu';
 import { useKey } from './GraphEditorKeyhook';
+import { sanitizeEdgesForStorage, sanitizeNodesFromStorage } from '../utils';
 
-const getTimeId = () => `${String(+new Date()).slice(6)}`;
+const getTimeId = () => `${String(+new Date())}.${String(Math.trunc(Math.random() * 1000))}`; //time id + a random 3 digit number if something is made in sub-millisecond time
 
 const MIN_DISTANCE = 100;
 const GraphEditor = forwardRef((
@@ -318,6 +319,11 @@ const GraphEditor = forwardRef((
             }
             return;
         })
+        setNodes(nds=>nds.map(nd=>{ //edge case when shift clicking, fix thru hack
+            if(nd.id === node.id)
+                nd.selected=true;
+            return nd;
+        }))
         setSelectedEdges(connectedEdges);
     }
 
@@ -338,10 +344,98 @@ const GraphEditor = forwardRef((
         changeNoteId(undefined, newNote);
     }, [addNote, changeNoteId])
 
+    const [clipboard, setClipboard] = useState({nodes:[],edges:[]})
+    const copy = useCallback(()=>{
+        console.log({nodes:selectedNodes, edges:selectedEdges})
+        setClipboard({
+            nodes:selectedNodes,
+            edges:selectedEdges
+        })
+    }, [selectedNodes, selectedEdges, setClipboard])
+    const cut = useCallback(()=>{
+        copy()
+        console.log(clipboard)
+        setNodes(nds=>nds.map(node=>{
+            if(selectedNodes.find(nd=>node.id===nd.id) === undefined) return node;
+            return null;
+        }).filter(e=>e!==null))
+
+        setEdges(eds=>eds.map(edge=>{
+            if(selectedEdges.find(ed=>edge.id===ed.id) === undefined) return edge;
+            return null;
+        }).filter(e=>e!==null))
+    }, [copy, setNodes, setEdges, selectedNodes, selectedEdges])
+    const paste = useCallback(()=>{
+        if(clipboard === undefined) return;
+        if(clipboard.nodes === undefined) return;
+        if(clipboard.edges === undefined) return;
+        if(clipboard.edges.length === 1) {
+            let networkedEdges = []
+            for(let i = 0; i < selectedNodes.length - 1; i++){
+                for(let j = i + 1; j < selectedNodes.length; j++){
+                    let newEdge = {
+                        ...clipboard.edges[0],
+                        id:getTimeId(),
+                        source:selectedNodes[i].id,
+                        target:selectedNodes[j].id
+                    }
+                    if(edges.filter(edge=>(edge.source === newEdge.source && edge.target === newEdge.target
+                                         ||edge.target === newEdge.source && edge.source === newEdge.target
+                                         )
+                                    ).length === 0)
+                        networkedEdges.push(newEdge)
+                }
+            }
+            setNodes(nds=>nds.map(node=>{return {...node, selected:false}}))
+            setEdges(eds=>eds.concat(networkedEdges))
+            return;
+        }if(clipboard.nodes.length === 0) return; //since it'd be dumb to just copy edges, which won't be visible at all
+        console.log({nodes:selectedNodes, edges:selectedEdges})
+        
+        //sanitization
+        var newEdges = []
+        // vvv indentation hell, but i don't know how else to make it fit. be thankful i don't make it one giant one-liner, because i totally can.
+        let newNodes = clipboard.nodes.map(node=>{
+            let newId = getTimeId()
+            clipboard.edges.map(edge=>{
+                                    if(node.id === edge.source || node.id === edge.target){
+                                        if(newEdges.find(e=>e.id === edge.id) !== undefined) return; //edge already exists, skip
+                                        edge.id = getTimeId()
+                                        if(node.id === edge.source) edge.source = newId;
+                                        if(node.id === edge.target) edge.target = newId;
+                                        newEdges.push(edge)
+                                    }
+                                }
+                            )
+            
+            return {
+                ...node,
+                id:newId,
+                position: {
+                        x: node.position.x + 15,
+                        y: node.position.y + 15,
+                    }
+                }
+            }
+        )
+
+        //clear previous selection
+        setSelectedNodes(newNodes)
+        setSelectedEdges(newEdges)
+
+        //finally, add new nodes
+        setNodes(nds=>nds.map(node=>{return {...node, selected:false}}).concat(newNodes))
+        setEdges(eds=>eds.map(edge=>{return {...edge, selected:false}}).concat(newEdges))
+    }, [setNodes, setEdges, clipboard, edges, selectedNodes, selectedEdges, setSelectedNodes, setSelectedEdges])
+
     useKey(keyBinds.pointer, ()=>setTool('pointer'))
     useKey(keyBinds.line, ()=>setTool('line'))
     useKey(keyBinds.selectAll, (event)=>selectAll(event))
     useKey(keyBinds.addNote, (event)=>insertEvent())
+    useKey({key:'c', ctrlKey:true}, ()=>copy())
+    useKey({key:'v', ctrlKey:true}, ()=>paste())
+    useKey({key:'x', ctrlKey:true}, ()=>cut())
+    useKey({key:'`'}, ()=>{console.log({nodes:nodes, edges:edges})})
     return (
         <>
             <div className='flowInterfaceWrapper' style={{height:'100%'}} ref={reactFlowWrapper}>
