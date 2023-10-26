@@ -140,11 +140,12 @@ const GraphEditor = forwardRef((
             const newNode = {
                 id:newId,
                 type:'note',
-                position: project({ x: params.clientX - left - 75, y: params.clientY - top }),
+                position: project({ x: params.clientX - left - 65, y: params.clientY - top - 8}),
                 data:{
                     content:'', 
                     tool:tool
                 },
+                selected:true,
             }
 
             const sanitizedEdge = sanitizeEdge()
@@ -157,6 +158,19 @@ const GraphEditor = forwardRef((
 
             setNodes((nds)=>nds.concat(newNode));
             setEdges((eds)=>eds.concat(tempNewEdge));
+        
+            //change selection to just be the new node
+            clearEditor();
+            changeNoteId(undefined, newNode)
+            onSelectionChange({
+                nodes:[newNode],
+                edges:[]
+            })
+            setNodes((nds)=>nds.map((node)=>{
+                if(node.id !== newNode.id)
+                    node.selected=false;
+                return node;
+            }))
         }
     }, [tool, setEdges, newEdge])
 
@@ -172,7 +186,7 @@ const GraphEditor = forwardRef((
         let center = [0, 0];
         let previousNode = nodes.find((element) => element.id === prevNodeId)
         if(nodes.length <= 0 || previousNode === undefined) {
-            center = project({x:(reactFlowWrapper.current.clientWidth / 2)-75, 
+            center = project({x:(reactFlowWrapper.current.clientWidth / 2)-65, 
                                        y:reactFlowWrapper.current.clientHeight / 2});
             // console.log('nodes was empty! using ratio value');
         }
@@ -201,6 +215,17 @@ const GraphEditor = forwardRef((
         //sidestep this by *just* changing the node id
         setPrevNodeId(newNoteNode.id)
         
+        //change selection to just be the new node
+        onSelectionChange({
+            nodes:[newNoteNode],
+            edges:[]
+        })
+        setNodes((nds)=>nds.map((node)=>{
+            if(node.id !== newNoteNode.id)
+                node.selected=false;
+            return node;
+        }))
+
         // console.log(`New note ${newid} added at ${center.x}, ${center.y}`)
 
         return newNoteNode;
