@@ -40,3 +40,24 @@ export const transform = (setList, selection, transformCallback) => {
     })
     // console.log(`Transformation completed in ${c} steps.`)
 }
+
+export const getById = (list, selectorId) => {
+    return list.filter((item)=>{
+        if(item.id == selectorId)
+            return item;
+    })
+}
+
+export const allEdgesSameType = (edges, selectedEdges) => {
+    if(edges.length <= 0) return false;
+    if(selectedEdges.length <= 0) return false;
+    if(selectedEdges.length === 1) return true;
+
+    const target = selectedEdges[0].type;
+
+    //complete gobbeldeygook
+    //basically,
+      //get current states of only relevant edges        //if even a single one doesn't match   //return false
+    if(edges.filter(e=>selectedEdges.some(se=>e.id===se.id)).some(e=>e.type !== target)) return false;
+    else return true;
+}

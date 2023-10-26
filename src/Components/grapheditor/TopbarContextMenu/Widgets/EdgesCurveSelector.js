@@ -1,5 +1,6 @@
-import { translateEdgeStyleName, transform } from "./utils.js"
+import { translateEdgeStyleName, transform, getById, allEdgesSameType } from "./utils.js"
 import CurveDropdown from "./CurveDropdown.js";
+import { useEffect, useState } from "react";
 
 const EdgesCurveSelector = ({
     edges,
@@ -8,13 +9,20 @@ const EdgesCurveSelector = ({
 }) => {
     const getStyleName = () => {
         if(selectedEdges === undefined) return '';
-        else if(selectedEdges.length < 1) return '';
-        else if(selectedEdges.length === 1) 
-            if(edges[edges.length-1]!== undefined)
-                return `Curve: ${translateEdgeStyleName(edges[edges.length-1].type)}`;
-            else return '???'
+            if(selectedEdges.length < 1) return '';
+            else if(selectedEdges.length >= 1)
+                if(allEdgesSameType(edges, selectedEdges)){
+                    return `Curve: ${translateEdgeStyleName(edges.filter(e=>e.id===selectedEdges[0].id)[0].type)}`
+                }
+                else
+                    return 'Curve...'
         else return 'Curve...';
     }
+
+    const [title, setTitle] = useState(getStyleName())
+    useEffect(()=>{
+        setTitle(getStyleName());
+    }, [selectedEdges])
 
     const onClick = (param) => {
         transform(setEdges,
@@ -25,14 +33,13 @@ const EdgesCurveSelector = ({
                                type:param
                             };
         });
-        // console.log(translateStyleName(param))
-        // console.log(edgeSelection[edgeSelection.length-1])
+        setTitle(`Curve: ${translateEdgeStyleName(param)}`)
     }
 
     return (
         <>
             <CurveDropdown
-                title={getStyleName()}
+                title={title}
                 onClickCallback={onClick}
             />
         </>
