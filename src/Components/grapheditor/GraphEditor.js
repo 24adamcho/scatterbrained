@@ -379,6 +379,9 @@ const GraphEditor = forwardRef((
                         source:selectedNodes[i].id,
                         target:selectedNodes[j].id
                     }
+                    while(edges.filter(edge=>(edge.id === newEdge.id)).length === 0)
+                        newEdge.id = getTimeId();
+
                     if(edges.filter(edge=>(edge.source === newEdge.source && edge.target === newEdge.target
                                          ||edge.target === newEdge.source && edge.source === newEdge.target
                                          )
