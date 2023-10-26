@@ -18,8 +18,6 @@ const EdgeAnimationToggle = ({
         if(selectedEdges === undefined) {setBoolstate(false); return -1}
         if(selectedEdges.length < 1)  {setBoolstate(false); return -1}
         else if(selectedEdges.length >= 1) {
-            console.log(selectedEdges)
-            console.log(allDataSimilar(edges, selectedEdges, 'animated'))
             if(allDataSimilar(edges, selectedEdges, 'animated')) {
                 if(selectedEdges[0].animated){setBoolstate(true); return 1}                    
             }
