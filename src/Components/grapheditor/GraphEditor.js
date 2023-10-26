@@ -322,7 +322,7 @@ const GraphEditor = forwardRef((
         setNodes(nds=>nds.map(nd=>{ //edge case when shift clicking, fix thru hack
             if(nd.id === node.id)
                 nd.selected=true;
-            return nd;
+                            return nd;
         }))
         setSelectedEdges(connectedEdges);
     }
@@ -369,18 +369,19 @@ const GraphEditor = forwardRef((
         if(clipboard === undefined) return;
         if(clipboard.nodes === undefined) return;
         if(clipboard.edges === undefined) return;
-        if(clipboard.edges.length === 1) {
+        if(clipboard.edges.length === 1) { //if there's only one kind of edge selected, pasting it on multiple nodes will attach every node to the last selected node
             let networkedEdges = []
             let PANIC = 0;
-            for(let i = 0; i < selectedNodes.length - 1; i++){
-                for(let j = i + 1; j < selectedNodes.length; j++){
+            for(let i = 0; i < selectedNodes.length; i++){
                     let newEdge = {
                         ...clipboard.edges[0],
                         id:getTimeId(),
                         source:selectedNodes[i].id,
-                        target:selectedNodes[j].id
+                        target:nodeId
                     }
-                    while(networkedEdges.filter(edge=>(edge.id === newEdge.id)).length > 0){
+                    if(newEdge.source === newEdge.target) continue; //skip if it's the same node
+
+                    while(networkedEdges.filter(edge=>(edge.id === newEdge.id)).length > 0){ //duplicate id resolution
                         console.log('whoops! collision')
                         newEdge.id = getTimeId();
                     }
@@ -390,14 +391,10 @@ const GraphEditor = forwardRef((
                                          )
                                     ).length === 0) {
                         networkedEdges.push(newEdge)
-                        PANIC++;
-                        if(PANIC > 500)//OH SHIT WHAT THE FUCK ARE YOU DOING
-                                        break;
-                    }
-                }
-                if(PANIC > 500){
-                    console.log('HOLY SHIT WHAT THE FUCK')
-                    break;
+
+                    PANIC++;
+                    if(PANIC > 500)//OH SHIT WHAT THE FUCK ARE YOU DOING
+                                    break;
                 }
             }
             setNodes(nds=>nds.map(node=>{return {...node, selected:false}}))
@@ -440,7 +437,7 @@ const GraphEditor = forwardRef((
         //finally, add new nodes
         setNodes(nds=>nds.map(node=>{return {...node, selected:false}}).concat(newNodes))
         setEdges(eds=>eds.map(edge=>{return {...edge, selected:false}}).concat(newEdges))
-    }, [setNodes, setEdges, clipboard, edges, selectedNodes, selectedEdges, setSelectedNodes, setSelectedEdges])
+    }, [setNodes, setEdges, clipboard, edges, selectedNodes, selectedEdges, setSelectedNodes, setSelectedEdges, nodeId])
 
     useKey(keyBinds.pointer, ()=>setTool('pointer'))
     useKey(keyBinds.line, ()=>setTool('line'))
