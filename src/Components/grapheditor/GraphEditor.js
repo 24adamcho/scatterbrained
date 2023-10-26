@@ -304,6 +304,23 @@ const GraphEditor = forwardRef((
         setSelectedNodes(params.nodes);
         setSelectedEdges(params.edges);
     }
+    useEffect(()=>{ //bullshit for in the edge case where two edges are connected to the same node but in opposite directions
+        const duplicates = []
+        selectedEdges.forEach(selectedEdge=>{
+            edges.filter(e=>(
+                    selectedEdge.source === e.target ||
+                    selectedEdge.target === e.source
+                )).forEach(e=>{
+                    duplicates.push(e)
+                })
+        })
+        setEdges(edges.map(e=>{
+            if(duplicates.find(el=>el.id === e.id) !== undefined) {
+                e.selected = true;
+            }
+            return e;
+        }))
+    }, [selectedEdges])
 
     const onNodeDoubleClick = (_, node) => {
         let connectedEdges = []
