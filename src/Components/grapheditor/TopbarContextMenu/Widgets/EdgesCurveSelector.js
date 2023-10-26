@@ -1,4 +1,4 @@
-import { translateEdgeStyleName, transformEdges } from "./utils.js"
+import { translateEdgeStyleName, transform } from "./utils.js"
 import CurveDropdown from "./CurveDropdown.js";
 
 const EdgesCurveSelector = ({
@@ -17,7 +17,7 @@ const EdgesCurveSelector = ({
     }
 
     const onClick = (param) => {
-        transformEdges(setEdges,
+        transform(setEdges,
                        selectedEdges,
                        (edge)=>{
                             return {

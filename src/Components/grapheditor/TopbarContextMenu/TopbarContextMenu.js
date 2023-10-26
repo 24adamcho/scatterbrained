@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import './TopbarContextMenu.css'
-import { transformNodes } from './Widgets/utils'
 import NewEdgeCurveSelector from './Widgets/NewEdgeCurveSelector'
 import EdgesCurveSelector from './Widgets/EdgesCurveSelector'
 import NodeColorPicker from './Widgets/NodeColorPicker'

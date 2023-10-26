@@ -24,9 +24,9 @@ export const translateEdgeStyleName = (param) => {
 
     it's a really really gross n^2 algorithm but i don't know how else to do it. it's not like it's sorting or anything, and the map function is probably the fast i can get.
 */
-export const transformEdges = (setEdges, selection, transformCallback) => {
+export const transform = (setList, selection, transformCallback) => {
     let c = 0;
-    setEdges((eds)=>{
+    setList((eds)=>{
         return eds.map((edge)=>{
             selection.forEach((selectedEdge)=>{
                 c++;
@@ -39,18 +39,4 @@ export const transformEdges = (setEdges, selection, transformCallback) => {
         })
     })
     // console.log(`Transformation completed in ${c} steps.`)
-}
-
-export const transformNodes = (setNodes, selection, transformCallback) => {
-    setNodes((nds)=>{
-        return nds.map((node)=>{
-            selection.forEach((selectedNode)=>{
-                if(selectedNode.id === node.id) {
-                    node=transformCallback(node)
-                    return node;
-                }
-            })
-            return node;
-        })
-    })
 }

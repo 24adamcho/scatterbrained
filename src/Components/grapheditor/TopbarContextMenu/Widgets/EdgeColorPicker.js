@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { transformEdges } from "./utils";
+import { transform } from "./utils";
 import ColorPickerDropdown from "./ColorPickerDropdown";
 
 const EdgeColorPicker = ({
@@ -19,7 +19,7 @@ const EdgeColorPicker = ({
 
     const onChange = (param)=>{
         setColor(param)
-        transformEdges(setDataList, dataList, (data)=>{
+        transform(setDataList, dataList, (data)=>{
             return {
                 ...data,
                 style:{
@@ -32,7 +32,7 @@ const EdgeColorPicker = ({
 
     const onReset = () => {
         setColor(defaultColor)
-        transformEdges(setDataList, dataList, (edge)=>{
+        transform(setDataList, dataList, (edge)=>{
             if(edge.style === undefined) return edge; //if we don't need to delete anything we gucci
             const {stroke: _, ...newStyle} = edge.style
             if(Object.keys(newStyle).length === 0){

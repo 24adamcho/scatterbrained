@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { transformEdges } from "./utils";
+import { transform } from "./utils";
 
 const EdgeAnimationToggle = ({
     edges,
@@ -21,7 +21,7 @@ const EdgeAnimationToggle = ({
 
     const onClick = () => {
         setBoolstate(!boolstate)
-        transformEdges(setEdges, selectedEdges, (data)=>{
+        transform(setEdges, selectedEdges, (data)=>{
             return {
                 ...data,
                 animated:(!boolstate)?!boolstate:undefined,
