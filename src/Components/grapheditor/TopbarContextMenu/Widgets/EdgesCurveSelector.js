@@ -13,7 +13,10 @@ const EdgesCurveSelector = ({
         if(selectedEdges.length < 1) return '';
         else if(selectedEdges.length >= 1)
             if(allDataSimilar(edges, selectedEdges, 'type')){
-                return `Curve: ${translateEdgeStyleName(edges.filter(e=>e.id===selectedEdges[0].id)[0].type)}`
+                let listOfEdges = edges.filter(e=>e.id===selectedEdges[0].id)
+                if(listOfEdges.length > 0)
+                    return `Curve: ${translateEdgeStyleName(listOfEdges[0].type)}`
+                else return 'Curve...'
             }
             else
                 return 'Curve...'
