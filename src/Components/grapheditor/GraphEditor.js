@@ -22,7 +22,7 @@ import TopbarContextMenu from './TopbarContextMenu/TopbarContextMenu';
 import { useKey } from './GraphEditorKeyhook';
 import { sanitizeEdgesForStorage, sanitizeNodesFromStorage } from '../utils';
 
-const getTimeId = () => `${String(+new Date())}.${String(Math.trunc(Math.random() * 1000))}`; //time id + a random 3 digit number if something is made in sub-millisecond time
+const getTimeId = () => `${String(+new Date())}.${String(Math.trunc(Math.random() * 100000))}`; //time id + a random 5 digit number if something is made in sub-millisecond time
 
 const MIN_DISTANCE = 100;
 const GraphEditor = forwardRef((
@@ -371,6 +371,7 @@ const GraphEditor = forwardRef((
         if(clipboard.edges === undefined) return;
         if(clipboard.edges.length === 1) {
             let networkedEdges = []
+            let PANIC = 0;
             for(let i = 0; i < selectedNodes.length - 1; i++){
                 for(let j = i + 1; j < selectedNodes.length; j++){
                     let newEdge = {
@@ -379,14 +380,24 @@ const GraphEditor = forwardRef((
                         source:selectedNodes[i].id,
                         target:selectedNodes[j].id
                     }
-                    while(edges.filter(edge=>(edge.id === newEdge.id)).length === 0)
+                    while(networkedEdges.filter(edge=>(edge.id === newEdge.id)).length > 0){
+                        console.log('whoops! collision')
                         newEdge.id = getTimeId();
+                    }
 
                     if(edges.filter(edge=>(edge.source === newEdge.source && edge.target === newEdge.target
                                          ||edge.target === newEdge.source && edge.source === newEdge.target
                                          )
-                                    ).length === 0)
+                                    ).length === 0) {
                         networkedEdges.push(newEdge)
+                        PANIC++;
+                        if(PANIC > 500)//OH SHIT WHAT THE FUCK ARE YOU DOING
+                                        break;
+                    }
+                }
+                if(PANIC > 500){
+                    console.log('HOLY SHIT WHAT THE FUCK')
+                    break;
                 }
             }
             setNodes(nds=>nds.map(node=>{return {...node, selected:false}}))
