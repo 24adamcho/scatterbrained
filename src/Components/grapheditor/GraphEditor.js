@@ -307,12 +307,13 @@ const GraphEditor = forwardRef((
     useEffect(()=>{ //bullshit for in the edge case where two edges are connected to the same node but in opposite directions
         const duplicates = []
         selectedEdges.forEach(selectedEdge=>{
-            edges.filter(e=>(
-                    selectedEdge.source === e.target ||
-                    selectedEdge.target === e.source
-                )).forEach(e=>{
+            edges.forEach(e=>{
+                if(selectedEdge.source === e.target 
+                && selectedEdge.target === e.source)
+                {
                     duplicates.push(e)
-                })
+                }
+            })
         })
         setEdges(edges.map(e=>{
             if(duplicates.find(el=>el.id === e.id) !== undefined) {
