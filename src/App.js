@@ -34,7 +34,11 @@ function App() {
                               }
                              )
   );
-  const textRef = useRef(()=>({editNote:()=>{}}));
+  const textRef = useRef(()=>({editNote:()=>{},
+                               setPlaceholder:()=>{}
+                              }
+                             )
+  );
 
   const [sizes, setSize] = useState(['50', '50']) //this is converted into a percent so that the addNote button is positioned properly
 

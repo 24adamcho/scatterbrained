@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactQuill from "react-quill";
 import 'quill-paste-smart';
 import './TextEditor.css';
@@ -81,25 +81,36 @@ const TextEditor = React.forwardRef((
     };
 
     const [value, setValue] = useState(initvalue);
+    const [placeholder, setPlaceholder] = useState('Make a new note...')
+    const quillRef = useRef(null)
 
     //SPAGHETTI MONSTERS; DO NOT TOUCH
     useEffect(()=> {
             editNodeRef.current.editNote(value);
     }, [value, editNodeRef]);
+
+    useEffect(()=>{
+      quillRef.current.getEditor().root.dataset.placeholder = placeholder
+    }, [placeholder])
     
     //MORE SPAGHETTI
     React.useImperativeHandle(ref, () => ({
         editText: (data) => {
             setValue(data);
+        },
+        setPlaceholder: (data) => {
+            setPlaceholder(data);
         }
     }));
 
     return (
         <ReactQuill 
             modules={modules} 
-            placeholder='Make a new note...' 
+            placeholder={placeholder}
             value={value} 
-            onChange={setValue}/>
+            onChange={setValue}
+            ref={quillRef}
+        />
     );
 })
 

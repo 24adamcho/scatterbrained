@@ -277,13 +277,13 @@ const GraphEditor = forwardRef((
                 editTextRef.current.editText(nds.data.content);
                 // console.log(nds)
             }
-
-            return nds;
         });
+        editTextRef.current.setPlaceholder('Write to note...');
     }
 
     const clearEditor = () => {
         setNodeId('');
+        editTextRef.current.setPlaceholder('Make a new note...');
         editTextRef.current.editText(undefined);
     }
 
