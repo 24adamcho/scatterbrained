@@ -19,6 +19,7 @@ const NewEdgeAnimationToggle = ({
             setNewEdge({
                 ...newEdge,
                 svgWrapperStyle:(boolstate)?{
+                    ...newEdge.svgWrapperStyle,
                     vectorEffect:'non-scaling-stroke',
                     strokeDasharray:'5',
                     animation:'dashdraw 0.5s linear infinite'
@@ -28,6 +29,7 @@ const NewEdgeAnimationToggle = ({
             setNewEdge({
                 ...newEdge,
                 svgWrapperStyle:(boolstate)?{
+                    ...newEdge.svgWrapperStyle,
                     vectorEffect:'non-scaling-stroke',
                     strokeDasharray:'5',
                     animation:'reversed-dashdraw 0.5s linear infinite'
