@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
-import './TextEditor.css'
+import 'quill-paste-smart';
+import './TextEditor.css';
 import 'react-quill/dist/quill.snow.css';
 
 class Counter {
@@ -45,6 +46,16 @@ const TextEditor = React.forwardRef((
         counter: {
             char: setCharCount,
             word: setWordCount
+        },
+        clipboard: {
+          allowed: {
+            attributes: [ //allowed pastable attributes
+              'bold', 
+              'italic', 
+              'underline', 
+              'strike'
+            ]
+          },
         },
         toolbar: [
             [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
