@@ -15,10 +15,15 @@ const EdgeAnimationToggle = ({
         if(selectedEdges === undefined) return;
 
         if(allDataSimilar(edges, selectedEdges, 'animated')) {
-            if(findById(edges, selectedEdges[0].id).animated === undefined)
+            const e = findById(edges, selectedEdges[0].id);
+
+            if(e !== undefined)
+                if(e.animated === undefined)
+                    { setTitle('nah'); setBoolstate(false)}
+                else
+                    { setTitle('yeah'); setBoolstate(true)}
+            else 
                 { setTitle('nah'); setBoolstate(false)}
-            else
-                { setTitle('yeah'); setBoolstate(true)}
         }
         else { setTitle('maybe'); setBoolstate(false)}
     }, [edges, selectedEdges])
