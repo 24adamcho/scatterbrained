@@ -1,9 +1,10 @@
 import { Button } from "react-bootstrap"
-import { transform } from "./utils"
+import { transform, hasAtLeastOne } from "./utils"
 
 const EdgesReverse = ({
     selectedEdges,
-    setEdges
+    setEdges,
+    edges
 })=>{
     const onClick = () => {
         transform(setEdges, selectedEdges, (edge)=>{
@@ -16,7 +17,10 @@ const EdgesReverse = ({
 
     return (
         <>
-            <Button onClick={()=>onClick()}>Reverse edges</Button>
+            <Button 
+                onClick={()=>onClick()}
+                disabled={!hasAtLeastOne(edges, selectedEdges, 'animated', true)}
+            >Reverse edges</Button>
         </>
     )
 }

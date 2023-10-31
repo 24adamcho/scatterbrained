@@ -25,7 +25,10 @@ const NewEdgeReverse = ({
 
     return (
         <>
-            <Button onClick={()=>{onClick()}}>Reverse edge</Button>
+            <Button 
+                onClick={()=>onClick()}
+                disabled={!newEdge.animated}
+            >Reverse edge</Button>
         </>
     )
 }

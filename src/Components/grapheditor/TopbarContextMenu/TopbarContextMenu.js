@@ -62,6 +62,7 @@ const EdgesBar = ({
                 <EdgesReverse
                     selectedEdges={selectedEdges}
                     setEdges={setEdges}
+                    edges={edges}
                 />
                 <EdgesReset
                     selectedEdges={selectedEdges}
