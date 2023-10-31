@@ -61,3 +61,13 @@ export const allDataSimilar = (data, selectedData, propertyTest) => {
     if(data.filter(e=>selectedData.some(se=>e.id===se.id)).some(e=>e[propertyTest] !== target)) return false;
     else return true;
 }
+
+export const hasAtLeastOne = (data, selectedData, property, propertyTargetValue) => {
+    if(data.length <= 0) return false;
+    if(selectedData.length <= 0) return false;
+
+    //same as all data similar, but
+                                                                //if at least one matches
+    if(data.filter(e=>selectedData.some(se=>e.id===se.id)).some(e=>e[property] === propertyTargetValue)) return true;
+    else return false;
+}
