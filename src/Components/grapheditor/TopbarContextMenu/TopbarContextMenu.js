@@ -53,8 +53,9 @@ const EdgesBar = ({
                     selectedEdges={selectedEdges}
                 />
                 <EdgeColorPicker
-                    selectedEdges={selectedEdges}
+                    edges={edges}
                     setEdges={setEdges}
+                    selectedEdges={selectedEdges}
                     defaultColor={window.getComputedStyle(
                                     document.getElementById('App')
                                   ).getPropertyValue('--color-low')}

@@ -1,20 +1,26 @@
 import { useEffect, useState } from "react";
-import { transform } from "../utils";
+import { transform, allStylePropertiesSimilar } from "../utils";
 import ColorPickerDropdown from "../ColorPickerDropdown";
 
 const EdgeColorPicker = ({
-    selectedEdges,
+    edges,
     setEdges,
+    selectedEdges,
     defaultColor
 }) => {
     const [color, setColor] = useState(defaultColor)
 
     useEffect(() => {
-        if(selectedEdges.length === 1) 
-            if(selectedEdges[0].style !== undefined)
-                if(selectedEdges[0].style.stroke)
-                    setColor(selectedEdges[0].style.stroke)
-        else if(selectedEdges.length > 1) setColor(defaultColor)
+        if(edges === undefined) return;
+        if(selectedEdges === undefined) return;
+
+        if(allStylePropertiesSimilar(edges, selectedEdges, 'stroke')) {
+            if(selectedEdges[0].style === undefined)
+                setColor(defaultColor)
+            else
+                setColor(selectedEdges[0].style.stroke)
+        }
+        else setColor(defaultColor)
     },[selectedEdges])
 
     const onChange = (param)=>{

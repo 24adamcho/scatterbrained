@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { transform } from "../utils";
+import { allStylePropertiesSimilar, transform } from "../utils";
 import ColorPickerDropdown from "../ColorPickerDropdown";
 
 const NodeColorPicker = ({
+    nodes,
     setNodes,
     selectedNodes,
     defaultColor
@@ -10,12 +11,16 @@ const NodeColorPicker = ({
     const [color, setColor] = useState(defaultColor)
 
     useEffect(() => {
-        if(selectedNodes.length === 1) 
+        if(allStylePropertiesSimilar(nodes, selectedNodes, 'backgroundColor'))
             if(selectedNodes[0].style !== undefined)
-                setColor(selectedNodes[0].style.backgroundColor)
+                if(selectedNodes[0].style.backgroundColor !== undefined)
+                        setColor(selectedNodes[0].style.backgroundColor)
+                    else
+                        setColor(defaultColor)
             else
                 setColor(defaultColor)
-        else if(selectedNodes.length > 1) setColor(defaultColor)
+        else
+            setColor(defaultColor)
     },[selectedNodes])
 
     const onChange = (param)=>{
