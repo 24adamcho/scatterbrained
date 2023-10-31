@@ -11,21 +11,24 @@ import NewEdgeReverse from './Widgets/newEdge/NewEdgeReverse'
 import EdgesReverse from './Widgets/edge/EdgesReverse'
 import NewEdgesReset from './Widgets/newEdge/NewEdgesReset'
 import EdgesReset from './Widgets/edge/EdgesReset'
+import BothColorPicker from './Widgets/both/BothColorPicker'
+import BothEdgeDirection from './Widgets/both/BothEdgeDirection'
+import BothReset from './Widgets/both/BothReset'
 
 const NodesBar = ({
     className,
-    selectedNodes,
-    setNodes,
     nodes,
+    setNodes,
+    selectedNodes,
 }) => {
     
     return (
         <>
             <div className={className}>
                 <NodeColorPicker
-                    selectedNodes={selectedNodes}
-                    setNodes={setNodes}
                     nodes={nodes}
+                    setNodes={setNodes}
+                    selectedNodes={selectedNodes}
                     defaultColor={window.getComputedStyle(
                                     document.getElementById('App')
                                   ).getPropertyValue('--color-high')}
@@ -78,13 +81,42 @@ const EdgesBar = ({
 const BothBar = ({
     className,
     nodes,
-    edges
+    edges,
+    setNodes,
+    setEdges,
+    selectedNodes,
+    selectedEdges,
 }) => {
-
     return (
         <>
             <div className={className}>
-                <p>test bothbar</p>
+                <BothColorPicker
+                    nodes={nodes}
+                    edges={edges}
+                    setNodes={setNodes}
+                    setEdges={setEdges}
+                    selectedNodes={selectedNodes}
+                    selectedEdges={selectedEdges}
+                />
+                <EdgeAnimationToggle
+                    edges={edges}
+                    setEdges={setEdges}
+                    selectedEdges={selectedEdges}
+                />
+                <BothEdgeDirection
+                    nodes={nodes}
+                    edges={edges}
+                    setNodes={setNodes}
+                    setEdges={setEdges}
+                    selectedNodes={selectedNodes}
+                    selectedEdges={selectedEdges}
+                />
+                <BothReset
+                    setNodes={setNodes}
+                    setEdges={setEdges}
+                    selectedNodes={selectedNodes}
+                    selectedEdges={selectedEdges}
+                />
             </div>
         </>
     )
@@ -179,10 +211,12 @@ const TopbarContextMenu = (
                         :
                         (selectionType === 'both') ?
                             <BothBar className={['bothBar', 'topBarWidgetsMenu'].join(' ')}
-                                     nodes={selectedNodes}
-                                     edges={selectedEdges}
+                                     nodes={nodes}
+                                     edges={edges}
                                      setNodes={setNodes}
                                      setEdges={setEdges}
+                                     selectedNodes={selectedNodes}
+                                     selectedEdges={selectedEdges}
                             />
                         :
                         <></> //pointer but nothing selected

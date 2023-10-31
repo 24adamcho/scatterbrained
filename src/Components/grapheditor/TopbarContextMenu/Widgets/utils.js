@@ -62,6 +62,19 @@ export const allDataSimilar = (data, selectedData, propertyTest) => {
     else return true;
 }
 
+export const allStylePropertiesSimilar = (data, selectedData, propertyTest) => {
+    if(data.length <= 0) return false;
+    if(selectedData.length <= 0) return false;
+    if(selectedData.length === 1) return true;
+
+    if(data.filter(e=>selectedData.some(se=>e.id===se.id)).some(e=>e.style === undefined)) return false;
+
+    const target = selectedData[0].style[propertyTest];
+
+    if(data.filter(e=>selectedData.some(se=>e.id===se.id)).some(e=>e.style[propertyTest] !== target)) return false;
+    else return true;
+}
+
 export const hasAtLeastOne = (data, selectedData, property, propertyTargetValue) => {
     if(data.length <= 0) return false;
     if(selectedData.length <= 0) return false;
