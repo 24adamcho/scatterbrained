@@ -55,14 +55,16 @@ const GraphEditor = forwardRef((
 
     //remove svgWrapperStyles for sanity's sake, since it's only used for connectionLines
     const sanitizeNewEdge = () => {
-        const tempNewEdge = {};
-        Object.assign(tempNewEdge, newEdge);
-        if(tempNewEdge.style !== undefined)
-            if(Object.keys(tempNewEdge.style).length === 0) delete tempNewEdge.style;
-        if(tempNewEdge.svgWrapperStyle !== undefined) delete tempNewEdge.svgWrapperStyle;
-        if(tempNewEdge.reversed !== undefined) delete tempNewEdge.reversed;
+        const {
+            style:tempNewEdgeStyle,
+            svgWrapperStyle:_,
+            reversed:__,
+            ...tempNewEdge
+        } = newEdge
 
-        return tempNewEdge;
+        if(tempNewEdgeStyle === undefined) return tempNewEdge;
+        if(Object.keys(tempNewEdgeStyle).length === 0) return tempNewEdge;
+        else return {...tempNewEdge, style:tempNewEdgeStyle};
     }
 
     const [nodeId, setNodeId] = useState('');
