@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import { transform } from "./utils";
+import { transform } from "../utils";
 
 const NewEdgeReverse = ({
     newEdge,

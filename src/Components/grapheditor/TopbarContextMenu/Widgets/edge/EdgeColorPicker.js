@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { transform } from "./utils";
-import ColorPickerDropdown from "./ColorPickerDropdown";
+import { transform } from "../utils";
+import ColorPickerDropdown from "../ColorPickerDropdown";
 
 const EdgeColorPicker = ({
     selectedEdges,

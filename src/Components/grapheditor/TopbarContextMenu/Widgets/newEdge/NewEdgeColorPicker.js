@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ColorPickerDropdown from "./ColorPickerDropdown";
+import ColorPickerDropdown from "../ColorPickerDropdown";
 
 const NewEdgeColorPicker = ({
     newEdge,

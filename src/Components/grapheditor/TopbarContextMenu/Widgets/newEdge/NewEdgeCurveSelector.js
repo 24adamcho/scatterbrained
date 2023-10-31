@@ -1,5 +1,5 @@
-import { translateEdgeStyleName } from "./utils.js"
-import CurveDropdown from "./CurveDropdown.js";
+import { translateEdgeStyleName } from "../utils.js"
+import CurveDropdown from "../CurveDropdown.js";
 
 const NewEdgeCurveSelector = ({
     newEdge,

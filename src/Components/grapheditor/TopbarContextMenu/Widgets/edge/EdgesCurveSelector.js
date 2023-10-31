@@ -1,5 +1,5 @@
-import { translateEdgeStyleName, transform, getById, allDataSimilar } from "./utils.js"
-import CurveDropdown from "./CurveDropdown.js";
+import { translateEdgeStyleName, transform, getById, allDataSimilar } from "../utils.js"
+import CurveDropdown from "../CurveDropdown.js";
 import { useEffect, useState } from "react";
 
 const EdgesCurveSelector = ({

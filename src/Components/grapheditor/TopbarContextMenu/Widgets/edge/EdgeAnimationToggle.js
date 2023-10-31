@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { allDataSimilar, transform } from "./utils";
+import { allDataSimilar, transform } from "../utils";
 
 const EdgeAnimationToggle = ({
     edges,

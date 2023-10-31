@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap"
-import { transform, hasAtLeastOne } from "./utils"
+import { transform, hasAtLeastOne } from "../utils"
 
 const EdgesReverse = ({
     selectedEdges,

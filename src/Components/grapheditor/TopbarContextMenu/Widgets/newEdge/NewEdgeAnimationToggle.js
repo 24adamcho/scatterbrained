@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { transform } from "./utils";
+import { transform } from "../utils";
 import './EdgeAnimationKeyframes.css'
 
 const NewEdgeAnimationToggle = ({
