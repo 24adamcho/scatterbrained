@@ -9,6 +9,8 @@ import EdgeAnimationToggle from './Widgets/EdgeAnimationToggle'
 import NewEdgeAnimationToggle from './Widgets/NewEdgeAnimationToggle'
 import NewEdgeReverse from './Widgets/NewEdgeReverse'
 import EdgesReverse from './Widgets/EdgesReverse'
+import NewEdgesReset from './Widgets/NewEdgesReset'
+import EdgesReset from './Widgets/EdgesReset'
 
 const NodesBar = ({
     className,
@@ -61,6 +63,10 @@ const EdgesBar = ({
                     selectedEdges={selectedEdges}
                     setEdges={setEdges}
                 />
+                <EdgesReset
+                    selectedEdges={selectedEdges}
+                    setEdges={setEdges}
+                />
             </div>
         </>
     )
@@ -107,6 +113,9 @@ const LineToolBar = ({
                 />
                 <NewEdgeReverse
                     newEdge={newEdge}
+                    setNewEdge={setNewEdge}
+                />
+                <NewEdgesReset
                     setNewEdge={setNewEdge}
                 />
             </div>

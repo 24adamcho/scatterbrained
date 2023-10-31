@@ -12,7 +12,9 @@ const NewEdgeAnimationToggle = ({
     useEffect(()=>{
         if(newEdge.animated !== undefined)
             setBoolstate(newEdge.animated)
-    }, [])
+        else
+            setBoolstate(false)
+    }, [newEdge.animated])
 
     useEffect(()=>{
         if(newEdge.reversed === undefined) 
