@@ -21,6 +21,7 @@ import NoteNode from './NoteNode';
 import TopbarContextMenu from './TopbarContextMenu/TopbarContextMenu';
 import { useKey } from './GraphEditorKeyhook';
 import { sanitizeEdgesForStorage, sanitizeNodesFromStorage } from '../utils';
+import { findById } from './TopbarContextMenu/Widgets/utils';
 
 const getTimeId = () => `${String(+new Date())}.${String(Math.trunc(Math.random() * 100000))}`; //time id + a random 5 digit number if something is made in sub-millisecond time
 
@@ -125,6 +126,13 @@ const GraphEditor = forwardRef((
         const targetIsPane = params.target.classList.contains('react-flow__pane')
         // console.log(params);
         if(targetIsPane) {
+            var previousNode = {};
+            nodes.map(e=>{
+                if(e.id===connectingNodeId.current){
+                    previousNode=e;
+                }
+            })
+
             const { top, left } = reactFlowWrapper.current.getBoundingClientRect();
             const newId = getTimeId();
             const newNode = {
@@ -137,6 +145,9 @@ const GraphEditor = forwardRef((
                 },
                 selected:true,
             }
+            if(previousNode !== undefined)
+                if(previousNode.style !== undefined)
+                    newNode.style = previousNode.style;
 
             const sanitizedEdge = sanitizeNewEdge()
             const tempNewEdge = { 
@@ -163,7 +174,7 @@ const GraphEditor = forwardRef((
                 return node;
             }))
         }
-    }, [tool, setEdges, newEdge])
+    }, [tool, setEdges, newEdge, nodes, connectingNodeId])
 
     //this is utterly fucking stupid, but there is no other way to put a node in the frame that doesn't involve
     //lacing hook spaghetti code through the whole project
