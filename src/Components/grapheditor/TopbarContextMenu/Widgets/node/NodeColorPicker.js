@@ -3,9 +3,8 @@ import { transform } from "../utils";
 import ColorPickerDropdown from "../ColorPickerDropdown";
 
 const NodeColorPicker = ({
-    nodes,
-    selectedNodes,
     setNodes,
+    selectedNodes,
     defaultColor
 }) => {
     const [color, setColor] = useState(defaultColor)
@@ -17,7 +16,7 @@ const NodeColorPicker = ({
             else
                 setColor(defaultColor)
         else if(selectedNodes.length > 1) setColor(defaultColor)
-    },[selectedNodes, nodes])
+    },[selectedNodes])
 
     const onChange = (param)=>{
         setColor(param)
