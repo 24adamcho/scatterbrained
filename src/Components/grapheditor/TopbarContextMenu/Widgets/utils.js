@@ -84,3 +84,13 @@ export const hasAtLeastOne = (data, selectedData, property, propertyTargetValue)
     if(data.filter(e=>selectedData.some(se=>e.id===se.id)).some(e=>e[property] === propertyTargetValue)) return true;
     else return false;
 }
+
+export const findById = (data, selectedDataId) => {
+    if(data.length <= 0) return undefined;
+
+    const e = (data.map(d=>{ if(d.id === selectedDataId) return d}))
+    
+    if(e === undefined) return undefined;
+    if(e.length === 0) return undefined;
+    return e[0];
+}
