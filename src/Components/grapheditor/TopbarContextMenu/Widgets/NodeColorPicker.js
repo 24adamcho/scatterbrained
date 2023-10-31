@@ -3,22 +3,25 @@ import { transform } from "./utils";
 import ColorPickerDropdown from "./ColorPickerDropdown";
 
 const NodeColorPicker = ({
-    dataList,
-    setDataList,
+    nodes,
+    selectedNodes,
+    setNodes,
     defaultColor
 }) => {
     const [color, setColor] = useState(defaultColor)
 
     useEffect(() => {
-        if(dataList.length === 1) 
-            if(dataList[0].style !== undefined)
-                setColor(dataList[0].style.backgroundColor)
-        else if(dataList.length > 1) setColor(defaultColor)
-    },[dataList])
+        if(selectedNodes.length === 1) 
+            if(selectedNodes[0].style !== undefined)
+                setColor(selectedNodes[0].style.backgroundColor)
+            else
+                setColor(defaultColor)
+        else if(selectedNodes.length > 1) setColor(defaultColor)
+    },[selectedNodes, nodes])
 
     const onChange = (param)=>{
         setColor(param)
-        transform(setDataList, dataList, (data)=>{
+        transform(setNodes, selectedNodes, (data)=>{
             return {
                 ...data,
                 style:{
@@ -31,7 +34,7 @@ const NodeColorPicker = ({
 
     const onReset = () => {
         setColor(defaultColor)
-        transform(setDataList, dataList, (node)=>{
+        transform(setNodes, selectedNodes, (node)=>{
             if(node.style === undefined) return node; //if we don't need to delete anything we gucci
 
             const {backgroundColor: _, ...newStyle} = node.style

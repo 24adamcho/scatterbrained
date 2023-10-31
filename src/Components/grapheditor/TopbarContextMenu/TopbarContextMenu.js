@@ -16,14 +16,16 @@ const NodesBar = ({
     className,
     selectedNodes,
     setNodes,
+    nodes,
 }) => {
     
     return (
         <>
             <div className={className}>
                 <NodeColorPicker
-                    dataList={selectedNodes}
-                    setDataList={setNodes}
+                    selectedNodes={selectedNodes}
+                    setNodes={setNodes}
+                    nodes={nodes}
                     defaultColor={window.getComputedStyle(
                                     document.getElementById('App')
                                   ).getPropertyValue('--color-high')}
@@ -165,7 +167,7 @@ const TopbarContextMenu = (
                             <NodesBar className={['nodesBar', 'topBarWidgetsMenu'].join(' ')} 
                                 selectedNodes={selectedNodes}
                                       setNodes={setNodes}
-                                      setEdges={setEdges}
+                                      nodes={nodes}
                             />
                         :
                         (selectionType === 'edges') ?
