@@ -173,6 +173,10 @@ const GraphEditor = forwardRef((
                     node.selected=false;
                 return node;
             }))
+            setEdges((eds)=>eds.map((edge)=>{
+                edge.selected = false;
+                return edge;
+            }))
         }
     }, [tool, setEdges, newEdge, nodes, connectingNodeId])
 
@@ -226,6 +230,10 @@ const GraphEditor = forwardRef((
             if(node.id !== newNoteNode.id)
                 node.selected=false;
             return node;
+        }))
+        setEdges((eds)=>eds.map((edge)=>{
+            edge.selected = false;
+            return edge;
         }))
 
         // console.log(`New note ${newid} added at ${center.x}, ${center.y}`)
