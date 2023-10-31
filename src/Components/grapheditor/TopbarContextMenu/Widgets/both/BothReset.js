@@ -14,6 +14,7 @@ const BothReset = ({
                 ...newNode
             } = node
 
+            if(node.style === undefined) return newNode;
             const {
                 backgroundColor:__,
                 ...newNodeStyle
@@ -29,6 +30,7 @@ const BothReset = ({
                 ...newEdge
             } = edge
 
+            if(edge.style === undefined) return newEdge;
             const {
                 stroke:___,
                 ...newEdgeStyle
