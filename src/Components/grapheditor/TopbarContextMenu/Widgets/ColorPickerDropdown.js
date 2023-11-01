@@ -6,12 +6,19 @@ import './ColorPickerDropdown.css'
 const ColorPickerDropdown = ({
     color,
     onChange,
-    onReset
+    onReset,
+    onToggle
 })=>{
     return (
         <>
-            <Dropdown autoclose="true">
-                <Dropdown.Toggle className="colorPickerButton" style={{display:'flex', flexDirection:'row', height:'100%'}}>
+            <Dropdown autoclose="true" onToggle={onToggle}>
+                <Dropdown.Toggle className="colorPickerButton" 
+                                 style={{
+                                    display:'flex', 
+                                    flexDirection:'row', 
+                                    height:'100%'
+                                 }}
+                >
                     Color:
                     <div style={{
                         width:'1rem', 

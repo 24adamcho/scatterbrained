@@ -9,6 +9,7 @@ const BothEdgeDirection = ({
     setEdges,
     selectedNodes,
     selectedEdges,
+    markHistory,
 }) => {
     const [disable, setDisable] = useState(true)
 
@@ -44,6 +45,7 @@ const BothEdgeDirection = ({
             }
             return edge;
         })
+        markHistory()
     }
     const flowOutward = () => {
         transform(setEdges, selectedEdges, (edge) => {
@@ -54,6 +56,7 @@ const BothEdgeDirection = ({
             }
             return edge;
         })
+        markHistory()
     }
 
     return (

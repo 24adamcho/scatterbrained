@@ -6,7 +6,8 @@ const EdgeColorPicker = ({
     edges,
     setEdges,
     selectedEdges,
-    defaultColor
+    defaultColor,
+    markHistory,
 }) => {
     const [color, setColor] = useState(defaultColor)
 
@@ -47,6 +48,12 @@ const EdgeColorPicker = ({
             }
             return {...edge, style:newStyle};
         })
+        markHistory()
+    }
+
+    const onToggle = (nextShow, meta) => {
+        if(nextShow === false)
+            markHistory()
     }
 
     return (
@@ -55,6 +62,7 @@ const EdgeColorPicker = ({
                 color={color} 
                 onChange={onChange} 
                 onReset={()=>onReset()}
+                onToggle={onToggle}
             />
         </>
     )

@@ -6,7 +6,8 @@ const NodeColorPicker = ({
     nodes,
     setNodes,
     selectedNodes,
-    defaultColor
+    defaultColor,
+    markHistory,
 }) => {
     const [color, setColor] = useState(defaultColor)
 
@@ -48,6 +49,12 @@ const NodeColorPicker = ({
             }
             return {...node, style:newStyle};
         })
+        markHistory()
+    }
+    
+    const onToggle = (nextShow, meta) => {
+        if(nextShow === false)
+            markHistory()
     }
 
     return (
@@ -56,6 +63,7 @@ const NodeColorPicker = ({
                 color={color} 
                 onChange={onChange} 
                 onReset={()=>onReset()}
+                onToggle={onToggle}
             />
         </>
     )

@@ -72,6 +72,7 @@ function TopBar(props) {
 
         props.nodeRef.current.setNewNodes(sanitizedNodes)
         props.nodeRef.current.setNewEdges(sanitizedEdges)
+        props.nodeRef.current.resetHistory();
       });
       reader.readAsText(file);
     })

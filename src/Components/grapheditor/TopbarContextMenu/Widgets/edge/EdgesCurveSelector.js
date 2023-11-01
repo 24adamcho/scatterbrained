@@ -6,6 +6,7 @@ const EdgesCurveSelector = ({
     edges,
     setEdges,
     selectedEdges,
+    markHistory,
 }) => {
     const getStyleName = () => {
         if(selectedEdges === undefined) return '';
@@ -39,6 +40,7 @@ const EdgesCurveSelector = ({
                             };
         });
         setTitle(`Curve: ${translateEdgeStyleName(param)}`)
+        markHistory();
     }
 
     return (

@@ -5,7 +5,8 @@ const BothReset = ({
     setNodes,
     setEdges,
     selectedNodes,
-    selectedEdges
+    selectedEdges,
+    markHistory,
 }) => {
     const onClick = () => {
         transform(setNodes, selectedNodes, (node) => {
@@ -39,6 +40,7 @@ const BothReset = ({
             if(Object.keys(newEdgeStyle).length === 0) return newEdge;
             return {...newEdge, style:newEdgeStyle}
         })
+        markHistory()
     }
 
     return (

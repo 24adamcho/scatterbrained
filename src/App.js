@@ -30,7 +30,8 @@ function App() {
                                getNodes:()=>{}, 
                                getEdges:()=>{}, 
                                setNewNodes:()=>{}, 
-                               setNewEdges:()=>{}
+                               setNewEdges:()=>{},
+                               resetHistory:()=>{}
                               }
                              )
   );
