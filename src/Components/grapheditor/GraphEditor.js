@@ -364,7 +364,10 @@ const GraphEditor = forwardRef((
         changeNoteId(mouseEvent, node);
         if(!mouseEvent.shiftKey) {
             setNodes(nds=>nds.map(nd=>{
-                nd.selected = false;
+                if(nd.id === node.id)
+                    nd.selected = true;
+                else
+                    nd.selected = false;
                 return nd;
             }))
             setEdges(eds=>eds.map(ed=>{
@@ -372,12 +375,14 @@ const GraphEditor = forwardRef((
                 return ed;
             }))
         }
-        setNodes(nds=>nds.map(nd=>{
-            if(nd.id === node.id) {
-                nd.selected = true;
-            }
-            return nd;
-        }))
+        else {
+            setNodes(nds=>nds.map(nd=>{
+                if(nd.id === node.id) {
+                    nd.selected = !node.selected;
+                }
+                return nd;
+            }))
+        }
     }
 
     const clearEditor = () => {
