@@ -1,6 +1,8 @@
 import { memo, useEffect } from 'react';
-import {Handle, Position, NodeResizer, useStore} from 'reactflow';
+import {Handle, Position, NodeResizer, NodeResizeControl, useStore} from 'reactflow';
 import ReactQuill from 'react-quill'; //for data display
+
+import { ReactComponent as ResizeHandle } from './resize-handle-svgrepo-com.svg'
 
 import '../texteditor/TextEditor.css'
 import 'react-quill/dist/quill.snow.css';
@@ -30,7 +32,22 @@ const NoteNode = ({data, selected}) => {
                 minWidth={130} 
                 minHeight={100} 
                 isVisible={selected && data.tool === 'pointer'}
+                shouldResize={()=>{return false;}}
             />
+            {selected && data.tool === 'pointer' &&(
+                <NodeResizeControl 
+                    minWidth={130} 
+                    minHeight={100} 
+                    position='bottom-right'
+                    style={{zIndex:15, 
+                            width:'1.25rem', 
+                            height:'1.25rem', 
+                            transform:'translate(-1.25rem, -1.25rem)'
+                    }}
+                >
+                    <ResizeHandle style={{width:'1.25rem', height:'1.25rem', transform:'translate(0px, -5px)'}}/>
+                </NodeResizeControl>
+            )}
             <Handle
                 position={Position.Top}
                 type='target'

@@ -66,13 +66,21 @@
 .react-flow__resize-control.line {
     border-color:var(--color-alert) !important;
     border-width:1px !important;
-    background-color:var(--color-alert)
+    background-color:var(--color-alert);
+    cursor:pointer;
 }
 .react-flow__resize-control.handle {
-    border-color:var(--color-alert) !important;
-    background-color: var(--color-green) !important;
-    width:6px;
-    height:6px;
+    /* border-color:var(--color-alert) !important;
+    background-color: var(--color-green) !important; */
+    border:none;
+    background-color: transparent;
+    overflow:hidden;
+    width:0;
+    height:0;
+    cursor:pointer;
+}
+.react-flow__resize-control>svg>path {
+    stroke:var(--color-green);
 }
 
 .react-flow__node,
