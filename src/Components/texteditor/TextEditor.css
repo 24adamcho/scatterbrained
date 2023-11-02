@@ -43,6 +43,12 @@
 }
 
 .ql-picker-item:hover {
-    color:var(--color-mid) !important;
-    text-shadow: 2px 2px var(--color-low);
+    color:var(--color-low) !important;
+    text-shadow: 2px 2px var(--color-mid);
+    transition-property: color, text-shadow;
+    transition-duration: 0.1s;
+    transition-timing-function: linear;
+}
+.ql-picker-item.ql-selected::before {
+    color:var(--color-alert)
 }

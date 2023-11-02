@@ -14,7 +14,7 @@ const SidebarContextMenu = (
     return (
         <>
             <div className="sidebarContextMenu">
-                <ButtonGroup className="stuff1" aria-label="fuck you" vertical>
+                <ButtonGroup className="toolButtonGroup" vertical>
                     <ToggleButtonGroup type="radio" name="tools" defaultValue={'pointer'} value={tool} vertical>
                         <ToggleButton id='tbg-tools-pointer' value={'pointer'} onClick={()=>setToolCallback('pointer')}>
                             pointer

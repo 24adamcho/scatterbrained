@@ -1,18 +1,22 @@
 .sidebarContextMenu {
     order:1;
-    /* position:absolute; */
-    /* z-index: 1; */
-    /* top:0;
-    left:0; */
-    /* margin:15px; */
-
-    /* display: flex;
-    flex-direction:column;
-    align-content:left;
-    text-align:left; */
 }
 
-.btn {
+.sidebarContextMenu>div {
+    position:relative;
+    top:0;
+    left:0;
+    border-right: solid 4px var(--color-low);
+    border-bottom: solid 4px var(--color-low);
+    background-color:var(--color-mid);
+}
+
+.sidebarContextMenu>div>div>.btn {
     text-align:left;
     align-content: left;
+    border-radius:0;
+    border: none;
+    --bs-btn-hover-bg:var(--color-mid);
+    --bs-btn-bg:var(--color-mid);
+    --bs-btn-active-bg:var(--color-alert-trans);
 }

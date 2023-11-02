@@ -20,4 +20,11 @@
 .colorPickerFields>button {
     float:right;
     flex-grow:0;
+
+    border:none;
+    border-radius:0;
+    --bs-btn-hover-bg:var(--color-mid-trans) !important;
+    --bs-btn-bg:var(--color-mid) !important;
+    --bs-btn-active-bg:var(--color-alert-trans) !important;
+    --bs-btn-disabled-bg:var(--color-mid-trans) !important;
 }

@@ -45,6 +45,16 @@
   background-color: var(--color-high) !important;
   border-radius:0 !important;
 }
+.dropdown-menu .dropdown-item {
+  color:var(--color-low);
+  background-color:transparent;
+  transition: background-color 0.1s linear;
+}
+.dropdown-menu .dropdown-item:hover {
+  color:var(--color-low);
+  background-color:var(--color-mid);
+  transition: background-color 0.1s linear;
+}
 
 
 iframe#webpack-dev-server-client-overlay{display:none!important}

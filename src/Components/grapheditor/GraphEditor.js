@@ -564,6 +564,7 @@ const GraphEditor = forwardRef((
             return {
                 ...node,
                 id:newId,
+                tool:tool,
                 position: {
                         x: node.position.x + 15,
                         y: node.position.y + 15,
@@ -658,12 +659,14 @@ const GraphEditor = forwardRef((
                     multiSelectionKeyCode={keyBinds.multiSelect}
                     >
                     <Background variant={bgstyle}/>
-                    <Controls></Controls>
-                    {enableMiniMap && (
-                        <MiniMap position='bottom-left' 
-                                 pannable
-                                 style={{opacity:'50%'}}/>
-                    )}
+                    <div className="controlsWrapper">
+                        <Controls></Controls>
+                        {enableMiniMap && (
+                            <MiniMap position='bottom-left' 
+                                    pannable
+                                    style={{opacity:'50%'}}/>
+                        )}
+                    </div>
                     {menu && (menu.type === 'pane' && <PaneContext onClick={onPaneClick} {...menu}/>)}
                 </ReactFlow>
             </div>
