@@ -71,8 +71,7 @@ const GraphEditor = forwardRef((
     
     //manually mark process ticks for saving, in the case of actually desired changes
     const [marked, setMark] = useState(false)
-    const markHistory = () => { 
-        console.log(past) ; setMark(true); }
+    const markHistory = () => { setMark(true); }
     useEffect(()=>{
         if(marked) {
             let newState = {nodes: nodes, edges:edges}
@@ -80,8 +79,7 @@ const GraphEditor = forwardRef((
             setMark(false)
         }
     }, [nodes, edges, marked, setElement])
-    useEffect(()=>{
-        console.log(past)}, [past])
+
     useEffect(()=>{
         setNodes(element.nodes)
         setEdges(element.edges)
