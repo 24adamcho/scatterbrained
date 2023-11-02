@@ -22,6 +22,8 @@ import TopbarContextMenu from './TopbarContextMenu/TopbarContextMenu';
 import { useKey } from './GraphEditorKeyhook';
 import { sanitizeEdgesForStorage, sanitizeNodesFromStorage } from '../utils';
 import { findById } from './TopbarContextMenu/Widgets/utils';
+import PaneContext from './RightclickContextMenu/PaneContext';
+import NodeContext from './RightclickContextMenu/NodesContext';
 
 const getTimeId = () => `${String(+new Date())}.${String(Math.trunc(Math.random() * 100000))}`; //time id + a random 5 digit number if something is made in sub-millisecond time
 
@@ -308,8 +310,85 @@ const GraphEditor = forwardRef((
         editTextRef.current.editText(undefined);
     }
 
+    const [menu, setMenu] = useState(null)
+    const summonMenu = useCallback((type, mouseEvent, data) => {
+        // Prevent native context menu from showing
+        mouseEvent.preventDefault();
+  
+        // Calculate position of the context menu. We want to make sure it
+        // doesn't get positioned off-screen.
+        const pane = reactFlowWrapper.current.getBoundingClientRect();
+        const paneBounds = {
+            top:   mouseEvent.clientY <  (pane.height - 200) &&   mouseEvent.clientY - 56,
+            left:  mouseEvent.clientX <  (pane.width - 200)  &&   mouseEvent.clientX,
+            right: mouseEvent.clientX >= (pane.width - 200)  &&   pane.width - mouseEvent.clientX,
+            bottom:mouseEvent.clientY >= (pane.height - 200) &&   pane.height - mouseEvent.clientY,
+        }
+        switch(type) {
+            case 'node':
+                var sn = [data]
+                var titles = {deleteNodes: ''}
+                if(selectedNodes.length === 0) {
+                    setNodes(nds=>nds.map(node=>{ //select the node
+                        if(node.id == data.id)
+                            node.selected = true;
+                        return node;
+                    }))
+                    titles.deleteNodes = 'Delete node'
+                    setSelectedNodes([data])
+                    sn = [data]
+                }
+                else if (selectedNodes.length === 1) {
+                    setNodes(nds=>nds.map(node=>{ //select the node
+                        if(node.id == data.id)
+                            node.selected = true;
+                        else   
+                            node.selected = false;
+                        return node;
+                    }))
+                    titles.deleteNodes = 'Delete node'
+                    setSelectedNodes([data])
+                    sn = [data]
+                }
+                else {
+                    titles.deleteNodes = 'Delete nodes'
+                    sn = selectedNodes
+                }
+                setMenu({
+                    type:'node', 
+                    node:data,
+                    setNodes:setNodes,
+                    selectedNodes:sn,
+                    titles:titles,
+                    ...paneBounds
+                })
+            break;
+            case 'edge':
+
+            break;
+            case 'pane':
+                setMenu({
+                    type: 'pane', 
+                    setNodes: setNodes, 
+                    mouseEvent:mouseEvent,
+                    project:project,
+                    getTimeId:getTimeId,
+                    tool:tool,
+                    ...paneBounds
+                })
+            break;
+            default:
+                setMenu(null);
+        }
+    }, [setMenu, setNodes, selectedNodes, setSelectedNodes])
+    const onNodeContextMenu = (mouseEvent, node) => { summonMenu('node', mouseEvent, node) }
+    const onEdgeContextMenu = (mouseEvent, edge) => { summonMenu('edge', mouseEvent, edge) }
+    const onPaneContextMenu = (mouseEvent) => { summonMenu('pane', mouseEvent, undefined)  }
+    // useEffect(()=>{console.log(menu)},[menu])
+
     //on clicking the background instead of a node or edge
     const onPaneClick = () => {
+        setMenu(null);
         clearEditor();
         setNodes((nds)=>{
             return nds.map((node)=>{
@@ -541,6 +620,10 @@ const GraphEditor = forwardRef((
                     onPaneClick={onPaneClick}
                     onSelectionChange={onSelectionChange}
 
+                    onNodeContextMenu={onNodeContextMenu}
+                    onEdgeContextMenu={onEdgeContextMenu}
+                    onPaneContextMenu={onPaneContextMenu}
+
                     deleteKeyCode={keyBinds.delete}
                     selectionKeyCode={keyBinds.dragSelect}
                     multiSelectionKeyCode={keyBinds.multiSelect}
@@ -552,6 +635,8 @@ const GraphEditor = forwardRef((
                                  pannable
                                  style={{opacity:'50%'}}/>
                     )}
+                    {menu && (menu.type === 'pane' && <PaneContext onClick={onPaneClick} {...menu}/>)}
+                    {menu && (menu.type === 'node' && <NodeContext onClick={onPaneClick} {...menu}/>)}
                 </ReactFlow>
             </div>
         </>
