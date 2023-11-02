@@ -16,8 +16,8 @@ const PaneContext = ({
 }) => {
     const newNote = ()=>{
         const center = project({
-            x:left > right ? left : mouseEvent.clientX - 65,
-            y:mouseEvent.clientY - 56
+            x:left > right ? mouseEvent.clientX - 67 : mouseEvent.clientX - 67,
+            y:top > bottom ? mouseEvent.clientY - 63 : mouseEvent.clientY - 63
         })
         setNodes(nds=>nds.concat([{
             id:getTimeId(),
@@ -37,7 +37,7 @@ const PaneContext = ({
              className="context-menu"
              {...props}
         >
-            <button onClick={()=>newNote()}>Add note</button>
+            <button className="context-menu-button" onClick={()=>newNote()}>Add note</button>
         </div>
     )
 }

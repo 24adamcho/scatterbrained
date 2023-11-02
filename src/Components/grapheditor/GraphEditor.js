@@ -19,11 +19,10 @@ import {ReactComponent as AddNoteIcon } from './add-note-svgrepo-com.svg'
 import SidebarContextMenu from './SidebarContextMenu/SidebarContextMenu';
 import NoteNode from './NoteNode';
 import TopbarContextMenu from './TopbarContextMenu/TopbarContextMenu';
-import { useKey } from './GraphEditorKeyhook';
+import { useKey, useOnTouch } from './GraphEditorKeyhook';
 import { sanitizeEdgesForStorage, sanitizeNodesFromStorage } from '../utils';
 import { findById } from './TopbarContextMenu/Widgets/utils';
 import PaneContext from './RightclickContextMenu/PaneContext';
-import NodeContext from './RightclickContextMenu/NodesContext';
 
 const getTimeId = () => `${String(+new Date())}.${String(Math.trunc(Math.random() * 100000))}`; //time id + a random 5 digit number if something is made in sub-millisecond time
 
@@ -311,80 +310,31 @@ const GraphEditor = forwardRef((
     }
 
     const [menu, setMenu] = useState(null)
-    const summonMenu = useCallback((type, mouseEvent, data) => {
-        // Prevent native context menu from showing
+    const onPaneContextMenu = useCallback((mouseEvent) => { 
         mouseEvent.preventDefault();
   
         // Calculate position of the context menu. We want to make sure it
         // doesn't get positioned off-screen.
         const pane = reactFlowWrapper.current.getBoundingClientRect();
         const paneBounds = {
-            top:   mouseEvent.clientY <  (pane.height - 200) &&   mouseEvent.clientY - 56,
-            left:  mouseEvent.clientX <  (pane.width - 200)  &&   mouseEvent.clientX,
-            right: mouseEvent.clientX >= (pane.width - 200)  &&   pane.width - mouseEvent.clientX,
-            bottom:mouseEvent.clientY >= (pane.height - 200) &&   pane.height - mouseEvent.clientY,
+            top:   mouseEvent.clientY <  (pane.height - 200) &&   mouseEvent.clientY - 58,
+            left:  mouseEvent.clientX <  (pane.width - 200)  &&   mouseEvent.clientX - 2,
+            right: mouseEvent.clientX >= (pane.width - 200)  &&   pane.width - mouseEvent.clientX -2,
+            bottom:mouseEvent.clientY >= (pane.height - 200) &&   pane.height - mouseEvent.clientY + 54,
         }
-        switch(type) {
-            case 'node':
-                var sn = [data]
-                var titles = {deleteNodes: ''}
-                if(selectedNodes.length === 0) {
-                    setNodes(nds=>nds.map(node=>{ //select the node
-                        if(node.id == data.id)
-                            node.selected = true;
-                        return node;
-                    }))
-                    titles.deleteNodes = 'Delete node'
-                    setSelectedNodes([data])
-                    sn = [data]
-                }
-                else if (selectedNodes.length === 1) {
-                    setNodes(nds=>nds.map(node=>{ //select the node
-                        if(node.id == data.id)
-                            node.selected = true;
-                        else   
-                            node.selected = false;
-                        return node;
-                    }))
-                    titles.deleteNodes = 'Delete node'
-                    setSelectedNodes([data])
-                    sn = [data]
-                }
-                else {
-                    titles.deleteNodes = 'Delete nodes'
-                    sn = selectedNodes
-                }
-                setMenu({
-                    type:'node', 
-                    node:data,
-                    setNodes:setNodes,
-                    selectedNodes:sn,
-                    titles:titles,
-                    ...paneBounds
-                })
-            break;
-            case 'edge':
-
-            break;
-            case 'pane':
-                setMenu({
-                    type: 'pane', 
-                    setNodes: setNodes, 
-                    mouseEvent:mouseEvent,
-                    project:project,
-                    getTimeId:getTimeId,
-                    tool:tool,
-                    ...paneBounds
-                })
-            break;
-            default:
-                setMenu(null);
-        }
-    }, [setMenu, setNodes, selectedNodes, setSelectedNodes])
-    const onNodeContextMenu = (mouseEvent, node) => { summonMenu('node', mouseEvent, node) }
-    const onEdgeContextMenu = (mouseEvent, edge) => { summonMenu('edge', mouseEvent, edge) }
-    const onPaneContextMenu = (mouseEvent) => { summonMenu('pane', mouseEvent, undefined)  }
-    // useEffect(()=>{console.log(menu)},[menu])
+        setMenu({
+            type: 'pane', 
+            setNodes: setNodes, 
+            mouseEvent:mouseEvent,
+            project:project,
+            getTimeId:getTimeId,
+            tool:tool,
+            ...paneBounds
+        })
+    }, [setMenu, setNodes, project, getTimeId, tool])
+    useOnTouch(useCallback((event)=>{
+        setMenu(null)
+    }, [setMenu]))
 
     //on clicking the background instead of a node or edge
     const onPaneClick = () => {
@@ -620,8 +570,6 @@ const GraphEditor = forwardRef((
                     onPaneClick={onPaneClick}
                     onSelectionChange={onSelectionChange}
 
-                    onNodeContextMenu={onNodeContextMenu}
-                    onEdgeContextMenu={onEdgeContextMenu}
                     onPaneContextMenu={onPaneContextMenu}
 
                     deleteKeyCode={keyBinds.delete}
@@ -636,7 +584,6 @@ const GraphEditor = forwardRef((
                                  style={{opacity:'50%'}}/>
                     )}
                     {menu && (menu.type === 'pane' && <PaneContext onClick={onPaneClick} {...menu}/>)}
-                    {menu && (menu.type === 'node' && <NodeContext onClick={onPaneClick} {...menu}/>)}
                 </ReactFlow>
             </div>
         </>

@@ -47,3 +47,25 @@ export function useKey(key, cb) {
         return () => document.body.removeEventListener("keydown", handle);
     }, [key]);
 }
+
+export function useOnTouch(cb) {
+    const callback = useRef(cb);
+
+    useEffect(() => {
+        callback.current = cb;
+    });
+    
+    useEffect(() => {
+        function handle(event) {
+            if(event.target.className !== 'context-menu-button')
+                callback.current(event)
+        }
+
+        document.body.addEventListener('keydown', handle);
+        document.body.addEventListener('mousedown', handle);
+        return () => {
+            document.body.removeEventListener("keydown", handle);
+            document.body.removeEventListener('mousedown', handle);
+        };
+    }, []);
+}
