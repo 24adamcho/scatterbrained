@@ -12,6 +12,7 @@ const PaneContext = ({
     project,
     getTimeId,
     tool,
+    markHistory,
     ...props
 }) => {
     const newNote = ()=>{
@@ -29,6 +30,7 @@ const PaneContext = ({
             },
             selected:true
         }]))
+        markHistory();
     }
     return (
         <div style={{

@@ -396,6 +396,7 @@ const GraphEditor = forwardRef((
             project:project,
             getTimeId:getTimeId,
             tool:tool,
+            markHistory:markHistory,
             ...paneBounds
         })
     }, [setMenu, setNodes, project, getTimeId, tool])
