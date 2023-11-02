@@ -13,12 +13,16 @@
     width:100%;
     color:var(--color-low);
     background-color:var(--color-high);
-    transition: '0.5s linear'
+    transition-property:color, background-color;
+    transition-duration: .1s;
+    transition-timing-function: linear;
 }
 
 .context-menu button:hover {
     color:var(--color-high);
-    background-color: var(--color-mid);
-    transition: '0.5s linear'
+    background-color: var(--color-low);
+    transition-property:color, background-color;
+    transition-duration: .1s;
+    transition-timing-function: linear;
 }
 
