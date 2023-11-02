@@ -60,6 +60,13 @@ function App() {
   
   const [tool, setTool] = useState('pointer')
 
+  const [enableGridSnap, setGridSnap] = useState(false)
+  const changeGridSnapState = () => {
+    setGridSnap(!enableGridSnap);
+  }
+
+  const [bgstyle, setBgstyle] = useState('cross');
+
   const [keyBinds, setKeyBinds] = useState({
     pointer:{key:'t'},
     line:{key:'v'},
@@ -81,6 +88,8 @@ function App() {
               setTitle={setTitle}
               title={title}
               changeMiniMapState={changeMiniMapState}
+              changeGridSnapState={changeGridSnapState}
+              setBgstyle={setBgstyle}
               tool={tool}
       />
       <Split className="contentWrapper" 
@@ -97,6 +106,8 @@ function App() {
               setNodeCount={setNodeCount}
               setEdgeCount={setEdgeCount}
               enableMiniMap={enableMiniMap}
+              enableGridSnap={enableGridSnap}
+              bgstyle={bgstyle}
               tool={tool}
               setTool={setTool}
               width={sizes[0]}

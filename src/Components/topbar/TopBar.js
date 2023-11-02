@@ -114,11 +114,16 @@ SCATTERBRAINED
               <NavDropdown.Item onClick={save}>Save File</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title='Edit'>
-              <NavDropdown.Item >placeholder</NavDropdown.Item>
+              <NavDropdown.Item onClick={props.changeGridSnapState}>Snap To Grid</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title='View'>
               <NavDropdown.Item onClick={nightmodeButton}>{nightmodeStateText}</NavDropdown.Item>
               <NavDropdown.Item onClick={props.changeMiniMapState}>Mini Map</NavDropdown.Item>
+              <NavDropdown title='Change background'>
+                <NavDropdown.Item onClick={()=>props.setBgstyle('cross')}>Crosses</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>props.setBgstyle('lines')}>Lines</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>props.setBgstyle('dots')}>None</NavDropdown.Item>
+              </NavDropdown>
             </NavDropdown>
         </Nav>
         <Navbar.Brand href='#scatterbrained'>Scatterbrained</Navbar.Brand>

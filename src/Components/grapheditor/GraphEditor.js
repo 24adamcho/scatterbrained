@@ -39,6 +39,8 @@ const GraphEditor = forwardRef((
             setNodeCount,
             setEdgeCount,
             enableMiniMap,
+            enableGridSnap,
+            bgstyle,
             tool,
             setTool,
             width,
@@ -49,8 +51,6 @@ const GraphEditor = forwardRef((
     const nodeTypes= useMemo(() => ({note: NoteNode}), []);
     const reactFlowWrapper = useRef(null);
     const {project, fitView, zoomTo} = useReactFlow();
-
-    const [bgstyle, setBgstyle] = useState('cross');
     const [nodes, setNodes, onNodesChange] = useNodesState(propNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(propEdges);
 
@@ -672,8 +672,11 @@ const GraphEditor = forwardRef((
                     deleteKeyCode={keyBinds.delete}
                     selectionKeyCode={keyBinds.dragSelect}
                     multiSelectionKeyCode={keyBinds.multiSelect}
+
+                    snapToGrid={enableGridSnap}
+                    snapGrid={[25, 25]}
                     >
-                    <Background variant={bgstyle}/>
+                    <Background variant={bgstyle} gap={25} offset={0}/>
                     <div className="controlsWrapper">
                         <Controls></Controls>
                         {enableMiniMap && (
