@@ -35,6 +35,11 @@
     --bs-btn-active-bg:var(--color-alert-trans) !important;
     --bs-btn-disabled-bg:var(--color-mid-trans) !important;
 }
+.topBarWidgetsMenu>*>svg path,
+.topBarWidgetsMenu>*>*>svg path {
+    stroke:var(--color-low);
+    fill:none;
+}
 
 .widget-bar-descriptor {
     position:relative;
@@ -63,6 +68,7 @@
     padding-right:1ch;
     text-align: left;
     overflow:hidden;
+    color:var(--color-low-trans);
 }
 .widget-bar-descriptor .divider {
     height:75%;
