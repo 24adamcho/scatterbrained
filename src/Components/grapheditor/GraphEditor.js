@@ -21,7 +21,10 @@ import {ReactComponent as AddNoteIcon } from './add-note-svgrepo-com.svg'
 import SidebarContextMenu from './SidebarContextMenu/SidebarContextMenu';
 import NoteNode from './NoteNode';
 import TopbarContextMenu from './TopbarContextMenu/TopbarContextMenu';
-import { useKey, useMouse } from './GraphEditorKeyhook';
+import { useKey, useOnTouch, useMouse } from './GraphEditorKeyhook';
+import { sanitizeEdgesForStorage, sanitizeNodesFromStorage } from '../utils';
+import { findById } from './TopbarContextMenu/Widgets/utils';
+import PaneContext from './RightclickContextMenu/PaneContext';
 import useUndoable from 'use-undoable';
 
 const getTimeId = () => `${String(+new Date())}.${String(Math.trunc(Math.random() * 100000))}`; //time id + a random 5 digit number if something is made in sub-millisecond time
@@ -373,8 +376,36 @@ const GraphEditor = forwardRef((
         editTextRef.current.editText(undefined);
     }
 
+    const [menu, setMenu] = useState(null)
+    const onPaneContextMenu = useCallback((mouseEvent) => { 
+        mouseEvent.preventDefault();
+  
+        // Calculate position of the context menu. We want to make sure it
+        // doesn't get positioned off-screen.
+        const pane = reactFlowWrapper.current.getBoundingClientRect();
+        const paneBounds = {
+            top:   mouseEvent.clientY <  (pane.height - 200) &&   mouseEvent.clientY - 58,
+            left:  mouseEvent.clientX <  (pane.width - 200)  &&   mouseEvent.clientX - 2,
+            right: mouseEvent.clientX >= (pane.width - 200)  &&   pane.width - mouseEvent.clientX -2,
+            bottom:mouseEvent.clientY >= (pane.height - 200) &&   pane.height - mouseEvent.clientY + 54,
+        }
+        setMenu({
+            type: 'pane', 
+            setNodes: setNodes, 
+            mouseEvent:mouseEvent,
+            project:project,
+            getTimeId:getTimeId,
+            tool:tool,
+            ...paneBounds
+        })
+    }, [setMenu, setNodes, project, getTimeId, tool])
+    useOnTouch(useCallback((event)=>{
+        setMenu(null)
+    }, [setMenu]))
+
     //on clicking the background instead of a node or edge
     const onPaneClick = () => {
+        setMenu(null);
         clearEditor();
         setNodes((nds)=>{
             return nds.map((node)=>{
@@ -618,6 +649,8 @@ const GraphEditor = forwardRef((
                     onPaneClick={onPaneClick}
                     onSelectionChange={onSelectionChange}
 
+                    onPaneContextMenu={onPaneContextMenu}
+
                     deleteKeyCode={keyBinds.delete}
                     selectionKeyCode={keyBinds.dragSelect}
                     multiSelectionKeyCode={keyBinds.multiSelect}
@@ -629,6 +662,7 @@ const GraphEditor = forwardRef((
                                  pannable
                                  style={{opacity:'50%'}}/>
                     )}
+                    {menu && (menu.type === 'pane' && <PaneContext onClick={onPaneClick} {...menu}/>)}
                 </ReactFlow>
             </div>
         </>

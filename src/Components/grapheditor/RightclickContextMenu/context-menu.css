@@ -1,0 +1,24 @@
+.context-menu {
+    background: var(--color-high);
+    box-shadow: 2px 2px var(--color-low);
+    position:absolute;
+    z-index:15;
+}
+
+.context-menu button {
+    border:none;
+    display:block;
+    padding:0.5em;
+    text-align:left;
+    width:100%;
+    color:var(--color-low);
+    background-color:var(--color-high);
+    transition: '0.5s linear'
+}
+
+.context-menu button:hover {
+    color:var(--color-high);
+    background-color: var(--color-mid);
+    transition: '0.5s linear'
+}
+
