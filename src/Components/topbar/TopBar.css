@@ -1,6 +1,12 @@
 .navbar {
     background-color:var(--color-low);
 }
+.navbar>.container {
+    max-width:100%;
+}
+.navbar-nav {
+    gap:8px;
+}
 .navbar-brand {
     font-weight:bold;
     color:var(--color-high) !important;
@@ -13,9 +19,9 @@
 }
 
 .nav-link {
-    color:var(--color-low) !important;
+    color:var(--color-high) !important;
     background-color:var(--color-mid) !important;
-    border-radius: 8px;
+    border-radius: 0;
 }
 .nav-link:hover {
     color:var(--color-high) !important;
