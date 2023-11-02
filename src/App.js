@@ -30,7 +30,8 @@ function App() {
                                getNodes:()=>{}, 
                                getEdges:()=>{}, 
                                setNewNodes:()=>{}, 
-                               setNewEdges:()=>{}
+                               setNewEdges:()=>{},
+                               resetHistory:()=>{}
                               }
                              )
   );
@@ -65,6 +66,8 @@ function App() {
     selectAll:{key:'a', ctrlKey:true},
     addNote:{key:'Insert'},
     fitView:{key:'f'},
+    undo:{key:'z', ctrlKey:true},
+    redo:{key:'y', ctrlKey:true},
     delete:['Backspace', 'g', 'Delete'],
     multiSelect:'Shift',
     dragSelect:'Control',

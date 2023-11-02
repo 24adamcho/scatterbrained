@@ -20,6 +20,7 @@ const NodesBar = ({
     nodes,
     setNodes,
     selectedNodes,
+    markHistory,
 }) => {
     
     return (
@@ -32,6 +33,7 @@ const NodesBar = ({
                     defaultColor={window.getComputedStyle(
                                     document.getElementById('App')
                                   ).getPropertyValue('--color-high')}
+                    markHistory={markHistory}
                 />
             </div>
         </>
@@ -43,6 +45,7 @@ const EdgesBar = ({
     edges,
     setEdges,
     selectedEdges,
+    markHistory,
 }) => {
     return (
         <>
@@ -51,6 +54,7 @@ const EdgesBar = ({
                     edges={edges}
                     setEdges={setEdges}
                     selectedEdges={selectedEdges}
+                    markHistory={markHistory}
                 />
                 <EdgeColorPicker
                     edges={edges}
@@ -59,20 +63,24 @@ const EdgesBar = ({
                     defaultColor={window.getComputedStyle(
                                     document.getElementById('App')
                                   ).getPropertyValue('--color-low')}
+                    markHistory={markHistory}
                 />
                 <EdgeAnimationToggle
                     edges={edges}
                     setEdges={setEdges}
                     selectedEdges={selectedEdges}
+                    markHistory={markHistory}
                 />
                 <EdgesReverse
                     selectedEdges={selectedEdges}
                     setEdges={setEdges}
                     edges={edges}
+                    markHistory={markHistory}
                 />
                 <EdgesReset
                     selectedEdges={selectedEdges}
                     setEdges={setEdges}
+                    markHistory={markHistory}
                 />
             </div>
         </>
@@ -87,6 +95,7 @@ const BothBar = ({
     setEdges,
     selectedNodes,
     selectedEdges,
+    markHistory,
 }) => {
     return (
         <>
@@ -98,11 +107,13 @@ const BothBar = ({
                     setEdges={setEdges}
                     selectedNodes={selectedNodes}
                     selectedEdges={selectedEdges}
+                    markHistory={markHistory}
                 />
                 <EdgeAnimationToggle
                     edges={edges}
                     setEdges={setEdges}
                     selectedEdges={selectedEdges}
+                    markHistory={markHistory}
                 />
                 <BothEdgeDirection
                     nodes={nodes}
@@ -111,12 +122,14 @@ const BothBar = ({
                     setEdges={setEdges}
                     selectedNodes={selectedNodes}
                     selectedEdges={selectedEdges}
+                    markHistory={markHistory}
                 />
                 <BothReset
                     setNodes={setNodes}
                     setEdges={setEdges}
                     selectedNodes={selectedNodes}
                     selectedEdges={selectedEdges}
+                    markHistory={markHistory}
                 />
             </div>
         </>
@@ -170,6 +183,7 @@ const TopbarContextMenu = (
         tool,
         newEdge,
         setNewEdge,
+        markHistory,
     }
 ) => {
     const [selectionType, setSelectionType] = useState('')
@@ -191,6 +205,11 @@ const TopbarContextMenu = (
         }
     }, [selectedNodes.length, selectedEdges.length])
 
+    //because when an item is unselected by changing tools the history isn't saved otherwise
+    useEffect(()=>{
+        markHistory()
+    }, [tool])
+
     return (
         <>
             <div className='topbarContextMenu'>
@@ -201,6 +220,7 @@ const TopbarContextMenu = (
                                 selectedNodes={selectedNodes}
                                       setNodes={setNodes}
                                       nodes={nodes}
+                                      markHistory={markHistory}
                             />
                         :
                         (selectionType === 'edges') ?
@@ -208,6 +228,7 @@ const TopbarContextMenu = (
                                       edges={edges}
                                       setEdges={setEdges}
                                       selectedEdges={selectedEdges}
+                                      markHistory={markHistory}
                             />
                         :
                         (selectionType === 'both') ?
@@ -218,6 +239,7 @@ const TopbarContextMenu = (
                                      setEdges={setEdges}
                                      selectedNodes={selectedNodes}
                                      selectedEdges={selectedEdges}
+                                     markHistory={markHistory}
                             />
                         :
                         <></> //pointer but nothing selected

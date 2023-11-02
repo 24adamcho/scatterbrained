@@ -32,12 +32,20 @@ export function useKey(key, cb) {
     useEffect(() => {
         function handle(event) {
             const currentElement = document.activeElement;
+
+
             if (currentElement === document.body
                 || contains(currentElement, document.getElementsByClassName('react-flow__node'))
                 || contains(currentElement, document.getElementsByClassName('react-flow__edge'))
                 || contains(currentElement, document.getElementsByClassName('addNoteButton'))
                 || contains(currentElement, document.getElementsByClassName('react-flow__nodesselection-rect'))) {
                 if (keyCompare(event) || event.code == key.key) {
+                    callback.current(event);
+                }
+            }
+            //duplicate if because it really really doesn't want to be in the previous if statement for some magic reason
+            if(contains(currentElement, document.getElementsByClassName('btn'))){
+                if (keyCompare(event) || event.code == key.key){
                     callback.current(event);
                 }
             }

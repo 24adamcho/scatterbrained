@@ -53,7 +53,7 @@ export const allDataSimilar = (data, selectedData, propertyTest) => {
     if(selectedData.length <= 0) return false;
     if(selectedData.length === 1) return true;
 
-    const target = selectedData[0][propertyTest];
+    const target = getById(data, selectedData[0].id)[0][propertyTest];
 
     //complete gobbeldeygook
     //basically,
@@ -92,5 +92,5 @@ export const findById = (data, selectedDataId) => {
     
     if(e === undefined) return undefined;
     if(e.length === 0) return undefined;
-    return e[0];
+    return e.filter(t=>t !== undefined);
 }

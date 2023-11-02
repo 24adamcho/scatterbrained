@@ -4,7 +4,8 @@ import { transform, hasAtLeastOne } from "../utils"
 const EdgesReverse = ({
     selectedEdges,
     setEdges,
-    edges
+    edges,
+    markHistory,
 })=>{
     const onClick = () => {
         transform(setEdges, selectedEdges, (edge)=>{
@@ -13,6 +14,7 @@ const EdgesReverse = ({
             edge.target = temp;
             return edge;
         })
+        markHistory();
     }
 
     return (

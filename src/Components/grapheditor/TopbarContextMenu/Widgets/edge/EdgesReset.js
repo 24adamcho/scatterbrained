@@ -3,7 +3,8 @@ import { transform } from "../utils"
 
 const EdgesReset = ({
     setEdges,
-    selectedEdges
+    selectedEdges,
+    markHistory,
 }) => {
     const onClick = () => {
         transform(setEdges, selectedEdges, (edge)=>{
@@ -15,6 +16,7 @@ const EdgesReset = ({
                 selected:true
             }
         });
+        markHistory();
     }
 
     return (

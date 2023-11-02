@@ -10,6 +10,8 @@ import ReactFlow, {
     useStoreApi,
     MiniMap,
     useReactFlow,
+    applyNodeChanges,
+    applyEdgeChanges
 } from 'reactflow';
 import { Button } from 'react-bootstrap';
 
@@ -19,9 +21,8 @@ import {ReactComponent as AddNoteIcon } from './add-note-svgrepo-com.svg'
 import SidebarContextMenu from './SidebarContextMenu/SidebarContextMenu';
 import NoteNode from './NoteNode';
 import TopbarContextMenu from './TopbarContextMenu/TopbarContextMenu';
-import { useKey } from './GraphEditorKeyhook';
-import { sanitizeEdgesForStorage, sanitizeNodesFromStorage } from '../utils';
-import { findById } from './TopbarContextMenu/Widgets/utils';
+import { useKey, useMouse } from './GraphEditorKeyhook';
+import useUndoable from 'use-undoable';
 
 const getTimeId = () => `${String(+new Date())}.${String(Math.trunc(Math.random() * 100000))}`; //time id + a random 5 digit number if something is made in sub-millisecond time
 
@@ -49,6 +50,55 @@ const GraphEditor = forwardRef((
     const [bgstyle, setBgstyle] = useState('cross');
     const [nodes, setNodes, onNodesChange] = useNodesState(propNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(propEdges);
+
+    // const history = new HistoryManager();
+    const [element, 
+           setElement, 
+           { past,
+             undo, 
+             redo, 
+             reset
+            }
+        ] = useUndoable({
+                nodes:propNodes, 
+                edges:propEdges
+            }, {
+                behavior:'destroyFuture', 
+                historyLimit:'infinity', 
+                ignoreIdenticalMutations:false,
+            }
+        )
+    
+    //manually mark process ticks for saving, in the case of actually desired changes
+    const [marked, setMark] = useState(false)
+    const markHistory = () => { 
+        console.log(past) ; setMark(true); }
+    useEffect(()=>{
+        if(marked) {
+            let newState = {nodes: nodes, edges:edges}
+            setElement(newState)
+            setMark(false)
+        }
+    }, [nodes, edges, marked, setElement])
+    useEffect(()=>{
+        console.log(past)}, [past])
+    useEffect(()=>{
+        setNodes(element.nodes)
+        setEdges(element.edges)
+    }, [setNodes, setEdges, element])
+
+    const undoWrapper = useCallback(() => {
+        undo();
+    }, [setNodes, setEdges, undo])
+
+    const redoWrapper = useCallback(() => {
+        redo();
+    }, [setNodes, setEdges, redo])
+
+    const resetWrapper = useCallback(()=>{
+        markHistory();
+        reset();
+    }, [reset])
 
     const [newEdge, setNewEdge] = useState({
         type:'straight',
@@ -114,7 +164,8 @@ const GraphEditor = forwardRef((
                 source:params.source,
                 target:params.target, 
             }, eds)); 
-      }, [setEdges, newEdge]
+        markHistory();
+      }, [setEdges, newEdge, markHistory]
     );
 
     const connectingNodeId = useRef(null);
@@ -177,8 +228,10 @@ const GraphEditor = forwardRef((
                 edge.selected = false;
                 return edge;
             }))
+            
+            markHistory()
         }
-    }, [tool, setEdges, newEdge, nodes, connectingNodeId])
+    }, [tool, setEdges, newEdge, nodes, connectingNodeId, markHistory])
 
     //this is utterly fucking stupid, but there is no other way to put a node in the frame that doesn't involve
     //lacing hook spaghetti code through the whole project
@@ -237,6 +290,7 @@ const GraphEditor = forwardRef((
         }))
 
         // console.log(`New note ${newid} added at ${center.x}, ${center.y}`)
+        markHistory()
 
         return newNoteNode;
     }
@@ -284,8 +338,11 @@ const GraphEditor = forwardRef((
         }, 
         setNewEdges:(edgeList)=>{
             setEdges(edgeList)
+        },
+        resetHistory: ()=>{
+            resetWrapper();
         }
-    }),[addNoteIfBlanked, nodes, edges, setNodes, setEdges]);
+    }),[addNoteIfBlanked, nodes, edges, setNodes, setEdges, resetWrapper]);
 
     //changes node id when a node is clicked
     const changeNoteId = (mouseEvent, node) => {
@@ -300,6 +357,16 @@ const GraphEditor = forwardRef((
             }
         });
         editTextRef.current.setPlaceholder('Write to note...');
+    }
+
+    const onNodeClick = (mouseEvent, node) => {
+        changeNoteId(mouseEvent, node);
+        setNodes(nds=>nds.map(nd=>{
+            if(nd.id === node.id) {
+                nd.selected = true;
+            }
+            return nd;
+        }))
     }
 
     const clearEditor = () => {
@@ -396,22 +463,23 @@ const GraphEditor = forwardRef((
     }, [selectedNodes, selectedEdges, setClipboard])
     const cut = useCallback(()=>{
         copy()
-        console.log(clipboard)
         setNodes(nds=>nds.map(node=>{
             if(selectedNodes.find(nd=>node.id===nd.id) === undefined) return node;
-            return null;
+            else return null;
         }).filter(e=>e!==null))
 
         setEdges(eds=>eds.map(edge=>{
             if(selectedEdges.find(ed=>edge.id===ed.id) === undefined) return edge;
-            return null;
+            else return null;
         }).filter(e=>e!==null))
-    }, [copy, setNodes, setEdges, selectedNodes, selectedEdges])
+
+        markHistory()
+    }, [copy, setNodes, setEdges, selectedNodes, selectedEdges, markHistory])
     const paste = useCallback(()=>{
         if(clipboard === undefined) return;
         if(clipboard.nodes === undefined) return;
         if(clipboard.edges === undefined) return;
-        if(clipboard.edges.length === 1) { //if there's only one kind of edge selected, pasting it on multiple nodes will attach every node to the last selected node
+        if(clipboard.edges.length === 1 && clipboard.nodes.length === 0) { //if there's only one kind of edge selected, pasting it on multiple nodes will attach every node to the last selected node
             let networkedEdges = []
             let PANIC = 0;
             for(let i = 0; i < selectedNodes.length; i++){
@@ -441,9 +509,9 @@ const GraphEditor = forwardRef((
             }
             setNodes(nds=>nds.map(node=>{return {...node, selected:false}}))
             setEdges(eds=>eds.concat(networkedEdges))
+            markHistory()
             return;
         }if(clipboard.nodes.length === 0) return; //since it'd be dumb to just copy edges, which won't be visible at all
-        console.log({nodes:selectedNodes, edges:selectedEdges})
         
         //sanitization
         var newEdges = []
@@ -452,7 +520,8 @@ const GraphEditor = forwardRef((
             let newId = getTimeId()
             clipboard.edges.map(edge=>{
                                     if(node.id === edge.source || node.id === edge.target){
-                                        if(newEdges.find(e=>e.id === edge.id) !== undefined) return; //edge already exists, skip
+                                        if(nodes.find(n=>n.id === edge.source) === undefined
+                                        && nodes.find(n=>n.id === edge.target) === undefined) return; //if the node target doesn't exist, skip
                                         edge.id = getTimeId()
                                         if(node.id === edge.source) edge.source = newId;
                                         if(node.id === edge.target) edge.target = newId;
@@ -460,7 +529,8 @@ const GraphEditor = forwardRef((
                                     }
                                 }
                             )
-            
+            if(node.width === undefined) node.width = 130;
+            if(node.height === undefined)node.height = 100;
             return {
                 ...node,
                 id:newId,
@@ -471,6 +541,8 @@ const GraphEditor = forwardRef((
                 }
             }
         )
+         
+        newEdges = [...new Set(newEdges)] //remove duplicates
 
         //clear previous selection
         setSelectedNodes(newNodes)
@@ -479,7 +551,8 @@ const GraphEditor = forwardRef((
         //finally, add new nodes
         setNodes(nds=>nds.map(node=>{return {...node, selected:false}}).concat(newNodes))
         setEdges(eds=>eds.map(edge=>{return {...edge, selected:false}}).concat(newEdges))
-    }, [setNodes, setEdges, clipboard, edges, selectedNodes, selectedEdges, setSelectedNodes, setSelectedEdges, nodeId])
+        markHistory()
+    }, [setNodes, setEdges, clipboard, nodes, edges, selectedNodes, selectedEdges, setSelectedNodes, setSelectedEdges, nodeId, markHistory])
 
     useKey(keyBinds.pointer, ()=>setTool('pointer'))
     useKey(keyBinds.line, ()=>setTool('line'))
@@ -490,6 +563,8 @@ const GraphEditor = forwardRef((
     useKey({key:'x', ctrlKey:true}, ()=>cut())
     useKey(keyBinds.fitView, ()=>fitView({duration:500}))
     useKey({key:'`'}, ()=>{console.log({nodes:nodes, edges:edges})})
+    useKey(keyBinds.undo, ()=>undoWrapper())
+    useKey(keyBinds.redo, ()=>redoWrapper())
     return (
         <>
             <div className='flowInterfaceWrapper' style={{height:'100%'}} ref={reactFlowWrapper}>
@@ -519,6 +594,7 @@ const GraphEditor = forwardRef((
                         tool={tool}
                         newEdge={newEdge}
                         setNewEdge={setNewEdge}
+                        markHistory={markHistory}
                     />
                 </div>
                 <ReactFlow
@@ -527,9 +603,11 @@ const GraphEditor = forwardRef((
                     onNodesChange={onNodesChange}
                     onEdgesChange={onEdgesChange}
                     nodeTypes={nodeTypes}
-                    onNodeClick={changeNoteId}
+                    onNodeClick={onNodeClick}
                     onNodeDoubleClick={onNodeDoubleClick}
                     onNodeDrag={(a, b) => {changeNoteId(a, b);}}
+                    onNodeDragStop={()=>markHistory()}
+                    nodeDragThreshold={2}
                     onNodesDelete={clearEditor}
                     onConnect={onConnect}
                     onConnectStart={onConnectStart}

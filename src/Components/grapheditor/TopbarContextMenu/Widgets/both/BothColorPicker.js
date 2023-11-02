@@ -9,6 +9,7 @@ const BothColorPicker = ({
     setEdges,
     selectedNodes,
     selectedEdges,
+    markHistory,
 }) => {
     const defaultColor = 'rgb(0,0,0)'
     const [color, setColor] = useState(defaultColor)
@@ -77,6 +78,12 @@ const BothColorPicker = ({
                 style: newEdgeStyle
             }
         })
+        markHistory();
+    }
+    
+    const onToggle = (nextShow, meta) => {
+        if(nextShow === false)
+            markHistory()
     }
 
     return (
@@ -85,6 +92,7 @@ const BothColorPicker = ({
                 color={color}
                 onChange={onChange}
                 onReset={onReset}
+                onToggle={onToggle}
             />
         </>
     )

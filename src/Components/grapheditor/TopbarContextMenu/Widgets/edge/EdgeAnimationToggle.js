@@ -1,11 +1,12 @@
 import { Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { allDataSimilar, transform, findById } from "../utils";
 
 const EdgeAnimationToggle = ({
     edges,
     setEdges,
     selectedEdges,
+    markHistory,
 }) => {
     const [boolstate, setBoolstate] = useState(false);
     const [title, setTitle] = useState('')
@@ -13,9 +14,9 @@ const EdgeAnimationToggle = ({
     useEffect(()=>{
         if(edges === undefined) return;
         if(selectedEdges === undefined) return;
-
+        
         if(allDataSimilar(edges, selectedEdges, 'animated')) {
-            const e = findById(edges, selectedEdges[0].id);
+            const e = findById(edges, selectedEdges[0].id)[0];
 
             if(e !== undefined)
                 if(e.animated === undefined)
@@ -26,16 +27,25 @@ const EdgeAnimationToggle = ({
                 { setTitle('nah'); setBoolstate(false)}
         }
         else { setTitle('maybe'); setBoolstate(false)}
-    }, [edges, selectedEdges])
+    }, [edges, selectedEdges, setBoolstate])
 
-    const onClick = () => {
+    const onClick = ()=>{
         transform(setEdges, selectedEdges, (data)=>{
-            return {
-                ...data,
-                animated:(!boolstate)?!boolstate:undefined,
+            if(!boolstate)
+                return {
+                    ...data,
+                    animated:true
+                }
+            else {
+                const {
+                    animated:_,
+                    ...temp
+                } = data
+                return temp;
             }
         })
         setBoolstate(!boolstate)
+        markHistory();
     }
 
     return (
