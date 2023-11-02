@@ -66,6 +66,7 @@ function App() {
     selectAll:{key:'a', ctrlKey:true},
     addNote:{key:'Insert'},
     fitView:{key:'f'},
+    defaultZoom:{key:'z', ctrlKey:false},
     undo:{key:'z', ctrlKey:true},
     redo:{key:'y', ctrlKey:true},
     delete:['Backspace', 'g', 'Delete'],

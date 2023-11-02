@@ -48,7 +48,7 @@ const GraphEditor = forwardRef((
     ) => {
     const nodeTypes= useMemo(() => ({note: NoteNode}), []);
     const reactFlowWrapper = useRef(null);
-    const {project, fitView} = useReactFlow();
+    const {project, fitView, zoomTo} = useReactFlow();
 
     const [bgstyle, setBgstyle] = useState('cross');
     const [nodes, setNodes, onNodesChange] = useNodesState(propNodes);
@@ -592,6 +592,7 @@ const GraphEditor = forwardRef((
     useKey({key:'v', ctrlKey:true}, ()=>paste())
     useKey({key:'x', ctrlKey:true}, ()=>cut())
     useKey(keyBinds.fitView, ()=>fitView({duration:500}))
+    useKey(keyBinds.defaultZoom, ()=>zoomTo(1, {duration:500}))
     useKey({key:'`'}, ()=>{console.log({nodes:nodes, edges:edges})})
     useKey(keyBinds.undo, ()=>undoWrapper())
     useKey(keyBinds.redo, ()=>redoWrapper())
