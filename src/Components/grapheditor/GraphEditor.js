@@ -145,7 +145,7 @@ const GraphEditor = forwardRef((
                 return edge;
             })
         })
-    },[tool, setNodes])
+    },[tool, setNodes, element])
 
     //change node count for bottombar
     useEffect(()=>{
