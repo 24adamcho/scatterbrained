@@ -21,10 +21,11 @@ const EdgeAnimationToggle = ({
         if(selectedEdges === undefined) return;
         
         if(allDataSimilar(edges, selectedEdges, 'animated')) {
-            const e = findById(edges, selectedEdges[0].id)[0];
+            const e = findById(edges, selectedEdges[0].id);
+            if(e === undefined) {setTitle('nah'); setBoolstate(false); setSvgElement(StraightSvg); return}
 
-            if(e !== undefined)
-                if(e.animated === undefined)
+            if(e[0] !== undefined)
+                if(e[0].animated === undefined)
                     { setTitle('nah'); setBoolstate(false); setSvgElement(StraightSvg)}
                 else
                     { setTitle('yeah'); setBoolstate(true); setSvgElement(DashedSvg)}
