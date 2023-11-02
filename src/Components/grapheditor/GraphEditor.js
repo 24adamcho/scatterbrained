@@ -362,6 +362,16 @@ const GraphEditor = forwardRef((
 
     const onNodeClick = (mouseEvent, node) => {
         changeNoteId(mouseEvent, node);
+        if(!mouseEvent.shiftKey) {
+            setNodes(nds=>nds.map(nd=>{
+                nd.selected = false;
+                return nd;
+            }))
+            setEdges(eds=>eds.map(ed=>{
+                ed.selected=false;
+                return ed;
+            }))
+        }
         setNodes(nds=>nds.map(nd=>{
             if(nd.id === node.id) {
                 nd.selected = true;
