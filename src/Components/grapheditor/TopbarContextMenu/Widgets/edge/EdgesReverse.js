@@ -1,6 +1,8 @@
 import { Button } from "react-bootstrap"
 import { transform, hasAtLeastOne } from "../utils"
 
+import { ReactComponent as ReverseSvg } from '../../resources/reverse-svgrepo-com.svg'
+
 const EdgesReverse = ({
     selectedEdges,
     setEdges,
@@ -22,7 +24,11 @@ const EdgesReverse = ({
             <Button 
                 onClick={()=>onClick()}
                 disabled={!hasAtLeastOne(edges, selectedEdges, 'animated', true)}
-            >Reverse edges</Button>
+                title='Reverse animation direction'
+                style={{padding:0}} 
+            >
+                <ReverseSvg style={{width:'35px', height:'35px'}}/>
+            </Button>
         </>
     )
 }

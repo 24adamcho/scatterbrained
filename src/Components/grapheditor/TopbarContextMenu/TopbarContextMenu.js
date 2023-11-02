@@ -15,6 +15,9 @@ import BothColorPicker from './Widgets/both/BothColorPicker'
 import BothEdgeDirection from './Widgets/both/BothEdgeDirection'
 import BothReset from './Widgets/both/BothReset'
 
+import { ReactComponent as LineSvg } from './resources/slash-svgrepo-com.svg'
+import { ReactComponent as NoteSvg } from './resources/note-sticky-svgrepo-com.svg'
+
 const NodesBar = ({
     className,
     nodes,
@@ -27,6 +30,8 @@ const NodesBar = ({
         <>
             <div className={className}>
                 <div className="widget-bar-descriptor">
+                    <NoteSvg />
+                    <div className="divider" />
                     <span>{selectedNodes.length}</span>
                 </div>
                 <NodeColorPicker
@@ -54,6 +59,8 @@ const EdgesBar = ({
         <>
             <div className={className}>
                 <div className="widget-bar-descriptor">
+                    <LineSvg />
+                    <div className="divider" />
                     <span>{selectedEdges.length}</span>
                 </div>
                 <EdgesCurveSelector
@@ -107,9 +114,12 @@ const BothBar = ({
         <>
             <div className={className}>
                 <div className="widget-bar-descriptor">
+                    <NoteSvg />
+                    <div className="divider" />
                     <span>{selectedNodes.length}</span>
-                </div>
-                <div className="widget-bar-descriptor">
+                    <div className="divider" />
+                    <LineSvg />
+                    <div className="divider" />
                     <span>{selectedEdges.length}</span>
                 </div>
                 <BothColorPicker
@@ -172,10 +182,10 @@ const LineToolBar = ({
                     newEdge={newEdge}
                     setNewEdge={setNewEdge}
                 />
-                {newEdge.animated && (<NewEdgeReverse
+                <NewEdgeReverse
                     newEdge={newEdge}
                     setNewEdge={setNewEdge}
-                />)}
+                />
                 <NewEdgesReset
                     setNewEdge={setNewEdge}
                 />

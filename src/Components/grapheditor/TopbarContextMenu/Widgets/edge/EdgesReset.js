@@ -1,6 +1,8 @@
 import { Button } from "react-bootstrap"
 import { transform } from "../utils"
 
+import { ReactComponent as ResetSvg } from '../../resources/reset-svgrepo-com.svg'
+
 const EdgesReset = ({
     setEdges,
     selectedEdges,
@@ -21,7 +23,9 @@ const EdgesReset = ({
 
     return (
         <>
-            <Button onClick={()=>onClick()}>Reset Style</Button>
+            <Button onClick={()=>onClick()} style={{padding:0}} title='Reset edge styles'>
+                <ResetSvg style={{height:'35px', width:'35px'}}/>
+            </Button>
         </>
     )
 }

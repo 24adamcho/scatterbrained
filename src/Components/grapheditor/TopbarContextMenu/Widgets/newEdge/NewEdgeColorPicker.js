@@ -12,7 +12,9 @@ const NewEdgeColorPicker = ({
         if(newEdge.style !== undefined)
             if(newEdge.style.stroke !== undefined)
                 setColor(newEdge.style.stroke)
-    },[])
+            else setColor(defaultColor)
+        else setColor(defaultColor)
+    },[newEdge])
 
     const onChange = (param)=>{
         setColor(param)

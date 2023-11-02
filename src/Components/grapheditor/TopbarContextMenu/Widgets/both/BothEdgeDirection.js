@@ -2,6 +2,10 @@ import { ButtonGroup, Button } from 'react-bootstrap';
 import { transform } from '../utils';
 import { useEffect, useState } from 'react';
 
+import { ReactComponent as NoteSvg } from '../../resources/note-sticky-svgrepo-com.svg'
+import { ReactComponent as InwardSvg } from '../../resources/arrow-narrow-right-alignment-svgrepo-com.svg'
+import { ReactComponent as OutwardSvg } from '../../resources/arrow-narrow-right-move-svgrepo-com.svg'
+
 const BothEdgeDirection = ({
     nodes,
     edges,
@@ -61,19 +65,23 @@ const BothEdgeDirection = ({
 
     return (
         <>
-            <ButtonGroup aria-label="Edge Direction">
-                Flow edges:
+            <ButtonGroup title="Edge Animation Direction">
                 <Button 
+                    title="Edge animation direction: Inward"
                     onClick={flowInward} 
                     disabled={disable}
+                    style={{padding:0}}
                 >
-                    Inward
+                    <InwardSvg style={{width:'35px', height:'35px'}} />
                 </Button>
+                <NoteSvg style={{width:'35px', height:'35px'}} />
                 <Button 
+                    title="Edge animation direction: Outward"
                     onClick={flowOutward}
                     disabled={disable}
+                    style={{padding:0}}
                 >
-                    Outward
+                    <OutwardSvg style={{width:'35px', height:'35px'}} />
                 </Button>
             </ButtonGroup>
         </>

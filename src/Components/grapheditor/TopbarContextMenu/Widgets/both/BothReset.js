@@ -1,6 +1,8 @@
 import { Button } from "react-bootstrap";
 import { transform } from "../utils";
 
+import { ReactComponent as ResetSvg } from '../../resources/reset-svgrepo-com.svg'
+
 const BothReset = ({
     setNodes,
     setEdges,
@@ -45,7 +47,9 @@ const BothReset = ({
 
     return (
         <>
-            <Button onClick={onClick}>Reset</Button>
+            <Button onClick={onClick} style={{padding:0}} title='Reset line and node styles'>
+                <ResetSvg style={{height:'35px', width:'35px'}}/>
+            </Button>
         </>
     )
 }

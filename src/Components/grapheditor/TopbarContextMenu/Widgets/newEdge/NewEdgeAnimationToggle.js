@@ -3,6 +3,10 @@ import { useState, useEffect } from "react";
 import { transform } from "../utils";
 import './EdgeAnimationKeyframes.css'
 
+import { ReactComponent as StraightSvg } from '../../resources/straightType.svg'
+import { ReactComponent as DashedSvg }   from '../../resources/dashedType.svg'
+// import { ReactComponent as DashedSlashStraightSvg } from '../../resources/solid-slash-dashed.svg'
+
 const NewEdgeAnimationToggle = ({
     newEdge,
     setNewEdge
@@ -49,7 +53,15 @@ const NewEdgeAnimationToggle = ({
 
     return (
         <>
-            <Button onClick={()=>onClick()}>Animated?{boolstate?1:0}</Button>
+            <Button onClick={()=>onClick()} 
+                    title='Toggle animation'
+                    style={{padding:0}}
+            >
+                {!boolstate? 
+                    <StraightSvg style={{width:35, height:35}}/> : 
+                    <DashedSvg style={{width:35, height:35}}/>
+                }
+            </Button>
         </>
     )
 }

@@ -2,6 +2,10 @@ import { Button } from "react-bootstrap";
 import { useState, useEffect, useCallback } from "react";
 import { allDataSimilar, transform, findById } from "../utils";
 
+import { ReactComponent as StraightSvg } from '../../resources/straightType.svg'
+import { ReactComponent as DashedSvg }   from '../../resources/dashedType.svg'
+import { ReactComponent as DashedSlashStraightSvg } from '../../resources/solid-slash-dashed.svg'
+
 const EdgeAnimationToggle = ({
     edges,
     setEdges,
@@ -10,6 +14,7 @@ const EdgeAnimationToggle = ({
 }) => {
     const [boolstate, setBoolstate] = useState(false);
     const [title, setTitle] = useState('')
+    const [SvgElement, setSvgElement] = useState(StraightSvg);
 
     useEffect(()=>{
         if(edges === undefined) return;
@@ -20,13 +25,13 @@ const EdgeAnimationToggle = ({
 
             if(e !== undefined)
                 if(e.animated === undefined)
-                    { setTitle('nah'); setBoolstate(false)}
+                    { setTitle('nah'); setBoolstate(false); setSvgElement(StraightSvg)}
                 else
-                    { setTitle('yeah'); setBoolstate(true)}
+                    { setTitle('yeah'); setBoolstate(true); setSvgElement(DashedSvg)}
             else 
-                { setTitle('nah'); setBoolstate(false)}
+                { setTitle('nah'); setBoolstate(false); setSvgElement(StraightSvg)}
         }
-        else { setTitle('maybe'); setBoolstate(false)}
+        else { setTitle('maybe'); setBoolstate(false); setSvgElement(DashedSlashStraightSvg)}
     }, [edges, selectedEdges, setBoolstate])
 
     const onClick = ()=>{
@@ -50,7 +55,12 @@ const EdgeAnimationToggle = ({
 
     return (
         <>
-            <Button onClick={()=>onClick()}>Animated?{title}</Button>
+            <Button onClick={()=>onClick()}
+                    title='Toggle animation'
+                    style={{padding:0}}
+            >
+                <SvgElement style={{width:35, height:35}} />
+            </Button>
         </>
     )
 }

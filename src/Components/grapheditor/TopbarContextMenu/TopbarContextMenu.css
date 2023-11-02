@@ -36,18 +36,38 @@
     --bs-btn-disabled-bg:var(--color-mid-trans) !important;
 }
 
-.topBarWidgetsMenu .widget-bar-descriptor {
-    text-align: left;
-    display:flex;
+.widget-bar-descriptor {
+    position:relative;
+    display:inline-flex;
+    top:0;
+    bottom:0;
+    left:0;
+    height:35px;
+    align-content:center;
     align-items: center;
     font-size:calc(var(--bs-body-font-size)/1.5);
-    width:4ch;
     overflow:visible;
 }
-.topBarWidgetsMenu .widget-bar-descriptor::after {
-    content:'';
-    position:relative;
+.widget-bar-descriptor>* {
+    float:left;
+}
+.widget-bar-descriptor svg {
+    width:35px;
+    height:35px;
+}
+.widget-bar-descriptor svg path {
+    stroke:var(--color-low);
+}
+.widget-bar-descriptor span {
+    padding-left:1ch;
+    padding-right:1ch;
+    text-align: left;
+    overflow:hidden;
+}
+.widget-bar-descriptor .divider {
     height:75%;
-    left:-1.75ch;
-    border-left:solid 2px var(--color-mid-trans);
+    width:2px;
+    padding: 0;
+    background-color: var(--color-mid);
+    opacity: 30%;
 }

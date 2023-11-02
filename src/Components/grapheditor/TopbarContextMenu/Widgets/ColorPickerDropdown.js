@@ -16,17 +16,18 @@ const ColorPickerDropdown = ({
                                  style={{
                                     display:'flex', 
                                     flexDirection:'row', 
-                                    height:'100%'
+                                    height:'36px'
                                  }}
+                                 title="Color"
                 >
-                    Color:
                     <div style={{
                         width:'1rem', 
                         height:'1rem', 
                         backgroundColor:color, 
                         border:'solid 2px var(--color-low)', 
                         flex:'left',
-                        transform:'translate(0.25rem, 0.25rem)'
+                        transform:'translate(0.25rem, 0.25rem)',
+                        padding:'4px'
                         }}
                     />
                 </Dropdown.Toggle>

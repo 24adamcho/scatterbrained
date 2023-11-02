@@ -19,4 +19,11 @@
     --bs-btn-hover-bg:var(--color-mid);
     --bs-btn-bg:var(--color-mid);
     --bs-btn-active-bg:var(--color-alert-trans);
+
+    padding:5px !important;
+    margin:0 !important;
+}
+
+.sidebarContextMenu>div>div>.btn>svg>path {
+    stroke:var(--color-low);
 }
