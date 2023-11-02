@@ -26,6 +26,9 @@ const NodesBar = ({
     return (
         <>
             <div className={className}>
+                <div className="widget-bar-descriptor">
+                    <span>{selectedNodes.length}</span>
+                </div>
                 <NodeColorPicker
                     nodes={nodes}
                     setNodes={setNodes}
@@ -50,6 +53,9 @@ const EdgesBar = ({
     return (
         <>
             <div className={className}>
+                <div className="widget-bar-descriptor">
+                    <span>{selectedEdges.length}</span>
+                </div>
                 <EdgesCurveSelector
                     edges={edges}
                     setEdges={setEdges}
@@ -100,6 +106,12 @@ const BothBar = ({
     return (
         <>
             <div className={className}>
+                <div className="widget-bar-descriptor">
+                    <span>{selectedNodes.length}</span>
+                </div>
+                <div className="widget-bar-descriptor">
+                    <span>{selectedEdges.length}</span>
+                </div>
                 <BothColorPicker
                     nodes={nodes}
                     edges={edges}
