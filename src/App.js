@@ -64,6 +64,7 @@ function App() {
     line:{key:'v'},
     selectAll:{key:'a', ctrlKey:true},
     addNote:{key:'Insert'},
+    fitView:{key:'f'},
     delete:['Backspace', 'g', 'Delete'],
     multiSelect:'Shift',
     dragSelect:'Control',
