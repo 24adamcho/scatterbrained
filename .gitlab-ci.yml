@@ -27,3 +27,4 @@ pages:
       - public
   only:
     - main
+  environment: production
