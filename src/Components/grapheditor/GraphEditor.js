@@ -44,7 +44,8 @@ const GraphEditor = forwardRef((
             tool,
             setTool,
             width,
-            keyBinds
+            keyBinds,
+            setIsSaved
         },
         ref
     ) => {
@@ -312,7 +313,7 @@ const GraphEditor = forwardRef((
         }
     }
 
-    //editNote
+    //Functions to pass on to other components
     //SPAGHETTI MONSTER: DO NOT TOUCH
     React.useImperativeHandle(ref, () => ({
         editNote: (content) => {
@@ -327,6 +328,7 @@ const GraphEditor = forwardRef((
                     return node;
                 })
             });
+            setIsSaved(false);
         },
         getNodes: () => {
             return nodes;
@@ -612,6 +614,7 @@ const GraphEditor = forwardRef((
     useKey({key:'`'}, ()=>{console.log({nodes:nodes, edges:edges})})
     useKey(keyBinds.undo, ()=>undoWrapper())
     useKey(keyBinds.redo, ()=>redoWrapper())
+
     return (
         <>
             <div className='flowInterfaceWrapper' style={{height:'100%'}} ref={reactFlowWrapper}>
@@ -647,8 +650,8 @@ const GraphEditor = forwardRef((
                 <ReactFlow
                     nodes={nodes}
                     edges={edges}
-                    onNodesChange={onNodesChange}
-                    onEdgesChange={onEdgesChange}
+                    onNodesChange={(p)=>{if(p[0].type !== 'select'){setIsSaved(false)}onNodesChange(p)}}
+                    onEdgesChange={(p)=>{if(p[0].type !== 'select'){setIsSaved(false)}onEdgesChange(p)}}
                     nodeTypes={nodeTypes}
                     onNodeClick={onNodeClick}
                     onNodeDoubleClick={onNodeDoubleClick}

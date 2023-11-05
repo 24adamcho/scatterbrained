@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 import './App.css';
 
@@ -31,7 +31,7 @@ function App() {
                                getEdges:()=>{}, 
                                setNewNodes:()=>{}, 
                                setNewEdges:()=>{},
-                               resetHistory:()=>{}
+                               resetHistory:()=>{},
                               }
                              )
   );
@@ -48,10 +48,30 @@ function App() {
   const [charCount, setCharCount] = useState(0);
   const [wordCount, setWordCount] = useState(0);
 
+  const [isSaved, setIsSaved] = useState(true);
+
+  const unloadAlert = useCallback((event)=>{
+    console.log(isSaved)
+    if(isSaved || (nodeCount === 0)) {
+      return undefined;
+    }
+
+    event.preventDefault();
+
+    return 'You are attempting to close a tab with unsaved work.' 
+         + 'If you leave before saving, your changes will be lost.'
+  }, [isSaved])
+  window.addEventListener('beforeunload', function(event) {
+    unloadAlert(event);
+  })
+
   const [title, setTitle] = useState('');
   useEffect(() => {
-    document.title = `Scatterbrained${(title==='')?'':` | ${title}`}`;
-  }, [title])
+    if(isSaved || (nodeCount === 0)) //if document currently saved
+      document.title = `Scatterbrained${(title==='')?'':` | ${title}`}`;
+    else if(nodeCount !== 0)//not saved
+      document.title = `*Scatterbrained${(title==='')?'':` | ${title}`}`;
+  }, [title, isSaved, nodeCount, edgeCount])
 
   const [enableMiniMap, setMiniMapState] = useState(false);
   const changeMiniMapState = () => {
@@ -91,6 +111,7 @@ function App() {
               changeGridSnapState={changeGridSnapState}
               setBgstyle={setBgstyle}
               tool={tool}
+              setIsSaved={setIsSaved}
       />
       <Split className="contentWrapper" 
              minSize={window.innerWidth * 0.3}
@@ -112,6 +133,7 @@ function App() {
               setTool={setTool}
               width={sizes[0]}
               keyBinds={keyBinds}
+              setIsSaved={setIsSaved}
             />
           </div>
           <div className='rightContentWrapper'>

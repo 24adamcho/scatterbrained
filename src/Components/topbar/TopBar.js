@@ -89,7 +89,6 @@ function TopBar(props) {
   }
   const save = () => {
     let sanitizedNodes = sanitizeNodesForStorage(props.nodeRef.current.getNodes())
-
     let sanitizedEdges = sanitizeEdgesForStorage(props.nodeRef.current.getEdges());
     
     let slug = {metadata:`
@@ -103,6 +102,7 @@ SCATTERBRAINED
     const blob = new Blob([JSON.stringify(slug, null,2)], {type:'application/json'});
 
     saveFile(blob);
+    props.setIsSaved(true);
   }
 
   return (
