@@ -52,3 +52,10 @@
 .ql-picker-item.ql-selected::before {
     color:var(--color-alert)
 }
+
+.ql-toolbar * .ql-active {
+    box-shadow: inset -2px 0 var(--color-alert),
+                inset 2px  0 var(--color-alert),
+                inset 0  2px var(--color-alert),
+                inset 0 -2px var(--color-alert);
+}
