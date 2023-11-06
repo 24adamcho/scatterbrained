@@ -136,7 +136,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>SidebarContextMenu</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>SidebarContextMenu</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li>ToggleButtonGroup</li><li class=\"ql-indent-1\">Defines the following buttons as radio buttons</li><li class=\"ql-indent-1\">ToggleButton</li><li class=\"ql-indent-2\">calls <em>setToolCallback</em>('pointer')</li><li class=\"ql-indent-2\">PointerToolSvg</li><li class=\"ql-indent-1\">ToggleButton</li><li class=\"ql-indent-2\">calls <em>setToolCallback</em>('line')</li><li class=\"ql-indent-2\">LineToolSvg</li></ul><p><br></p><h2>Properties:</h2><ul><li>tool</li><li class=\"ql-indent-1\">currently selected <em>tool</em><sub>1</sub></li><li>setToolCallback</li><li class=\"ql-indent-1\">callback to change <em>tool</em></li></ul><p><br></p><h2>Description:</h2><p>Vertical toolbar on top left to switch tool setting.</p><p><br></p><p>[1] see <strong>App</strong></p>"
       }
     },
     {
