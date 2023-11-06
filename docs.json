@@ -36,7 +36,7 @@
       "height": 100,
       "resizing": false,
       "data": {
-        "content": "<h1>App</h1><p><br></p><h2>Variables</h2><ul><li>bgstyle</li></ul><p><br></p><h2>Callbacks</h2><ul><li>a</li></ul><p><br></p><h2>Components:</h2><ul><li>TopBar</li><li>Split</li><li class=\"ql-indent-1\">Graphview</li><li class=\"ql-indent-1\">Editor</li><li>BottomBar</li></ul>"
+        "content": "<h1>App</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li>TopBar</li><li>Split</li><li class=\"ql-indent-1\">GraphEditor</li><li class=\"ql-indent-1\">Editor</li><li>BottomBar</li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -49,7 +49,7 @@
       "width": 130,
       "height": 100,
       "data": {
-        "content": "<h1>TopBar</h1>"
+        "content": "<h1>TopBar</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -67,7 +67,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>BottomBar</h1>"
+        "content": "<h1>BottomBar</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -80,7 +80,7 @@
       "width": 130,
       "height": 100,
       "data": {
-        "content": "<h1>Split</h1>"
+        "content": "<h1>Split</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -99,7 +99,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>GraphEditor</h1>"
+        "content": "<h1>GraphEditor</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -118,7 +118,7 @@
       "height": 100,
       "resizing": false,
       "data": {
-        "content": "<h1>TextEditor</h1>"
+        "content": "<h1>TextEditor</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -136,7 +136,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>SidebarContextMenu</h1><h1><br></h1>"
+        "content": "<h1>SidebarContextMenu</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -155,7 +155,7 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>TopbarContextMenu</h1><h1><br></h1>"
+        "content": "<h1>TopbarContextMenu</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -174,7 +174,7 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>RightclickContextMenu</h1><h1><br></h1>"
+        "content": "<h1>RightclickContextMenu</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -192,7 +192,7 @@
       "height": 100,
       "resizing": false,
       "data": {
-        "content": "<h1>NodeBar</h1>"
+        "content": "<h1>NodeBar</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -211,7 +211,7 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>NewEdgeBar</h1>"
+        "content": "<h1>NewEdgeBar</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -230,7 +230,7 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>EdgeBar</h1>"
+        "content": "<h1>EdgeBar</h1><p><br></p><h2>Variables</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -249,7 +249,7 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>BothBar</h1>"
+        "content": "<h1>BothBar</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -267,7 +267,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>PaneContext</h1>"
+        "content": "<h1>PaneContext</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -285,7 +285,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>NodeColorPicker</h1>"
+        "content": "<h1>NodeColorPicker</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -303,7 +303,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>NewEdgeColorPicker</h1>"
+        "content": "<h1>NewEdgeColorPicker</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -322,7 +322,7 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>BothColorPicker</h1>"
+        "content": "<h1>BothColorPicker</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -341,7 +341,7 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>EdgesColorPicker</h1>"
+        "content": "<h1>EdgesColorPicker</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -359,7 +359,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>ColorPickerDropdown</h1>"
+        "content": "<h1>ColorPickerDropdown</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -377,7 +377,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>NewEdgeCurveSelector</h1>"
+        "content": "<h1>NewEdgeCurveSelector</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -396,7 +396,7 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>EdgeCurveSelector</h1>"
+        "content": "<h1>EdgeCurveSelector</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -414,7 +414,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>NewEdgeAnimationToggle</h1>"
+        "content": "<h1>NewEdgeAnimationToggle</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -433,7 +433,7 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>EdgesAnimationToggle</h1>"
+        "content": "<h1>EdgesAnimationToggle</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -451,7 +451,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>NewEdgeReverse</h1>"
+        "content": "<h1>NewEdgeReverse</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -470,7 +470,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>EdgesReverse</h1>"
+        "content": "<h1>EdgesReverse</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -479,8 +479,8 @@
       "id": "1699252593428.15642",
       "type": "note",
       "position": {
-        "x": 561.2352976451195,
-        "y": 1347.0661605969622
+        "x": 569.2352976451195,
+        "y": 1631.0661605969622
       },
       "style": {
         "width": 271,
@@ -489,7 +489,7 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>BothEdgeDirection</h1>"
+        "content": "<h1>BothEdgeDirection</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -507,7 +507,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>NewEdgeReset</h1>"
+        "content": "<h1>NewEdgeReset</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -526,7 +526,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>EdgesReset</h1>"
+        "content": "<h1>EdgesReset</h1><p><br></p><h2>Variables</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description</h2><p><br></p>"
       }
     },
     {
@@ -535,8 +535,8 @@
       "id": "1699252657189.42933",
       "type": "note",
       "position": {
-        "x": 627.3566145605205,
-        "y": 1481.3492333995641
+        "x": 609.3566145605205,
+        "y": 1785.3492333995641
       },
       "style": {
         "width": 174,
@@ -545,7 +545,7 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>BothReset</h1>"
+        "content": "<h1>BothReset</h1><p><br></p><h2>Variables</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description</h2>"
       }
     }
   ],
