@@ -58,7 +58,7 @@ const BothColorPicker = ({
         setColor(defaultColor);
         transform(setNodes, selectedNodes, (node) => {
             const {backgroundColor:_, ...newNodeStyle} = node.style
-            if(newNodeStyle.length === 0) {
+            if(Object.keys(newNodeStyle).length === 0) {
                 delete node.style;
                 return node;
             }
@@ -69,7 +69,7 @@ const BothColorPicker = ({
         })
         transform(setEdges, selectedEdges, (edge) => {
             const {stroke:_, ...newEdgeStyle} = edge.style
-            if(newEdgeStyle.length === 0) {
+            if(Object.keys(newEdgeStyle).length === 0) {
                 delete edge.style;
                 return edge;
             }
