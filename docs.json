@@ -17,7 +17,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>Scatterbrained</h1><p>Variable and component graph</p>"
+        "content": "<h1>Scatterbrained</h1><p>Variable and component graph</p><p><br></p><p>Style guide:</p><p class=\"ql-indent-1\">Variables are <em>italicized</em> outside of their definition in variables list.</p><p class=\"ql-indent-1\">Components are <strong>bold</strong> outside of their definition in components list.</p><p class=\"ql-indent-1\">References to other components in description should be extracted and put as footnotes.</p><p class=\"ql-indent-1\">useEffect callbacks are distinguished by their render triggers</p><p class=\"ql-indent-2\">Example: useEffect [variable, othervariable]</p><p class=\"ql-indent-1\">Function callbacks include their parameters</p><p class=\"ql-indent-1\"><br></p>"
       }
     },
     {
@@ -106,8 +106,8 @@
       "id": "1699250923417.98372",
       "type": "note",
       "position": {
-        "x": 654,
-        "y": 409
+        "x": 674.835365462425,
+        "y": 395.1097563583834
       },
       "style": {
         "backgroundColor": "rgb(74, 84, 224)",
@@ -155,7 +155,7 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>TopbarContextMenu</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>TopbarContextMenu</h1><p><br></p><h2>Variables:</h2><ul><li>selectionType</li><li class=\"ql-indent-1\">see <em>useEffect </em>[<em>selectedNodes.length, selectedEdges.length</em>]</li></ul><p><br></p><h2>Callbacks:</h2><ul><li>useEffect [<em>selectedNodes.length, selectedEdges.length</em>]</li><li class=\"ql-indent-1\">shorthand evaluation for what kind of selection has been made.</li><li class=\"ql-indent-2\">Possible evaluations:</li><li class=\"ql-indent-3\">'nodes'</li><li class=\"ql-indent-3\">'edges'</li><li class=\"ql-indent-3\">'both'</li><li class=\"ql-indent-3\">'none'</li><li>useEffect [<em>tool</em>]</li><li class=\"ql-indent-1\">quick fix for unselecting items by changing tools causing weird behaviour</li></ul><p><br></p><h2>Components:</h2><ul><li>div topbarContextMenu</li><li class=\"ql-indent-1\"><em>tool </em>== 'pointer'<sub>1</sub></li><li class=\"ql-indent-2\"><em>selectionType</em> == 'nodes'</li><li class=\"ql-indent-3\">NodesBar<sub>2</sub></li><li class=\"ql-indent-2\"><em>selectionType</em> == 'edges'</li><li class=\"ql-indent-3\">EdgesBar<sub>3</sub></li><li class=\"ql-indent-2\"><em>selectionType</em> == 'both'</li><li class=\"ql-indent-3\">BothBar<sub>4</sub></li><li class=\"ql-indent-1\"><em>tool == </em>'line'</li><li class=\"ql-indent-2\">LineToolBar<sub>5</sub></li></ul><p><br></p><h2>Properties:</h2><ul><li>nodes</li><li class=\"ql-indent-1\">current state of <em>nodes</em><sub><em>6</em></sub></li><li>edges</li><li class=\"ql-indent-1\">current state of <em>edges</em><sub><em>7</em></sub></li><li>setNodes</li><li class=\"ql-indent-1\">callback to modify <em>nodes</em></li><li>setEdges</li><li class=\"ql-indent-1\">callback to modify <em>edges</em></li><li>selectedNodes</li><li class=\"ql-indent-1\">list of selected <em>nodes</em></li><li>selectedEdges</li><li class=\"ql-indent-1\">list of selected <em>edges</em></li><li>tool</li><li class=\"ql-indent-1\">current <em>tool</em><sub><em>8</em></sub></li><li>newEdge</li><li class=\"ql-indent-1\">current state of <em>newEdge</em><sub><em>9</em></sub></li><li>setNewEdge</li><li class=\"ql-indent-1\">callback to modify <em>newEdge</em></li><li>markHistory<sub>10</sub></li><li class=\"ql-indent-1\">callback to mark history</li></ul><p><br></p><h2>Description:</h2><p><br></p><p><br></p><p>[1][8] see <strong>SidebarContextMenu</strong></p><p>[2] see <strong>NodeBar</strong></p><p>[3] see <strong>EdgeBar</strong></p><p>[4] see <strong>BothBar</strong></p><p>[5] see <strong>NewEdgeBar</strong></p><p>[6][7][9][10] see <strong>GraphEditor</strong></p>"
       }
     },
     {
@@ -181,8 +181,8 @@
       "id": "1699251840590.87259",
       "type": "note",
       "position": {
-        "x": 149.75734618018757,
-        "y": 1027.1507366169196
+        "x": 44.17502891140009,
+        "y": 912.292507028784
       },
       "style": {
         "width": 158,
@@ -192,7 +192,7 @@
       "height": 100,
       "resizing": false,
       "data": {
-        "content": "<h1>NodeBar</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>NodeBar</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li>div widget-bar-descriptor</li><li class=\"ql-indent-1\">NoteSvg</li><li class=\"ql-indent-1\">length of <em>selectedNodes</em></li><li>NodeColorPicker<sub>1</sub></li><li class=\"ql-indent-1\">defaultColor = .palette{--color-high}<sub>2</sub></li></ul><p><br></p><h2>Properties:</h2><ul><li>className</li><li class=\"ql-indent-1\">wrapper div class</li><li>nodes</li><li class=\"ql-indent-1\">current state of <em>nodes</em><sub>3</sub></li><li>setNodes</li><li class=\"ql-indent-1\">callback to modify <em>nodes</em></li><li>selectedNodes</li><li class=\"ql-indent-1\">list of currently selected <em>nodes</em></li><li>markHistory<sub>4</sub></li><li class=\"ql-indent-1\">callback to mark history</li></ul><p><br></p><h2>Description:</h2><p>Contextual toolbar for <em>selectedNodes</em>.</p><p><br></p><p>[1] see <strong>NodeColorPicker</strong></p><p>[2] see <strong>App</strong></p><p>[3][4] see <strong>GraphEditor</strong></p>"
       }
     },
     {
@@ -201,8 +201,8 @@
       "id": "1699251846259.72371",
       "type": "note",
       "position": {
-        "x": 328.5,
-        "y": 1029.375
+        "x": 222.9176827312125,
+        "y": 914.5167704118644
       },
       "style": {
         "width": 204,
@@ -211,7 +211,7 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>NewEdgeBar</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>NewEdgeBar</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li>NewEdgeCurveSelector<sub>1</sub></li><li>NewEdgeColorPicker<sub>2</sub></li><li class=\"ql-indent-1\">defaultColor = .palette{--color-low-trans}<sub>3</sub></li><li>NewEdgeAnimationToggle<sub>4</sub></li><li>NewEdgeReverse<sub>5</sub></li><li>NewEdgeReset<sub>6</sub></li></ul><p><br></p><h2>Properties:</h2><ul><li>className</li><li class=\"ql-indent-1\">wrapper div class</li><li>newEdge</li><li class=\"ql-indent-1\">current state of <em>newEdge</em><sub>7</sub></li><li>setNewEdge</li><li class=\"ql-indent-1\">callback to modify <em>newEdge</em></li></ul><p><br></p><h2>Description:</h2><p>Contextual toolbar for line tool<sub>8</sub></p><p><br></p><p>[1] see <strong>NewEdgeCurveSelector</strong></p><p>[2] see <strong>NewEdgeColorPicker</strong></p><p>[3] see <strong>App</strong></p><p>[4] see <strong>NewEdgeAnimationToggle</strong></p><p>[5] see <strong>NewEdgeReverse</strong></p><p>[6] see <strong>NewEdgeReset</strong></p><p>[7] see <strong>GraphEditor</strong></p><p>[8] see <strong>SidebarContextMenu</strong></p>"
       }
     },
     {
@@ -220,8 +220,8 @@
       "id": "1699251853579.78221",
       "type": "note",
       "position": {
-        "x": 705.7463319071588,
-        "y": 1029.1985317634133
+        "x": 600.1640146383713,
+        "y": 914.3403021752777
       },
       "style": {
         "width": 163,
@@ -230,7 +230,7 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>EdgeBar</h1><p><br></p><h2>Variables</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>EdgeBar</h1><p><br></p><h2>Variables</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li>div widget-bar-descriptor</li><li class=\"ql-indent-1\">LineSvg</li><li class=\"ql-indent-1\">length of <em>selectedEdges</em></li><li>EdgesCurveSelector<sub>1</sub></li><li>EdgeColorPicker<sub>2</sub></li><li class=\"ql-indent-1\">defaultColor = .palette{--color-low}<sub>3</sub></li><li>EdgeAnimationToggle<sub>4</sub></li><li>EdgesReverse<sub>5</sub></li><li>EdgesReset<sub>6</sub></li></ul><p><br></p><h2>Properties:</h2><ul><li>className</li><li class=\"ql-indent-1\">wrapper div class</li><li>edges</li><li class=\"ql-indent-1\">current state of <em>edges</em><sub><em>7</em></sub></li><li>setEdges</li><li class=\"ql-indent-1\">callback to modify <em>edges</em></li><li>selectedEdges</li><li class=\"ql-indent-1\">list of currently selected <em>edges</em></li><li>markHistory<sub>8</sub></li><li class=\"ql-indent-1\">callback to mark history</li></ul><p><br></p><h2>Description:</h2><p>Contextual toolbar for <em>selectedEdges</em>.</p><p><br></p><p>[1] see <strong>EdgesCurveSelector</strong></p><p>[2] see <strong>EdgesColorPicker</strong></p><p>[3] see <strong>App</strong></p><p>[4] see <strong>EdgesAnimationToggle</strong></p><p>[5] see <strong>EdgesReverse</strong></p><p>[6] see <strong>EdgesReset</strong></p><p>[7][8] see <strong>GraphEditor</strong></p>"
       }
     },
     {
@@ -239,8 +239,8 @@
       "id": "1699251862141.32228",
       "type": "note",
       "position": {
-        "x": 547.8198536760666,
-        "y": 1029.4227951464932
+        "x": 442.2375364072791,
+        "y": 914.5645655583576
       },
       "style": {
         "width": 142,
@@ -249,15 +249,15 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>BothBar</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>BothBar</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li>div widget-bar-descriptor</li><li class=\"ql-indent-1\">NoteSvg</li><li class=\"ql-indent-1\">length of <em>selectedNodes</em></li><li class=\"ql-indent-1\">LineSvg</li><li class=\"ql-indent-1\">length of <em>selectedEdges</em></li><li>BothColorPicker<sub>1</sub></li><li>EdgesAnimationToggle<sub>2</sub></li><li>BothEdgeDirection<sub>3</sub></li><li>BothReset<sub>4</sub></li></ul><p><br></p><h2>Properties:</h2><ul><li>className</li><li class=\"ql-indent-1\">wrapper div class</li><li>nodes</li><li class=\"ql-indent-1\">current state of <em>nodes</em><sub>5</sub></li><li>edges</li><li class=\"ql-indent-1\">current state of <em>edges</em><sub>6</sub></li><li>setNodes</li><li class=\"ql-indent-1\">callback to modify <em>nodes</em></li><li>setEdges</li><li class=\"ql-indent-1\">callback to modify <em>edges</em></li><li>selectedNodes</li><li class=\"ql-indent-1\">list of currently selected <em>nodes</em></li><li>selectedEdges</li><li class=\"ql-indent-1\">list of currently selected <em>edges</em></li><li>markHistory<sub>7</sub></li><li class=\"ql-indent-1\">callback to mark history</li></ul><p><br></p><h2>Description:</h2><p>Contextual toolbar for both <em>selectedNodes</em> and <em>selectedEdges</em></p><p><br></p><p>[1] see <strong>BothColorPicker</strong></p><p>[2] see <strong>EdgesAnimationToggle</strong></p><p>[3] see <strong>BothEdgeDirection</strong></p><p>[4] see <strong>BothReset</strong></p><p>[5][6][7] see <strong>GraphEditor</strong></p>"
       }
     },
     {
       "id": "1699251873730.11856",
       "type": "note",
       "position": {
-        "x": 721.1728101382512,
-        "y": 779.5441170591467
+        "x": 769.1728101382512,
+        "y": 767.5441170591467
       },
       "width": 207,
       "height": 100,
@@ -274,8 +274,8 @@
       "id": "1699252113990.40984",
       "type": "note",
       "position": {
-        "x": -56,
-        "y": 1205.7000000000003
+        "x": -182.00000000000023,
+        "y": 1282.9000000000003
       },
       "width": 245,
       "height": 102,
@@ -285,15 +285,15 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>NodeColorPicker</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>NodeColorPicker</h1><p><br></p><h2>Variables:</h2><ul><li>color</li><li class=\"ql-indent-1\">internal color state</li></ul><p><br></p><h2>Callbacks:</h2><ul><li>useEffect [<em>selectedNodes</em>]</li><li class=\"ql-indent-1\">Evaluates current state of <em>selectedNodes</em> for <em>style.backgroundColor</em></li><li class=\"ql-indent-2\">sets <em>color </em>to first node's <em>style.backgroundColor</em> if all nodes are the same and <em>style.backgroundColor</em> exists</li><li class=\"ql-indent-2\">otherwise, sets <em>color </em>to <em>defaultColor</em></li><li>onChange(param)</li><li class=\"ql-indent-1\">Changes all <em>selectedNodes</em> such that all selected <em>nodes </em>have <em>style.backgroundColor</em> set to <em>param</em></li><li>onReset()</li><li class=\"ql-indent-1\">Removes <em>selectedNodes.style.backgroundColor </em>for all <em>selectedNodes</em></li><li class=\"ql-indent-2\">if that removal results in <em>selectedNodes.style</em> being empty, removes <em>selectedNodes.style</em></li><li>onToggle(nextShow, meta)</li><li class=\"ql-indent-1\">Marks undo history when the dialog box is closed</li><li class=\"ql-indent-2\">Done this way because marking history after every onChange will flood the history, and if a user is closing this dropdown then it's likely that they've changed it anyway. This solution means that there is only one history event cataloged.</li><li class=\"ql-indent-2\">One problem with this approach is if a user opens the dropdown then closes it. Went for this approach because anything else would require a falling edge detector or other such insanity, and this was the easiest to do in a short timespan.</li></ul><p><br></p><h2>Components:</h2><ul><li>ColorPickerDropdown</li><li class=\"ql-indent-1\">calls <em>onChange, onReset, onToggle</em></li></ul><p><br></p><h2>Properties:</h2><ul><li>nodes</li><li class=\"ql-indent-1\">current state of <em>nodes</em></li><li>setNodes</li><li class=\"ql-indent-1\">callback to modify <em>nodes</em></li><li>selectedNodes</li><li class=\"ql-indent-1\">currently selected <em>nodes</em></li><li>defaultColor</li><li class=\"ql-indent-1\">default color for <em>nodes</em><sub>1</sub></li><li>markHistory<sub>2</sub></li><li class=\"ql-indent-1\">callback to mark history</li></ul><p><br></p><h2>Description:</h2><p>Implementation of <strong>ColorPickerDropdown</strong><sub><strong>3</strong></sub> for <em>nodes</em>.</p><p><br></p><p>[1] see <strong>NodeBar</strong></p><p>[2] see <strong>GraphEditor</strong></p><p>[3] see <strong>ColorPickerDropdown</strong></p>"
       }
     },
     {
       "id": "1699252182747.67726",
       "type": "note",
       "position": {
-        "x": 235.5,
-        "y": 1207.375
+        "x": 109.5,
+        "y": 1284.575
       },
       "width": 294,
       "height": 102,
@@ -303,7 +303,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>NewEdgeColorPicker</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>NewEdgeColorPicker</h1><p><br></p><h2>Variables:</h2><ul><li>color</li><li class=\"ql-indent-1\">internal color state</li></ul><p><br></p><h2>Callbacks:</h2><ul><li>useEffect [<em>newEdge</em>]</li><li class=\"ql-indent-1\">evaluates the current <em>newEdge.style </em>to set <em>color</em>. If unavailable, sets <em>color</em> to <em>defaultColor</em>.</li><li>onChange(param)</li><li class=\"ql-indent-1\">changes <em>color</em> to <em>param</em>.</li><li class=\"ql-indent-1\">changes <em>newEdge.style.stroke</em> to <em>param</em></li><li>onReset()</li><li class=\"ql-indent-1\">sets <em>color </em>to <em>defaultColor</em></li><li class=\"ql-indent-1\">removes <em>newEdge.style.stroke</em> if it exists</li><li class=\"ql-indent-2\">if that removal results in <em>newEdge.style</em> being empty, removes <em>newEdge.style</em></li></ul><p><br></p><h2>Components:</h2><ul><li>ColorPickerDropdown</li><li class=\"ql-indent-1\">calls <em>onChange, onReset</em></li></ul><p><br></p><h2>Properties:</h2><ul><li>newEdge</li><li class=\"ql-indent-1\">current <em>newEdge</em> state</li><li>setNewEdge</li><li class=\"ql-indent-1\">callback to modify the properties of <em>newEdge</em></li><li>defaultColor</li><li class=\"ql-indent-1\">default color for <em>newEdge</em></li></ul><p><br></p><h2>Description:</h2><p>Implementation of <strong>ColorPickerDropdown</strong><sub>1</sub> for <em>newEdge</em>.</p><p><br></p><p>[1] see <strong>ColorPickerDropdown</strong></p>"
       }
     },
     {
@@ -312,8 +312,8 @@
       "id": "1699252207854.98899",
       "type": "note",
       "position": {
-        "x": 573.5,
-        "y": 1209.375
+        "x": 447.5,
+        "y": 1286.575
       },
       "style": {
         "width": 240,
@@ -322,7 +322,7 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>BothColorPicker</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>BothColorPicker</h1><p><br></p><h2>Variables:</h2><ul><li>color</li><li class=\"ql-indent-1\">internal color state</li><li>defaultColor</li><li class=\"ql-indent-1\">since <em>nodes</em> and <em>edges </em>don't have the same default color, the color for this component to default to is rgb(0,0,0) (black)</li></ul><p><br></p><h2>Callbacks:</h2><ul><li>useEffect [<em>selectedNodes, selectedEdges</em>]</li><li class=\"ql-indent-1\">sets <em>color</em> to <em>selectedNodes[0].style.backgroundColor</em> if exists and all selected edges and nodes have the same color</li><li class=\"ql-indent-1\">otherwise set <em>color</em> to <em>defaultColor</em></li><li>onChange(param)</li><li class=\"ql-indent-1\">sets <em>color </em>, selected <em>nodes</em>, and selected <em>edges'</em> styles to <em>param</em></li><li>onReset()</li><li class=\"ql-indent-1\">resets <em>color</em></li><li class=\"ql-indent-1\">removes color attributes of selected<em> nodes </em>and <em>edges</em></li><li class=\"ql-indent-2\">if resultant style is empty, removes <em>style</em></li><li>onToggle(nextShow, meta)</li><li class=\"ql-indent-1\">Marks undo history when the dialog box is closed<sub>1</sub></li></ul><p><br></p><h2>Components:</h2><ul><li>ColorPickerDropdown</li><li class=\"ql-indent-1\">calls <em>onChange, onReset, onToggle</em></li></ul><p><br></p><h2>Properties:</h2><ul><li>nodes</li><li class=\"ql-indent-1\">current state of <em>nodes</em><sub><em>1</em></sub></li><li>edges</li><li class=\"ql-indent-1\">current state of <em>edges</em><sub><em>2</em></sub></li><li>setNodes</li><li class=\"ql-indent-1\">callback to modify <em>nodes</em></li><li>setEdges</li><li class=\"ql-indent-1\">callback to modify <em>edges</em></li><li>selectedNodes</li><li class=\"ql-indent-1\">list of currently selected <em>nodes</em></li><li>selectedEdges</li><li class=\"ql-indent-1\">list of currently selected <em>edges</em></li><li>markHistory<sub>3</sub></li><li class=\"ql-indent-1\">callback to mark history</li></ul><p><br></p><h2>Description:</h2><p>Implementation of <strong>ColorPickerDropdown</strong><sub>4</sub> for <em>nodes</em> and <em>edges</em>.</p><p><br></p><p>[1][2][3] see <strong>GraphEditor</strong></p><p>[4] see <strong>ColorPickerDropdown</strong></p>"
       }
     },
     {
@@ -331,8 +331,8 @@
       "id": "1699252222599.78529",
       "type": "note",
       "position": {
-        "x": 851.5,
-        "y": 1210.375
+        "x": 729.5,
+        "y": 1287.575
       },
       "style": {
         "width": 294,
@@ -341,33 +341,33 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>EdgesColorPicker</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>EdgesColorPicker</h1><p><br></p><h2>Variables:</h2><ul><li>color</li><li class=\"ql-indent-1\">internal color state</li></ul><p><br></p><h2>Callbacks:</h2><ul><li>useEffect [<em>selectedEdges</em>]</li><li class=\"ql-indent-1\">Evaluates current state of <em>selectedEdges</em> for <em>style.stroke</em></li><li class=\"ql-indent-2\">sets <em>color </em>to first edge's <em>style.stroke </em>if all edges are the same and <em>style.stroke </em>exists</li><li class=\"ql-indent-2\">otherwise, sets <em>color </em>to <em>defaultColor</em></li><li>onChange(param)</li><li class=\"ql-indent-1\">Changes all <em>selectedEdges</em> such that all selected <em>edges </em>have <em>style.stroke </em>set to <em>param</em></li><li>onReset()</li><li class=\"ql-indent-1\">Removes <em>selectedEdges.style.stroke </em>for all <em>selectedEdges</em></li><li class=\"ql-indent-2\">if that removal results in <em>selectedEdges.style</em> being empty, removes <em>selectedEdges.style</em></li><li>onToggle(nextShow, meta)</li><li class=\"ql-indent-1\">Marks undo history when the dialog box is closed<sub>1</sub></li></ul><p><br></p><h2>Components:</h2><ul><li>ColorPickerDropdown</li><li class=\"ql-indent-1\">calls <em>onChange, onReset, onToggle</em></li></ul><p><br></p><h2>Properties:</h2><ul><li>edges</li><li class=\"ql-indent-1\">Current state of <em>edges</em><sub>2</sub></li><li>setEdges</li><li class=\"ql-indent-1\">Callback to modify <em>edges</em></li><li>selectedEdges</li><li class=\"ql-indent-1\">List of currently selected <em>edges</em></li><li>defaultColor</li><li class=\"ql-indent-1\">default color for <em>edges</em><sub>3</sub></li><li>markHistory</li><li class=\"ql-indent-1\">Callback to mark history</li></ul><p><br></p><h2>Description:</h2><p>Implementation of <strong>ColorPickerDropdown</strong><sub>4</sub> for edges.</p><p><br></p><p>[1] see explanation in <strong>NodeColorPicker</strong></p><p>[1][2][3] see <strong>GraphEditor</strong></p><p>[4] see <strong>ColorPickerDropdown</strong></p>"
       }
     },
     {
       "id": "1699252263581.81195",
       "type": "note",
       "position": {
-        "x": -277.4595610281997,
-        "y": 1173.5750000000003
+        "x": -529.754860953991,
+        "y": 1254.027204615883
       },
-      "width": 188,
-      "height": 102,
+      "width": 307,
+      "height": 100,
       "style": {
-        "width": 188,
-        "height": 102
+        "width": 307,
+        "height": 100
       },
       "resizing": false,
       "data": {
-        "content": "<h1>ColorPickerDropdown</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>ColorPickerDropdown</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li>Dropdown</li><li class=\"ql-indent-1\">Dropdown.Toggle</li><li class=\"ql-indent-2\">calls <em>onToggle</em></li><li class=\"ql-indent-2\">div</li><li class=\"ql-indent-3\">Box that displays value of <em>color</em></li><li class=\"ql-indent-1\">Dropdown.Menu</li><li class=\"ql-indent-2\">RgbStringColorPicker</li><li class=\"ql-indent-3\"><em>react-colorful</em></li><li class=\"ql-indent-3\">calls <em>onChange</em></li><li class=\"ql-indent-3\">Color picker</li><li class=\"ql-indent-2\">div</li><li class=\"ql-indent-3\">div for alignment of components</li><li class=\"ql-indent-3\">HexColorInput</li><li class=\"ql-indent-4\"><em>react-colorful</em></li><li class=\"ql-indent-4\">calls <em>onChange</em></li><li class=\"ql-indent-4\">hexadecimal display of current color</li><li class=\"ql-indent-3\">Button</li><li class=\"ql-indent-4\">calls <em>onReset</em></li></ul><p><br></p><h2>Properties:</h2><ul><li>color</li><li class=\"ql-indent-1\">Current color variable.</li><li>onChange</li><li class=\"ql-indent-1\">Callback to fire when <strong>RgbColorPicker</strong> changes.</li><li>onReset</li><li class=\"ql-indent-1\">Callback to fire when the reset <strong>Button </strong>is clicked.</li><li>onToggle</li><li class=\"ql-indent-1\">Callback to fire when <strong>Dropdown</strong> is toggled.</li></ul><p><br></p><h2>Description:</h2><p>Abstracted component for selecting and resetting color.</p>"
       }
     },
     {
       "id": "1699252289037.38367",
       "type": "note",
       "position": {
-        "x": 202.5,
-        "y": 1368.5750000000003
+        "x": 98.5,
+        "y": 1109.7750000000003
       },
       "width": 332,
       "height": 100,
@@ -377,7 +377,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>NewEdgeCurveSelector</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>NewEdgeCurveSelector</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li>onClick(param)</li><li class=\"ql-indent-1\">sets <em>newEdge.type</em> to the item selected by <strong>CurveDropdown</strong></li></ul><p><br></p><h2>Components:</h2><ul><li>CurveDropdown</li><li class=\"ql-indent-1\">calls <em>onClick</em></li></ul><p><br></p><h2>Properties:</h2><ul><li>newEdge</li><li class=\"ql-indent-1\">current <em>newEdge</em> state</li><li>setNewEdge</li><li class=\"ql-indent-1\">callback to modify the properties of <em>newEdge</em></li></ul><p><br></p><h2>Description:</h2><p>Implementation of <strong>CurveDropdown</strong><sub>1</sub> for <em>newEdge.</em></p><p><br></p><p>[1] see <strong>CurveDropdown</strong></p>"
       }
     },
     {
@@ -386,8 +386,8 @@
       "id": "1699252341536.99116",
       "type": "note",
       "position": {
-        "x": 858.5,
-        "y": 1369.5750000000003
+        "x": 706.5,
+        "y": 1106.7750000000003
       },
       "style": {
         "width": 332,
@@ -396,15 +396,15 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>EdgeCurveSelector</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>EdgeCurveSelector</h1><p><br></p><h2>Variables:</h2><ul><li>type</li><li class=\"ql-indent-1\">current state of selected <em>edge</em>'s type</li><li>title</li><li class=\"ql-indent-1\">hover title for <strong>CurveDropdown</strong></li></ul><p><br></p><h2>Callbacks:</h2><ul><li>onClick(param)</li><li class=\"ql-indent-1\">changes all selected <em>edge</em>'s types to <em>param</em></li><li class=\"ql-indent-1\">sets <em>type</em> to <em>param</em></li><li class=\"ql-indent-1\">reevaluates <em>title</em></li><li class=\"ql-indent-1\">marks history</li></ul><p><br></p><h2>Components:</h2><ul><li>CurveDropdown</li><li class=\"ql-indent-1\">calls <em>onClick</em></li></ul><p><br></p><h2>Properties:</h2><ul><li>edges</li><li class=\"ql-indent-1\">Current state of <em>edges</em><sub>1</sub></li><li>setEdges</li><li class=\"ql-indent-1\">Callback to modify <em>edges</em></li><li>selectedEdges</li><li class=\"ql-indent-1\">List of currently selected <em>edges</em></li><li>markHistory<sub>2</sub></li><li class=\"ql-indent-1\">Callback to mark history</li></ul><p><br></p><h2>Description:</h2><p>Implementation of <strong>CurveDropdown</strong><sub>3</sub> for <em>edges.</em></p><p><br></p><p>[1][2] see <strong>GraphEditor</strong></p><p>[3] see <strong>CurveDropdown</strong></p>"
       }
     },
     {
       "id": "1699252478436.23482",
       "type": "note",
       "position": {
-        "x": 194.5,
-        "y": 1510.375
+        "x": 82.5,
+        "y": 1447.575
       },
       "width": 365,
       "height": 100,
@@ -414,7 +414,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>NewEdgeAnimationToggle</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>NewEdgeAnimationToggle</h1><p><br></p><h2>Variables:</h2><ul><li>boolstate</li><li class=\"ql-indent-1\">internal tracker for <em>newEdge.animated </em>state</li><li class=\"ql-indent-1\">used because <em>!newEdge.animated</em> would likely cause a crash for doing a boolean operation on an undefined object</li></ul><p><br></p><h2>Callbacks:</h2><ul><li>useEffect [<em>newEdge.animated</em>]</li><li class=\"ql-indent-1\">checks if <em>newEdge.animated </em>exists.</li><li class=\"ql-indent-2\">If yes, set <em>boolstate</em> true</li><li class=\"ql-indent-2\">Else, set <em>boolstate </em>false</li><li class=\"ql-indent-1\">done so <strong>Button</strong>'s svg children update cleanly (and as an artifact of debug title text)</li><li>useEffect [setNewEdge, newEdge.reversed, newEdge.animated, boolstate]</li><li class=\"ql-indent-1\">applies <em>newEdge.svgWrapperStyle </em>based on <em>newEdge.reversed </em>and <em>boolstate</em></li><li class=\"ql-indent-2\">if <em>newEdge.reversed </em>doesn't exist</li><li class=\"ql-indent-3\">if <em>newEgge.animated</em></li><li class=\"ql-indent-4\">apply forward-crawling dashed line animation</li><li class=\"ql-indent-3\">else</li><li class=\"ql-indent-4\">remove animation</li><li class=\"ql-indent-2\">else (if <em>newEdge.reversed</em> exists)</li><li class=\"ql-indent-3\">if <em>newEdge.animated</em></li><li class=\"ql-indent-4\">apply reverse-crawling dashed line animation</li><li class=\"ql-indent-3\">else</li><li class=\"ql-indent-4\">remove animation</li><li>onClick()</li><li class=\"ql-indent-1\">sets <em>boolstate</em> to its inverse, flipping it</li><li class=\"ql-indent-1\">sets <em>newEdge.animated</em> to <em>boolstate</em>'s inverse, as it will only update when the function is exited. If boolstate is false, sets <em>newEdge.animated</em> to <em>undefined</em></li></ul><p><br></p><h2>Components:</h2><ul><li>Button</li><li class=\"ql-indent-1\">calls <em>onClick</em></li><li class=\"ql-indent-1\">StraightSvg</li><li class=\"ql-indent-1\">DashedSvg</li></ul><p><br></p><h2>Properties:</h2><ul><li>newEdge</li><li class=\"ql-indent-1\">current <em>newEdge</em> state</li><li>setNewEdge</li><li class=\"ql-indent-1\">callback to modify the properties of <em>newEdge</em></li></ul><p><br></p><h2>Description:</h2><p>Toggles animation state of <em>newEdge</em>. If <em>reverse</em> flag<sub>1</sub> exists, applies a reversed animation on the svg of the edge. An svg animation is used because <em>reactflow </em>does not have an <em>animation</em> property for connection lines, but does have a <em>connectionLineStyle</em> property. Also applies a new <em>animated</em> property, which is carried over when the <em>newEdge</em> is used as a template for a new edge.</p><p><br></p><p>[1] see <strong>NewEdgeReverse</strong></p>"
       }
     },
     {
@@ -423,8 +423,8 @@
       "id": "1699252500670.83383",
       "type": "note",
       "position": {
-        "x": 854.5,
-        "y": 1508.375
+        "x": 722.5,
+        "y": 1445.575
       },
       "style": {
         "width": 365,
@@ -433,15 +433,15 @@
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>EdgesAnimationToggle</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>EdgesAnimationToggle</h1><p><br></p><h2>Variables:</h2><ul><li>boolstate</li><li class=\"ql-indent-1\">internal tracker for animation state</li><li class=\"ql-indent-1\">used for setting edges</li><li>title</li><li class=\"ql-indent-1\">ternary status of <em>selectedEdges</em> animation state</li><li class=\"ql-indent-1\">unused, debug artifact</li><li>SvgElement</li><li class=\"ql-indent-1\">display svg</li></ul><p><br></p><h2>Callbacks:</h2><ul><li>useEffect [<em>edges, selectedEdges, setBoolstate</em>]</li><li class=\"ql-indent-1\">tracks current state of selected <em>edges</em></li><li class=\"ql-indent-2\">if all of them are animated, (<em>boolstate</em>=true) and (<em>SvgElement</em>=DashedSvg)</li><li class=\"ql-indent-2\">if some of them are animated, (<em>boolstate</em>=false) and (<em>SvgElement</em>=DashedSlashStraighSvg)</li><li class=\"ql-indent-2\">if none of them are animated, (<em>boolstate</em>=false) and (<em>SvgElement</em>=StraightSvg)</li><li>onClick()</li><li class=\"ql-indent-1\">sets each selected <em>edge</em>'s <em>edge.animated</em> to true if <em>boolstate </em>is about to be set to true</li><li class=\"ql-indent-2\">confusing logic, but done this way because useState changes are only updated after exiting the function</li><li class=\"ql-indent-2\">if <em>boolstate</em> is about to be set to false, remove <em>edge.animated</em></li><li class=\"ql-indent-1\">sets <em>boolstate</em> to it's inverse</li><li class=\"ql-indent-1\">marks history</li></ul><p><br></p><h2>Components:</h2><ul><li>Button</li><li class=\"ql-indent-1\">calls <em>onClick</em></li><li class=\"ql-indent-1\"><em>SvgElement</em></li></ul><p><br></p><h2>Properties:</h2><ul><li>edges</li><li class=\"ql-indent-1\">Current state of <em>edges</em><sub>1</sub></li><li>setEdges</li><li class=\"ql-indent-1\">Callback to modify <em>edges</em></li><li>selectedEdges</li><li class=\"ql-indent-1\">Currently selected <em>edges</em></li><li>markHistory<sub>2</sub></li><li class=\"ql-indent-1\">Callback to mark history</li></ul><p><br></p><h2>Description:</h2><p>Toggles animation state on selected <em>edges</em>.</p><p><br></p><p>[1][2][3] see <strong>GraphEditor</strong></p>"
       }
     },
     {
       "id": "1699252545946.99674",
       "type": "note",
       "position": {
-        "x": 237.43749250412105,
-        "y": 1638.5146873631227
+        "x": 119.437492504121,
+        "y": 1595.7146873631227
       },
       "width": 277,
       "height": 100,
@@ -451,7 +451,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>NewEdgeReverse</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>NewEdgeReverse</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li>onClick()</li><li class=\"ql-indent-1\">Applies <em>reversed</em> flag if there isn't one already.</li><li class=\"ql-indent-1\">If <em>reversed</em> already exists, removes it.</li></ul><p><br></p><h2>Components:</h2><ul><li>Button</li><li class=\"ql-indent-1\">calls <em>onClick</em></li><li class=\"ql-indent-1\">Disabled when <em>newEdge.animated</em> isn't true.</li></ul><p><br></p><h2>Properties:</h2><ul><li>newEdge</li><li class=\"ql-indent-1\">current <em>newEdge </em>state</li><li>setNewEdge</li><li class=\"ql-indent-1\">callback to modify the properties of <em>newEdge</em></li></ul><p><br></p><h2>Description:</h2><p>Button that sets a <em>reverse</em> flag on <em>newEdge</em><sub><em>1</em></sub>. Intended for reversing the dotted line animation, and for swapping <em>source </em>and <em>target</em><sub><em>2</em></sub><em> </em>when placing.</p><p><br></p><p>[1][2] see <strong>GraphEditor</strong></p>"
       }
     },
     {
@@ -460,8 +460,8 @@
       "id": "1699252561703.63215",
       "type": "note",
       "position": {
-        "x": 874.9815296072254,
-        "y": 1642.1543947152556
+        "x": 750.9815296072254,
+        "y": 1605.3543947152557
       },
       "tool": "pointer",
       "style": {
@@ -470,7 +470,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>EdgesReverse</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>EdgesReverse</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li>onClick()</li><li class=\"ql-indent-1\">Swaps each selected edge's <em>source </em>and <em>target</em> properties.</li></ul><p><br></p><h2>Components:</h2><ul><li>Button</li><li class=\"ql-indent-1\">calls <em>onClick</em></li><li class=\"ql-indent-1\">Disabled if there aren't any animated edges where the effect would be visible</li></ul><p><br></p><h2>Properties:</h2><ul><li>edges</li><li class=\"ql-indent-1\">current state of <em>edges</em><sub><em>1</em></sub></li><li>setEdges</li><li class=\"ql-indent-1\">callback to modify <em>edges</em></li><li>selectedEdges</li><li class=\"ql-indent-1\">list of currently selected <em>edges</em></li><li>markHistory<sub>2</sub></li><li class=\"ql-indent-1\">callback to mark history</li></ul><p><br></p><h2>Description:</h2><p>Reverses direction of selected edges.</p>"
       }
     },
     {
@@ -479,25 +479,25 @@
       "id": "1699252593428.15642",
       "type": "note",
       "position": {
-        "x": 569.2352976451195,
-        "y": 1631.0661605969622
+        "x": 437.23529764511954,
+        "y": 1598.2661605969622
       },
+      "resizing": false,
+      "tool": "pointer",
       "style": {
         "width": 271,
         "height": 101
       },
-      "resizing": false,
-      "tool": "pointer",
       "data": {
-        "content": "<h1>BothEdgeDirection</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>BothEdgeDirection</h1><p><br></p><h2>Variables:</h2><ul><li>disable</li><li class=\"ql-indent-1\">determines whether to disable this component</li></ul><p><br></p><h2>Callbacks:</h2><ul><li>useEffect [<em>selectedNodes, selectedEdges</em>]</li><li class=\"ql-indent-1\">state manager for <em>disable</em></li><li class=\"ql-indent-1\">if <em>selectedNodes.length</em> != 1</li><li class=\"ql-indent-2\">it leads to logical confusion, as setting the flow direction would be noncongruent with itself, so disable component</li><li class=\"ql-indent-1\">if <em>selectedEdges.length == </em>0</li><li class=\"ql-indent-2\">Impossible state due to <strong>BothBar</strong><sub>1</sub> only ever being enabled when <em>selectedEdges.length</em> &gt; 0, but prevents a crash when deleting selection.</li><li class=\"ql-indent-1\">if any selected <em>edge</em> doesn't point to the currently selected <em>node</em></li><li class=\"ql-indent-2\">Logical confusion, disable component</li><li class=\"ql-indent-1\">if all checks pass, enable component</li><li>flowInward()</li><li class=\"ql-indent-1\">sets all selected <em>edge</em>s to point to the currently selected <em>node</em></li><li class=\"ql-indent-2\">if <em>edge</em> already points to <em>node</em>, skip</li><li class=\"ql-indent-1\">mark history</li><li>flowOutward()</li><li class=\"ql-indent-1\">sets all selected <em>edge</em>s to point away from the currently selected <em>node</em></li><li class=\"ql-indent-2\">if <em>edge</em> already points away from <em>node</em>, skip</li><li class=\"ql-indent-1\">mark history</li></ul><p><br></p><h2>Components:</h2><ul><li>ButtonGroup</li><li class=\"ql-indent-1\">Button</li><li class=\"ql-indent-2\">calls <em>flowInward</em></li><li class=\"ql-indent-1\">NoteSvg</li><li class=\"ql-indent-1\">Button</li><li class=\"ql-indent-2\">calls flowOutward</li></ul><p><br></p><h2>Properties:</h2><ul><li>setEdges</li><li class=\"ql-indent-1\">callback to modify <em>edges</em><sub>1</sub></li><li>selectedNodes</li><li class=\"ql-indent-1\">list of currently selected <em>nodes</em><sub><em>2</em></sub></li><li>selectedEdges</li><li class=\"ql-indent-1\">list of currently selected <em>edges</em></li><li>markHistory<sub>3</sub></li><li class=\"ql-indent-1\">callback to mark history</li></ul><p><br></p><h2>Description:</h2><p>Button group that, when one node and it's edges are selected, can reverse selected edges.</p><p><br></p><p>[1][2][3] see <strong>GraphEditor</strong></p>"
       }
     },
     {
       "id": "1699252618182.8138",
       "type": "note",
       "position": {
-        "x": 263.5316810942531,
-        "y": 1782.4347214976513
+        "x": 127.53168109425303,
+        "y": 1743.6347214976513
       },
       "width": 236,
       "height": 100,
@@ -507,7 +507,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>NewEdgeReset</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>NewEdgeReset</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li>onClick()</li><li class=\"ql-indent-1\">overwrites properties of <em>newEdge </em>to a styleless straight curve</li></ul><p><br></p><h2>Components:</h2><ul><li>Button</li><li class=\"ql-indent-1\">calls <em>onClick</em></li></ul><p><br></p><h2>Properties:</h2><ul><li>setNewEdge</li><li class=\"ql-indent-1\">callback to overwrite the properties of <em>newEdge</em></li></ul><p><br></p><h2>Description:</h2><p>Button that resets all style, animation, curve, and reverse properties of <em>newEdge</em><sub><em>1</em></sub></p><p><br></p><p>[1] see <strong>GraphEditor</strong></p>"
       }
     },
     {
@@ -516,8 +516,8 @@
       "id": "1699252632481.73713",
       "type": "note",
       "position": {
-        "x": 891.9874840790641,
-        "y": 1780.3942825258512
+        "x": 755.9874840790641,
+        "y": 1757.5942825258512
       },
       "tool": "pointer",
       "style": {
@@ -526,26 +526,81 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>EdgesReset</h1><p><br></p><h2>Variables</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description</h2><p><br></p>"
+        "content": "<h1>EdgesReset</h1><p><br></p><h2>Variables</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks</h2><ul><li>onClick()</li><li class=\"ql-indent-1\">Sets each selected edge to a sanitized version.</li><li class=\"ql-indent-1\">Does not unreverse, as that may have consequences with paired bi-directional edges.</li></ul><p><br></p><h2>Components:</h2><ul><li>Button</li><li class=\"ql-indent-1\">calls <em>onClick</em></li></ul><p><br></p><h2>Properties:</h2><ul><li>setEdges</li><li class=\"ql-indent-1\">callback to modify <em>edges</em><sub>1</sub></li><li>selectedEdges</li><li class=\"ql-indent-1\">array of selected <em>edges</em></li><li>markHistory<sub>2</sub></li><li class=\"ql-indent-1\">callback to mark history</li></ul><p><br></p><h2>Description</h2><p>Button that resets all style, animation, and curve properties of <em>selectedEdges</em><sub><em>3</em></sub></p><p><br></p><p>[1][2][3] see <strong>GraphEditor</strong></p>"
       }
     },
     {
-      "width": 174,
+      "width": 201,
       "height": 100,
       "id": "1699252657189.42933",
       "type": "note",
       "position": {
-        "x": 609.3566145605205,
-        "y": 1785.3492333995641
+        "x": 465.3566145605205,
+        "y": 1748.5492333995642
       },
       "style": {
-        "width": 174,
+        "width": 201,
         "height": 100
       },
       "resizing": false,
       "tool": "pointer",
       "data": {
-        "content": "<h1>BothReset</h1><p><br></p><h2>Variables</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description</h2>"
+        "content": "<h1>BothReset</h1><p><br></p><h2>Variables</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks</h2><ul><li>onClick()</li><li class=\"ql-indent-1\">removes all selected <em>node</em>s' <em>node.style.backgroundColor</em></li><li class=\"ql-indent-2\">if the removal of <em>node.style.backgroundColor </em>results in <em>node.style</em> being empty, removes <em>node.style</em></li><li class=\"ql-indent-1\">removes all selected <em>edge</em>s' <em>edge.animated, edge.style.stroke</em></li><li class=\"ql-indent-2\">if the removal of <em>edge.style.stroke</em>results in <em>edge.style </em>being empty, removes <em>edge.style</em></li><li class=\"ql-indent-3\">intended to just remove color and animation. Does not touch <em>edge.type </em>as it may be unwanted. Instead, selecting just the edges and resetting would be safer.</li><li class=\"ql-indent-1\">marks history</li></ul><p><br></p><h2>Components:</h2><ul><li>Button</li><li class=\"ql-indent-1\">calls <em>onClick</em></li></ul><p><br></p><h2>Properties:</h2><ul><li>setNodes</li><li class=\"ql-indent-1\">callback to change current state of <em>nodes</em><sub><em>1</em></sub></li><li>setEdges</li><li class=\"ql-indent-1\">callback to change current state of <em>edges</em><sub><em>2</em></sub></li><li>selectedNodes</li><li class=\"ql-indent-1\">list of currently selected <em>nodes</em></li><li>selectedEdges</li><li class=\"ql-indent-1\">list of currently selected <em>edges</em></li><li>markHistory<sub>3</sub></li><li class=\"ql-indent-1\">callback to mark history</li></ul><p><br></p><h2>Description:</h2><p>Button that resets all style, animation, and curve properties of selected <em>edges</em>, and all style properties of selected <em>nodes.</em></p><p><br></p><p>[1][2][3] see <strong>GraphEditor</strong></p>"
+      }
+    },
+    {
+      "width": 257,
+      "height": 100,
+      "id": "1699291227315.26488",
+      "type": "note",
+      "position": {
+        "x": -456.6738627282077,
+        "y": 1094.9770238042206
+      },
+      "style": {
+        "width": 257,
+        "height": 100
+      },
+      "resizing": false,
+      "tool": "pointer",
+      "data": {
+        "content": "<h1>CurveDropdown</h1><p><br></p><h2>Variables:</h2><ul><li>SvgElement</li></ul><p><br></p><h2>Callbacks:</h2><ul><li>useEffect [<em>type</em>]</li><li class=\"ql-indent-1\">Changes <em>SvgElement</em> based on <em>type </em></li></ul><p><br></p><h2>Components:</h2><ul><li>Dropdown</li><li class=\"ql-indent-1\">Dropdown.Toggle</li><li class=\"ql-indent-2\"><em>SvgElement</em></li><li class=\"ql-indent-3\">Display svg for selected type</li><li class=\"ql-indent-1\">Dropwdown.Menu</li><li class=\"ql-indent-2\">Dropdown.Item... (x3)</li><li class=\"ql-indent-3\">Button that calls <em>onClickCallback</em> with the specified type</li></ul><p><br></p><h2>Properties:</h2><ul><li>title</li><li class=\"ql-indent-1\">Hover text</li><li>onClickCallback</li><li class=\"ql-indent-1\">Callback for when an item from <strong>Dropdown.Menu</strong> is selected</li><li>type</li><li class=\"ql-indent-1\">Current type</li></ul><p><br></p><h2>Description:</h2><p>Abstracted component for selecting curve types.</p>"
+      }
+    },
+    {
+      "id": "1699294686459.55552",
+      "type": "note",
+      "position": {
+        "x": 1213.5527842165648,
+        "y": 1913.387211456079
+      },
+      "width": 138,
+      "height": 100,
+      "style": {
+        "width": 138,
+        "height": 100
+      },
+      "resizing": false,
+      "data": {
+        "content": "<h1>utils</h1><p><br></p><h2>Functions:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2><p>Utility functions for cleaner code.</p>"
+      }
+    },
+    {
+      "id": "1699296472957.44910",
+      "type": "note",
+      "position": {
+        "x": -556.7389357544446,
+        "y": 1452.575
+      },
+      "width": 347,
+      "height": 100,
+      "style": {
+        "width": 347,
+        "height": 100
+      },
+      "resizing": false,
+      "data": {
+        "content": "<h2>EdgeAnimationKeyframes.css</h2><p>Defines the forward-crawling and reverse-crawling vector animations for <strong>NewEdgeAnimationToggle</strong>.</p>"
       }
     }
   ],
@@ -780,6 +835,90 @@
       "id": "1699252657189.86861",
       "source": "1699251862141.32228",
       "target": "1699252657189.42933"
+    },
+    {
+      "type": "step",
+      "id": "1699291242231.73578",
+      "source": "1699291227315.26488",
+      "target": "1699252289037.38367"
+    },
+    {
+      "type": "step",
+      "id": "1699291243831.13971",
+      "source": "1699291227315.26488",
+      "target": "1699252341536.99116"
+    },
+    {
+      "type": "step",
+      "id": "1699294772127.80810",
+      "source": "1699252289037.38367",
+      "target": "1699252289037.38367"
+    },
+    {
+      "type": "step",
+      "id": "1699294785116.6615",
+      "source": "1699252113990.40984",
+      "target": "1699294686459.55552"
+    },
+    {
+      "type": "step",
+      "id": "1699294792132.36192",
+      "source": "1699252207854.98899",
+      "target": "1699294686459.55552"
+    },
+    {
+      "type": "step",
+      "id": "1699294795429.2819",
+      "source": "1699252222599.78529",
+      "target": "1699294686459.55552"
+    },
+    {
+      "type": "step",
+      "id": "1699294828669.91206",
+      "source": "1699294686459.55552",
+      "target": "1699252341536.99116"
+    },
+    {
+      "type": "step",
+      "id": "1699294830380.54229",
+      "source": "1699294686459.55552",
+      "target": "1699252500670.83383"
+    },
+    {
+      "type": "step",
+      "id": "1699294831857.61321",
+      "source": "1699294686459.55552",
+      "target": "1699252561703.63215"
+    },
+    {
+      "type": "step",
+      "id": "1699294833623.86944",
+      "source": "1699294686459.55552",
+      "target": "1699252632481.73713"
+    },
+    {
+      "type": "step",
+      "id": "1699294851344.8768",
+      "source": "1699294686459.55552",
+      "target": "1699252593428.15642"
+    },
+    {
+      "type": "step",
+      "id": "1699294852895.32492",
+      "source": "1699294686459.55552",
+      "target": "1699252657189.42933"
+    },
+    {
+      "type": "step",
+      "id": "1699296529873.7614",
+      "source": "1699296472957.44910",
+      "target": "1699252478436.23482"
+    },
+    {
+      "type": "straight",
+      "id": "1699303028442.94375",
+      "source": "1699251862141.32228",
+      "target": "1699252500670.83383"
     }
   ]
 }
