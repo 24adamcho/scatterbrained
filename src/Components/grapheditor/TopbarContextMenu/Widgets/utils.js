@@ -53,7 +53,10 @@ export const allDataSimilar = (data, selectedData, propertyTest) => {
     if(selectedData.length <= 0) return false;
     if(selectedData.length === 1) return true;
 
-    const target = getById(data, selectedData[0].id)[0][propertyTest];
+    const e = getById(data, selectedData[0].id)[0];
+    if(e === undefined) return false;
+
+    const target = e[propertyTest];
 
     //complete gobbeldeygook
     //basically,
