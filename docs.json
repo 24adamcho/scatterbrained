@@ -57,7 +57,7 @@
       "type": "note",
       "position": {
         "x": 710,
-        "y": 209.5
+        "y": 219.8669887811442
       },
       "width": 191,
       "height": 100,
@@ -99,15 +99,15 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>GraphEditor</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>GraphEditor</h1><p><br></p><h2>Variables:</h2><ul><li>nodeTypes</li><li class=\"ql-indent-1\">list of node types<sub>1</sub></li><li>reactFlowWrapper</li><li class=\"ql-indent-1\">element reference to flowInterfaceWrapper</li><li>nodes</li><li class=\"ql-indent-1\">current nodes</li><li>edges</li><li class=\"ql-indent-1\">current edges</li><li>element</li><li class=\"ql-indent-1\">current state of the undo history manager<sub>2</sub></li><li>past</li><li class=\"ql-indent-1\">unused</li><li class=\"ql-indent-1\">list of all previous states of history manager</li><li>marked</li><li class=\"ql-indent-1\">bool to check if the current modification to <em>nodes </em>or <em>edges</em> should be catloged in the history manager</li><li>newEdge</li><li class=\"ql-indent-1\">connection line and data for the new edge to be placed if connection is valid</li><li>nodeId</li><li class=\"ql-indent-1\">currently selected node</li><li>prevNodeId</li><li class=\"ql-indent-1\">previously selected node</li><li>selectedNodes</li><li class=\"ql-indent-1\">list of selected nodes</li><li>selectedEdges</li><li class=\"ql-indent-1\">list of selected edges</li><li>connectingNodeId</li><li class=\"ql-indent-1\">source node id of connecting line<sub>3</sub></li><li>menu</li><li class=\"ql-indent-1\">current right click context menu data</li><li>clipboard</li><li class=\"ql-indent-1\">copy/cut/paste buffer</li></ul><p><br></p><h2>Callbacks:</h2><ul><li>project</li><li class=\"ql-indent-1\">reactflow function to project absolute window coordinates to the <strong>ReactFlow</strong> pane</li><li>fitview</li><li class=\"ql-indent-1\">reactflow function to fit as much into the <strong>ReactFlow</strong> pane as possible</li><li>zoomTo</li><li class=\"ql-indent-1\">reactflow function to set the current zoom level</li><li>setNodes</li><li class=\"ql-indent-1\">sets <em>nodes</em> to the passed array</li><li>onNodesChange</li><li class=\"ql-indent-1\">half undocumented</li><li class=\"ql-indent-1\">presumably projects the modifications to <em>nodes</em>? unknown</li><li>setEdges</li><li class=\"ql-indent-1\">sets <em>edges</em>to the passed array</li><li>onEdgesChange</li><li class=\"ql-indent-1\">see <em>onNodesChange</em></li><li>setElement</li><li class=\"ql-indent-1\">pushes data into the history manager</li><li>undo</li><li class=\"ql-indent-1\">pops off the previous state of the history manager and sets <em>element </em>to it</li><li>redo</li><li class=\"ql-indent-1\">pops off the next state of the history manager and sets <em>element </em>to it</li><li>reset</li><li class=\"ql-indent-1\">clears all history in the history manager</li><li>setMark</li><li class=\"ql-indent-1\">changes <em>mark</em></li><li>markHistory</li><li class=\"ql-indent-1\">function to mark history for history manager cataloging</li><li>useEffect [<em>nodes, edges, marked, setElement</em>]</li><li class=\"ql-indent-1\">pushes a new state the history manager if the change to <em>nodes </em>or <em>edges </em>was marked for history<sub>4</sub></li><li>useEffect [<em>setNodes, setEdges, element</em>]</li><li class=\"ql-indent-1\">changes <em>ndoes</em> and <em>edges </em>to reflect the current state of history</li><li class=\"ql-indent-1\">in the case of redundant state, essentially sets them to themselves</li><li>undoWrapper</li><li class=\"ql-indent-1\">wrapper for <em>undo</em></li><li>redoWrapper</li><li class=\"ql-indent-1\">ditto</li><li>resetWrapper</li><li class=\"ql-indent-1\">ditto</li><li>setNewEdge</li><li class=\"ql-indent-1\">modifies <em>newEdge</em></li><li>sanitizeNewEdge</li><li class=\"ql-indent-1\">sanitizes <em>newEdge</em></li><li class=\"ql-indent-2\">removes <em>svgWrapperStyle</em><sub>5</sub><em> </em>and <em>reversed</em><sub>6</sub>, as they do not apply to new edges</li><li>setNodeId</li><li class=\"ql-indent-1\">sets the currently selected node's id</li><li>setPrevNodeId</li><li class=\"ql-indent-1\">sets the previously selected node's id</li><li>setSelectedNodes</li><li class=\"ql-indent-1\">change selected <em>nodes </em>array</li><li>setSelectedEdges</li><li class=\"ql-indent-1\">change selected <em>edges </em>array</li><li>useEffect [<em>tool, setNodes, element</em>]</li><li class=\"ql-indent-1\">patch to update <em>nodes</em> and <em>edges</em>' <em>tool</em> property when using the history manager</li><li>useEffect [<em>nodes.length, edges.length</em>]</li><li class=\"ql-indent-1\">change node count for <strong>BottomBar</strong><sub><strong>7</strong></sub></li><li>onConnect(params)</li><li class=\"ql-indent-1\">adds new edge between connecting nodes</li><li>onConnectStart(_, node)</li><li class=\"ql-indent-1\">sets <em>connectingNodeId</em> to the connection source</li><li>onConnectEnd(params)</li><li class=\"ql-indent-1\">if the connection was made in the pointer tool and the user dropped it on the pane instead of another node, adds a new node<sub>3</sub></li><li>addNote(data)</li><li class=\"ql-indent-1\">adds a new node with <em>data</em> as its contents</li><li class=\"ql-indent-1\">marks history</li><li>addNoteIfBlanked(data)</li><li class=\"ql-indent-1\">adds a new node if no node is selected</li><li>changeNoteId(mouseEvent, node)</li><li class=\"ql-indent-1\">changes current node id and <strong>TextEditor</strong> contents<sub>8</sub></li><li>onNodeClick(mouseEvent, node)</li><li class=\"ql-indent-1\">special event logic for shift clicking vs regular clicking</li><li>clearEditor</li><li class=\"ql-indent-1\">clears <strong>TextEditor</strong><sub>8</sub> and resets <em>nodeId</em></li><li>setMenu</li><li class=\"ql-indent-1\">sets the current context menu metadata</li><li>onPaneContextMenu(mouseEvent)</li><li class=\"ql-indent-1\">event for context menu when right-clicking the B<strong>ackground </strong>pane of <strong>ReactFlow</strong></li><li>useOnTouch</li><li class=\"ql-indent-1\">sets <em>menu</em> to null</li><li>onPaneClick</li><li class=\"ql-indent-1\">sets <em>menu</em> to null, clears editor, and clears selection</li><li>onSelectionChange(params)</li><li class=\"ql-indent-1\">callback to set selected nodes and edges<sub>9</sub></li><li>useEffect [<em>selectedEdges</em>]</li><li class=\"ql-indent-1\">selects edges that go in opposite directions to the same nodes</li><li class=\"ql-indent-1\">may need to be removed</li><li>onNodeDoubleClick(_, node)</li><li class=\"ql-indent-1\">highlights node and all connected edges on double click</li><li>selectAll(event)</li><li class=\"ql-indent-1\">selects all nodes and edges</li><li>insertEvent</li><li class=\"ql-indent-1\">inserts a node</li><li>setClipboard</li><li class=\"ql-indent-1\">sets clipboard buffer</li><li>copy</li><li class=\"ql-indent-1\">copies selected nodes and edges</li><li>cut</li><li class=\"ql-indent-1\">copies and removes selected nodes and edges</li><li class=\"ql-indent-1\">marks history</li><li>paste</li><li class=\"ql-indent-1\">IF: only one edge copied, multiple nodes selected</li><li class=\"ql-indent-2\">repeats that edge multiple times between the last selected node and the other nodes</li><li class=\"ql-indent-1\">otherwise, copy nodes and edges with new ids</li><li class=\"ql-indent-2\">if there's an edge connecting to an uncopied node, duplicate that edge</li><li class=\"ql-indent-1\">marks history</li></ul><h3><strong>Other sorts:</strong></h3><ul><li>React.useImperativeHandle(ref)</li><li class=\"ql-indent-1\">editNote(content)</li><li class=\"ql-indent-2\">sets the currently selected node's <em>data.content</em> to <em>content</em><sub>8</sub></li><li class=\"ql-indent-1\">getNodes<sub>10</sub></li><li class=\"ql-indent-2\">returns <em>nodes</em></li><li class=\"ql-indent-1\">getEdges<sub>10</sub></li><li class=\"ql-indent-2\">returns <em>edges</em></li><li class=\"ql-indent-1\">setNewNodes(nodeList)<sub>10</sub></li><li class=\"ql-indent-2\">directly sets the values of <em>nodes</em></li><li class=\"ql-indent-1\">setNewEdges(edgeList)<sub>10</sub></li><li class=\"ql-indent-2\">directly sets the values of <em>edges</em></li><li class=\"ql-indent-1\">resetHistory</li><li class=\"ql-indent-2\">calls <em>resetWrapper</em></li></ul><p><br></p><h2>Components:</h2><ul><li>div flowInterfaceWrapper</li><li class=\"ql-indent-1\">Button addNoteButton</li><li class=\"ql-indent-2\">calls <em>addNote, clearEditor, changeNoteId</em></li><li class=\"ql-indent-1\">div toolsetOverlay</li><li class=\"ql-indent-2\">SidebarContextMenu</li><li class=\"ql-indent-2\">TopbarContextMenu</li><li class=\"ql-indent-1\">ReactFlow</li><li class=\"ql-indent-2\">calls <em>setIsSaved, onNodesChange, onNodeClick, onNodeDoubleClick, changeNoteId, markHistory, clearEditor, onConnect, onConnectStart, onConnectEnd, onPaneClick, onSelectionChange, onPaneContextMenu</em></li><li class=\"ql-indent-2\">Reference: <a href=\"https://reactflow.dev/api-reference\" rel=\"noopener noreferrer\" target=\"_blank\">https://reactflow.dev/api-reference</a></li><li class=\"ql-indent-1\">Background</li><li class=\"ql-indent-1\">div controlsWrapper</li><li class=\"ql-indent-2\">Controls</li><li class=\"ql-indent-2\">Minimap</li><li class=\"ql-indent-1\">PaneContext</li><li class=\"ql-indent-2\">enabled if <em>menu </em>is not null &amp;&amp; menu.type == 'pane'</li><li class=\"ql-indent-2\">calls <em>onPaneClick</em></li></ul><p><br></p><h2>Properties:</h2><ul><li>propNodes</li><li class=\"ql-indent-1\">initial setting for <em>nodes</em></li><li>propEdges</li><li class=\"ql-indent-1\">initial setting for <em>edges</em></li><li>editTextRef</li><li class=\"ql-indent-1\">ref handle for <strong>TextEditor</strong><sub>8</sub></li><li>subcontentWidth</li><li class=\"ql-indent-1\">width of this element<sub>11</sub></li><li>setNodeCount</li><li class=\"ql-indent-1\">callback to set <em>nodeCount</em><sub>7</sub></li><li>setEdgeCount</li><li class=\"ql-indent-1\">callback to set <em>edgeCount</em><sub>7</sub>﻿</li><li>enableMiniMap</li><li class=\"ql-indent-1\">bool to enable <strong>MiniMap</strong></li><li>enableGridSnap</li><li class=\"ql-indent-1\">bool to enable grid snapping for <strong>ReactFlow</strong></li><li>bgstyle</li><li class=\"ql-indent-1\">current <strong>Background </strong>style</li><li>tool<sub>12</sub></li><li class=\"ql-indent-1\">currently selected tool</li><li>setTool</li><li class=\"ql-indent-1\">callback to set <em>tool</em></li><li>width<sub>13</sub></li><li class=\"ql-indent-1\">width of <strong>div toolsetOverlay</strong></li><li>keyBinds<sub>13</sub></li><li class=\"ql-indent-1\">list of control keybinds</li><li>setIsSaved<sub>10</sub></li><li>ref</li><li class=\"ql-indent-1\">reference to this component for sending functions upward in the object hierarchy</li><li class=\"ql-indent-1\">see Components-&gt;Other sorts-&gt;React.useImperativeHandle(ref)</li></ul><p><br></p><h2>Description:</h2><p><br></p><p>[1] see <strong>NoteNode</strong></p><p>[2] <a href=\"https://github.com/xplato/useUndoable\" rel=\"noopener noreferrer\" target=\"_blank\">useUndoable</a></p><p>related functions and values:</p><ul><li>past</li><li>marked</li><li>setElement</li><li>undo</li><li>redo</li><li>reset</li><li>setMark</li><li>markHistory</li><li>useEffect [<em>nodes, edges, marked, setElement</em>]</li><li>useEffect [<em>setNodes, setEdges, element</em>]</li><li>undoRapper</li><li>redoWrapper</li><li>resetWrapper</li></ul><p>[3] see <a href=\"https://reactflow.dev/examples/nodes/add-node-on-edge-drop\" rel=\"noopener noreferrer\" target=\"_blank\">reactflow Add Node ON Edge Drop example</a></p><p>[4] see <em>marked</em></p><p>[5] see <strong>NewEdgeAnimationToggle</strong></p><p>[6] see <strong>NewEdgeReverse</strong></p><p>[7] see <strong>BottomBar</strong></p><p>[8] see <strong>TextEditor</strong></p><p>[9] see <strong>TopbarContextMenu</strong></p><p>[10] see <strong>TopBar</strong></p><p>[11] see <strong>App</strong>, <strong>Split</strong></p><p>[12] see <strong>SidebarContextMenu, App</strong></p><p>[13] see <strong>App</strong></p>"
       }
     },
     {
       "id": "1699250923417.98372",
       "type": "note",
       "position": {
-        "x": 674.835365462425,
-        "y": 395.1097563583834
+        "x": 915.964145231631,
+        "y": 373.2238911537455
       },
       "style": {
         "backgroundColor": "rgb(74, 84, 224)",
@@ -156,25 +156,6 @@
       "tool": "pointer",
       "data": {
         "content": "<h1>TopbarContextMenu</h1><p><br></p><h2>Variables:</h2><ul><li>selectionType</li><li class=\"ql-indent-1\">see <em>useEffect </em>[<em>selectedNodes.length, selectedEdges.length</em>]</li></ul><p><br></p><h2>Callbacks:</h2><ul><li>useEffect [<em>selectedNodes.length, selectedEdges.length</em>]</li><li class=\"ql-indent-1\">shorthand evaluation for what kind of selection has been made.</li><li class=\"ql-indent-2\">Possible evaluations:</li><li class=\"ql-indent-3\">'nodes'</li><li class=\"ql-indent-3\">'edges'</li><li class=\"ql-indent-3\">'both'</li><li class=\"ql-indent-3\">'none'</li><li>useEffect [<em>tool</em>]</li><li class=\"ql-indent-1\">quick fix for unselecting items by changing tools causing weird behaviour</li></ul><p><br></p><h2>Components:</h2><ul><li>div topbarContextMenu</li><li class=\"ql-indent-1\"><em>tool </em>== 'pointer'<sub>1</sub></li><li class=\"ql-indent-2\"><em>selectionType</em> == 'nodes'</li><li class=\"ql-indent-3\">NodesBar<sub>2</sub></li><li class=\"ql-indent-2\"><em>selectionType</em> == 'edges'</li><li class=\"ql-indent-3\">EdgesBar<sub>3</sub></li><li class=\"ql-indent-2\"><em>selectionType</em> == 'both'</li><li class=\"ql-indent-3\">BothBar<sub>4</sub></li><li class=\"ql-indent-1\"><em>tool == </em>'line'</li><li class=\"ql-indent-2\">LineToolBar<sub>5</sub></li></ul><p><br></p><h2>Properties:</h2><ul><li>nodes</li><li class=\"ql-indent-1\">current state of <em>nodes</em><sub><em>6</em></sub></li><li>edges</li><li class=\"ql-indent-1\">current state of <em>edges</em><sub><em>7</em></sub></li><li>setNodes</li><li class=\"ql-indent-1\">callback to modify <em>nodes</em></li><li>setEdges</li><li class=\"ql-indent-1\">callback to modify <em>edges</em></li><li>selectedNodes</li><li class=\"ql-indent-1\">list of selected <em>nodes</em></li><li>selectedEdges</li><li class=\"ql-indent-1\">list of selected <em>edges</em></li><li>tool</li><li class=\"ql-indent-1\">current <em>tool</em><sub><em>8</em></sub></li><li>newEdge</li><li class=\"ql-indent-1\">current state of <em>newEdge</em><sub><em>9</em></sub></li><li>setNewEdge</li><li class=\"ql-indent-1\">callback to modify <em>newEdge</em></li><li>markHistory<sub>10</sub></li><li class=\"ql-indent-1\">callback to mark history</li></ul><p><br></p><h2>Description:</h2><p><br></p><p><br></p><p>[1][8] see <strong>SidebarContextMenu</strong></p><p>[2] see <strong>NodeBar</strong></p><p>[3] see <strong>EdgeBar</strong></p><p>[4] see <strong>BothBar</strong></p><p>[5] see <strong>NewEdgeBar</strong></p><p>[6][7][9][10] see <strong>GraphEditor</strong></p>"
-      }
-    },
-    {
-      "width": 328,
-      "height": 100,
-      "id": "1699251463284.34137",
-      "type": "note",
-      "position": {
-        "x": 638.9117658817065,
-        "y": 638.8161755887203
-      },
-      "style": {
-        "width": 328,
-        "height": 100
-      },
-      "resizing": false,
-      "tool": "pointer",
-      "data": {
-        "content": "<h1>RightclickContextMenu</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
       }
     },
     {
@@ -256,8 +237,8 @@
       "id": "1699251873730.11856",
       "type": "note",
       "position": {
-        "x": 769.1728101382512,
-        "y": 767.5441170591467
+        "x": 642.4651694798218,
+        "y": 461.1420041942174
       },
       "width": 207,
       "height": 100,
@@ -267,7 +248,7 @@
       },
       "resizing": false,
       "data": {
-        "content": "<h1>PaneContext</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>PaneContext</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li>newNote</li><li class=\"ql-indent-1\">function to add note at the mouse position</li></ul><p><br></p><h2>Components:</h2><ul><li>div context-menu</li><li class=\"ql-indent-1\">offset wrapper for right click menu</li><li class=\"ql-indent-1\">button context-menu-button</li><li class=\"ql-indent-2\">calls <em>newNote</em></li></ul><p><br></p><h2>Properties:</h2><ul><li>top, left, bottom, right</li><li class=\"ql-indent-1\">offset info</li><li>setNodes</li><li class=\"ql-indent-1\">callback to modify <em>nodes</em><sub>1</sub></li><li>mouseEvent</li><li class=\"ql-indent-1\">the mouse event that resulted in this element being loaded<sub>2</sub></li><li>project</li><li class=\"ql-indent-1\">callback to reinterpret coordinates onto <strong>GraphEditor</strong></li><li>getTimeId</li><li class=\"ql-indent-1\">callback to get a random id</li><li>tool</li><li class=\"ql-indent-1\">currently selected tool</li><li>markHistory</li><li class=\"ql-indent-1\">marks history</li><li>...props</li><li class=\"ql-indent-1\">misc<sub>3</sub></li></ul><p><br></p><h2>Description:</h2><p>Context menu for right clicking on the background of <strong>GraphEditor</strong>.</p><p><br></p><p>[1] see <strong>GraphEditor</strong></p><p>[2] see <strong>GraphEditor</strong>-&gt;Callbacks-&gt;<em>project</em></p><p>[3] see <strong>GraphEditor</strong>-&gt;Callbacks-&gt;<em>onPaneContextMenu</em></p>"
       }
     },
     {
@@ -602,6 +583,19 @@
       "data": {
         "content": "<h2>EdgeAnimationKeyframes.css</h2><p>Defines the forward-crawling and reverse-crawling vector animations for <strong>NewEdgeAnimationToggle</strong>.</p>"
       }
+    },
+    {
+      "id": "1699383781360.2133",
+      "type": "note",
+      "position": {
+        "x": -54.13069045351386,
+        "y": 392.26344734945377
+      },
+      "width": 130,
+      "height": 100,
+      "data": {
+        "content": "<h1>NoteNode</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2><p><br></p><p><br></p>"
+      }
     }
   ],
   "edges": [
@@ -676,12 +670,6 @@
     },
     {
       "type": "straight",
-      "id": "1699251748398.75951",
-      "source": "1699250920271.55875",
-      "target": "1699251463284.34137"
-    },
-    {
-      "type": "straight",
       "id": "1699251750254.34826",
       "source": "1699250920271.55875",
       "target": "1699250638486.71929"
@@ -715,12 +703,6 @@
       "id": "1699251862141.16728",
       "source": "1699251457332.19575",
       "target": "1699251862141.32228"
-    },
-    {
-      "type": "straight",
-      "id": "1699251875851.55238",
-      "source": "1699251873730.11856",
-      "target": "1699251463284.34137"
     },
     {
       "type": "straight",
@@ -919,6 +901,18 @@
       "id": "1699303028442.94375",
       "source": "1699251862141.32228",
       "target": "1699252500670.83383"
+    },
+    {
+      "type": "straight",
+      "id": "1699305006142.91064",
+      "source": "1699250920271.55875",
+      "target": "1699251873730.11856"
+    },
+    {
+      "type": "straight",
+      "id": "1699383785480.8278",
+      "source": "1699250920271.55875",
+      "target": "1699383781360.2133"
     }
   ]
 }
