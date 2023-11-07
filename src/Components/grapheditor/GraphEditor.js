@@ -364,7 +364,7 @@ const GraphEditor = forwardRef((
 
     const onNodeClick = (mouseEvent, node) => {
         changeNoteId(mouseEvent, node);
-        if(!mouseEvent.shiftKey) {
+        if(!mouseEvent.shiftKey) {  //TODO: this is not congruent with keyBinds.select, leading to dumb behaviour if the user modifies keybinds
             setNodes(nds=>nds.map(nd=>{
                 if(nd.id === node.id)
                     nd.selected = true;
