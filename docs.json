@@ -49,7 +49,7 @@
       "width": 130,
       "height": 100,
       "data": {
-        "content": "<h1>TopBar</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2>"
+        "content": "<h1>TopBar</h1><p><br></p><h2>Variables:</h2><ul><li>nightmodeStateText</li><li class=\"ql-indent-1\">button text variable</li></ul><p><br></p><h2>Callbacks:</h2><ul><li>nightmodeButton</li><li class=\"ql-indent-1\">changes light/night button text</li><li class=\"ql-indent-1\">calls <em>props.changeStyle</em><sub>1</sub></li><li>openFile</li><li class=\"ql-indent-1\">async file reference from client</li><li>open</li><li class=\"ql-indent-1\">reads file contents and sets it to <strong>GraphEditor</strong>'s data<sub>2</sub></li><li>saveFile(blob)</li><li class=\"ql-indent-1\">async save file to client</li><li>save</li><li class=\"ql-indent-1\">saves the contents of <strong>GraphEditor</strong> to file<sub>2</sub></li></ul><h3><strong>Other sorts:</strong></h3><ul><li>useKey(key, cb)</li><li class=\"ql-indent-1\">function to create a global document hook to replace default ctrl-s and ctrl-o behavior</li></ul><p><br></p><h2>Components:</h2><ul><li>all of these components are from <em>react-bootstrap</em></li><li class=\"ql-indent-1\">Navbar</li><li class=\"ql-indent-2\">Container</li><li class=\"ql-indent-3\">Nav</li><li class=\"ql-indent-4\">NavDropdown 'File'</li><li class=\"ql-indent-5\">NavDropdown.Item</li><li class=\"ql-indent-6\">Open File</li><li class=\"ql-indent-6\">calls <em>open</em></li><li class=\"ql-indent-5\">NavDropdown.Item</li><li class=\"ql-indent-6\">Save File</li><li class=\"ql-indent-6\">calls <em>save</em></li><li class=\"ql-indent-4\">NavDropdown 'Edit'</li><li class=\"ql-indent-5\">NavDropdown.Item</li><li class=\"ql-indent-6\">Snap To Grid</li><li class=\"ql-indent-6\">calls <em>props.changeGridSnapState</em></li><li class=\"ql-indent-4\">NavDropdown 'View'</li><li class=\"ql-indent-5\">NavDropdown.Item</li><li class=\"ql-indent-6\"><em>nightmodeStateText</em></li><li class=\"ql-indent-6\">calls <em>nightmodeButton</em></li><li class=\"ql-indent-5\">NavDropdown.Item</li><li class=\"ql-indent-6\">Mini Map</li><li class=\"ql-indent-6\">calls <em>props.changeMiniMapState</em></li><li class=\"ql-indent-5\">NavDropdown 'Change background'</li><li class=\"ql-indent-6\">NavDropdown.Item</li><li class=\"ql-indent-7\">Crosses</li><li class=\"ql-indent-7\">calls <em>props.setBgstyle('cross')</em></li><li class=\"ql-indent-6\">NavDropdown.Item</li><li class=\"ql-indent-7\">Lines</li><li class=\"ql-indent-7\">calls <em>props.setBgstyle('lines')</em></li><li class=\"ql-indent-6\">NavDropdown.Item</li><li class=\"ql-indent-7\">None</li><li class=\"ql-indent-7\">calls <em>props.setBgstyle('dots')</em></li><li class=\"ql-indent-8\">normally supposed to set it to a dots style but it doesn't work for whatever reason. But; no markers is fine too.</li><li class=\"ql-indent-3\">Navbar.Brand</li><li class=\"ql-indent-4\">Scatterbrained</li></ul><p><br></p><h2>Properties:</h2><ul><li>props</li><li class=\"ql-indent-1\">changeStyle</li><li class=\"ql-indent-2\">function to change global css :root palette variables<sub>1</sub></li><li class=\"ql-indent-1\">nodeRef<sub>2</sub></li><li class=\"ql-indent-2\">reference to <strong>GraphEditor</strong> functions</li><li class=\"ql-indent-1\">setTitle</li><li class=\"ql-indent-2\">function to change document title</li><li class=\"ql-indent-1\">title</li><li class=\"ql-indent-1\">changeMiniMapState</li><li class=\"ql-indent-2\">function to change mini map enabling boolean<sub>1</sub></li><li class=\"ql-indent-1\">changeGridSnapState</li><li class=\"ql-indent-2\">function to change grid snap enabling boolean<sub>1</sub></li><li class=\"ql-indent-1\">setBgstyle</li><li class=\"ql-indent-2\">function to change background style<sub>1</sub></li><li class=\"ql-indent-1\">tool</li><li class=\"ql-indent-2\">current tool state<sub>3</sub></li><li class=\"ql-indent-1\">setIsSaved</li><li class=\"ql-indent-2\">sets current save state flag<sub>1</sub></li></ul><p><br></p><h2>Description:</h2><p>Top bar toolbar for opening and saving files, and changing aspects of the display.</p><p><br></p><p>[1] see <strong>App</strong></p><p>[2] see <strong>GraphEditor</strong></p><p>[3] see <strong>SidebarContextMenu</strong></p>"
       }
     },
     {
@@ -578,10 +578,26 @@
         "x": -54.13069045351386,
         "y": 392.26344734945377
       },
-      "width": 130,
+      "width": 183,
       "height": 100,
+      "style": {
+        "width": 183,
+        "height": 100
+      },
+      "resizing": false,
       "data": {
-        "content": "<h1>NoteNode</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2><p><br></p><p><br></p>"
+        "content": "<h1>NoteNode</h1><p><br></p><h2>Variables:</h2><ul><li><br></li></ul><p><br></p><h2>Callbacks:</h2><ul><li><br></li></ul><p><br></p><h2>Components:</h2><ul><li><br></li></ul><p><br></p><h2>Properties:</h2><ul><li><br></li></ul><p><br></p><h2>Description:</h2><p><br></p>"
+      }
+    },
+    {
+      "id": "1699995900067.29400",
+      "type": "note",
+      "position": {
+        "x": 43.346976405862364,
+        "y": 216.0472148917283
+      },
+      "data": {
+        "content": "<h1>utils</h1><p><br></p><h2>Functions:</h2><ul><li>sanitizeEdgesFromStorage(data, props)</li><li class=\"ql-indent-1\">cleans edges of unnecessary data for saving</li><li>sanitizeNodesFromStorage(data, props)</li><li class=\"ql-indent-1\">cleans nodes of unnecessary data for saving</li><li>sanitizeEdgesForStorage(props)</li><li class=\"ql-indent-1\">adds data necessary for displaying edges</li><li>sanitizeNodesForStorage(props)</li><li class=\"ql-indent-1\">adds data necessary for displaying nodes</li></ul><p><br></p><h2>Description:</h2><p>Utility functions for cleaner code.</p><p><br></p>"
       }
     }
   ],
@@ -888,6 +904,18 @@
       "id": "1699995436156.28250",
       "source": "1699250638486.71929",
       "target": "1699250923417.98372"
+    },
+    {
+      "type": "straight",
+      "id": "1699995893996.26986",
+      "source": "1699250791239.69913",
+      "target": "1699250791239.69913"
+    },
+    {
+      "type": "step",
+      "id": "1699995900067.29400",
+      "source": "1699250791239.69913",
+      "target": "1699995900067.29400"
     }
   ]
 }
