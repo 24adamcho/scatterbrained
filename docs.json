@@ -48,6 +48,9 @@
       },
       "width": 130,
       "height": 100,
+      "style": {
+        "backgroundColor": "rgb(159, 96, 208)"
+      },
       "data": {
         "content": "<h1>TopBar</h1><p><br></p><h2>Variables:</h2><ul><li>nightmodeStateText</li><li class=\"ql-indent-1\">button text variable</li></ul><p><br></p><h2>Callbacks:</h2><ul><li>nightmodeButton</li><li class=\"ql-indent-1\">changes light/night button text</li><li class=\"ql-indent-1\">calls <em>props.changeStyle</em><sub>1</sub></li><li>openFile</li><li class=\"ql-indent-1\">async file reference from client</li><li>open</li><li class=\"ql-indent-1\">reads file contents and sets it to <strong>GraphEditor</strong>'s data<sub>2</sub></li><li>saveFile(blob)</li><li class=\"ql-indent-1\">async save file to client</li><li>save</li><li class=\"ql-indent-1\">saves the contents of <strong>GraphEditor</strong> to file<sub>2</sub></li></ul><h3><strong>Other sorts:</strong></h3><ul><li>useKey(key, cb)</li><li class=\"ql-indent-1\">function to create a global document hook to replace default ctrl-s and ctrl-o behavior</li></ul><p><br></p><h2>Components:</h2><ul><li>all of these components are from <em>react-bootstrap</em></li><li class=\"ql-indent-1\">Navbar</li><li class=\"ql-indent-2\">Container</li><li class=\"ql-indent-3\">Nav</li><li class=\"ql-indent-4\">NavDropdown 'File'</li><li class=\"ql-indent-5\">NavDropdown.Item</li><li class=\"ql-indent-6\">Open File</li><li class=\"ql-indent-6\">calls <em>open</em></li><li class=\"ql-indent-5\">NavDropdown.Item</li><li class=\"ql-indent-6\">Save File</li><li class=\"ql-indent-6\">calls <em>save</em></li><li class=\"ql-indent-4\">NavDropdown 'Edit'</li><li class=\"ql-indent-5\">NavDropdown.Item</li><li class=\"ql-indent-6\">Snap To Grid</li><li class=\"ql-indent-6\">calls <em>props.changeGridSnapState</em></li><li class=\"ql-indent-4\">NavDropdown 'View'</li><li class=\"ql-indent-5\">NavDropdown.Item</li><li class=\"ql-indent-6\"><em>nightmodeStateText</em></li><li class=\"ql-indent-6\">calls <em>nightmodeButton</em></li><li class=\"ql-indent-5\">NavDropdown.Item</li><li class=\"ql-indent-6\">Mini Map</li><li class=\"ql-indent-6\">calls <em>props.changeMiniMapState</em></li><li class=\"ql-indent-5\">NavDropdown 'Change background'</li><li class=\"ql-indent-6\">NavDropdown.Item</li><li class=\"ql-indent-7\">Crosses</li><li class=\"ql-indent-7\">calls <em>props.setBgstyle('cross')</em></li><li class=\"ql-indent-6\">NavDropdown.Item</li><li class=\"ql-indent-7\">Lines</li><li class=\"ql-indent-7\">calls <em>props.setBgstyle('lines')</em></li><li class=\"ql-indent-6\">NavDropdown.Item</li><li class=\"ql-indent-7\">None</li><li class=\"ql-indent-7\">calls <em>props.setBgstyle('dots')</em></li><li class=\"ql-indent-8\">normally supposed to set it to a dots style but it doesn't work for whatever reason. But; no markers is fine too.</li><li class=\"ql-indent-3\">Navbar.Brand</li><li class=\"ql-indent-4\">Scatterbrained</li></ul><p><br></p><h2>Properties:</h2><ul><li>props</li><li class=\"ql-indent-1\">changeStyle</li><li class=\"ql-indent-2\">function to change global css :root palette variables<sub>1</sub></li><li class=\"ql-indent-1\">nodeRef<sub>2</sub></li><li class=\"ql-indent-2\">reference to <strong>GraphEditor</strong> functions</li><li class=\"ql-indent-1\">setTitle</li><li class=\"ql-indent-2\">function to change document title</li><li class=\"ql-indent-1\">title</li><li class=\"ql-indent-1\">changeMiniMapState</li><li class=\"ql-indent-2\">function to change mini map enabling boolean<sub>1</sub></li><li class=\"ql-indent-1\">changeGridSnapState</li><li class=\"ql-indent-2\">function to change grid snap enabling boolean<sub>1</sub></li><li class=\"ql-indent-1\">setBgstyle</li><li class=\"ql-indent-2\">function to change background style<sub>1</sub></li><li class=\"ql-indent-1\">tool</li><li class=\"ql-indent-2\">current tool state<sub>3</sub></li><li class=\"ql-indent-1\">setIsSaved</li><li class=\"ql-indent-2\">sets current save state flag<sub>1</sub></li></ul><p><br></p><h2>Description:</h2><p>Top bar toolbar for opening and saving files, and changing aspects of the display.</p><p><br></p><p>[1] see <strong>App</strong></p><p>[2] see <strong>GraphEditor</strong></p><p>[3] see <strong>SidebarContextMenu</strong></p>"
       }
@@ -63,7 +66,8 @@
       "height": 100,
       "style": {
         "width": 191,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(159, 96, 208)"
       },
       "resizing": false,
       "data": {
@@ -154,7 +158,8 @@
       },
       "style": {
         "width": 158,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(93, 188, 70)"
       },
       "width": 158,
       "height": 100,
@@ -174,7 +179,8 @@
       },
       "style": {
         "width": 204,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(210, 176, 31)"
       },
       "resizing": false,
       "tool": "pointer",
@@ -193,7 +199,8 @@
       },
       "style": {
         "width": 163,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(176, 48, 202)"
       },
       "resizing": false,
       "tool": "pointer",
@@ -212,7 +219,8 @@
       },
       "style": {
         "width": 142,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(57, 144, 193)"
       },
       "resizing": false,
       "tool": "pointer",
@@ -249,7 +257,8 @@
       "height": 102,
       "style": {
         "width": 245,
-        "height": 102
+        "height": 102,
+        "backgroundColor": "rgb(93, 188, 70)"
       },
       "resizing": false,
       "data": {
@@ -267,7 +276,8 @@
       "height": 102,
       "style": {
         "width": 294,
-        "height": 102
+        "height": 102,
+        "backgroundColor": "rgb(210, 176, 31)"
       },
       "resizing": false,
       "data": {
@@ -285,7 +295,8 @@
       },
       "style": {
         "width": 240,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(57, 144, 193)"
       },
       "resizing": false,
       "tool": "pointer",
@@ -304,7 +315,8 @@
       },
       "style": {
         "width": 294,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(176, 48, 202)"
       },
       "resizing": false,
       "tool": "pointer",
@@ -323,7 +335,8 @@
       "height": 100,
       "style": {
         "width": 307,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(255, 255, 255)"
       },
       "resizing": false,
       "data": {
@@ -341,7 +354,8 @@
       "height": 100,
       "style": {
         "width": 332,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(210, 176, 31)"
       },
       "resizing": false,
       "data": {
@@ -359,7 +373,8 @@
       },
       "style": {
         "width": 332,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(176, 48, 202)"
       },
       "resizing": false,
       "tool": "pointer",
@@ -378,7 +393,8 @@
       "height": 100,
       "style": {
         "width": 365,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(210, 176, 31)"
       },
       "resizing": false,
       "data": {
@@ -396,7 +412,8 @@
       },
       "style": {
         "width": 365,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(176, 48, 202)"
       },
       "resizing": false,
       "tool": "pointer",
@@ -415,7 +432,8 @@
       "height": 100,
       "style": {
         "width": 277,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(210, 176, 31)"
       },
       "resizing": false,
       "data": {
@@ -434,7 +452,8 @@
       "tool": "pointer",
       "style": {
         "width": 282,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(176, 48, 202)"
       },
       "resizing": false,
       "data": {
@@ -454,7 +473,8 @@
       "tool": "pointer",
       "style": {
         "width": 271,
-        "height": 101
+        "height": 101,
+        "backgroundColor": "rgb(57, 144, 193)"
       },
       "data": {
         "content": "<h1>BothEdgeDirection</h1><p><br></p><h2>Variables:</h2><ul><li>disable</li><li class=\"ql-indent-1\">determines whether to disable this component</li></ul><p><br></p><h2>Callbacks:</h2><ul><li>useEffect [<em>selectedNodes, selectedEdges</em>]</li><li class=\"ql-indent-1\">state manager for <em>disable</em></li><li class=\"ql-indent-1\">if <em>selectedNodes.length</em> != 1</li><li class=\"ql-indent-2\">it leads to logical confusion, as setting the flow direction would be noncongruent with itself, so disable component</li><li class=\"ql-indent-1\">if <em>selectedEdges.length == </em>0</li><li class=\"ql-indent-2\">Impossible state due to <strong>BothBar</strong><sub>1</sub> only ever being enabled when <em>selectedEdges.length</em> &gt; 0, but prevents a crash when deleting selection.</li><li class=\"ql-indent-1\">if any selected <em>edge</em> doesn't point to the currently selected <em>node</em></li><li class=\"ql-indent-2\">Logical confusion, disable component</li><li class=\"ql-indent-1\">if all checks pass, enable component</li><li>flowInward()</li><li class=\"ql-indent-1\">sets all selected <em>edge</em>s to point to the currently selected <em>node</em></li><li class=\"ql-indent-2\">if <em>edge</em> already points to <em>node</em>, skip</li><li class=\"ql-indent-1\">mark history</li><li>flowOutward()</li><li class=\"ql-indent-1\">sets all selected <em>edge</em>s to point away from the currently selected <em>node</em></li><li class=\"ql-indent-2\">if <em>edge</em> already points away from <em>node</em>, skip</li><li class=\"ql-indent-1\">mark history</li></ul><p><br></p><h2>Components:</h2><ul><li>ButtonGroup</li><li class=\"ql-indent-1\">Button</li><li class=\"ql-indent-2\">calls <em>flowInward</em></li><li class=\"ql-indent-1\">NoteSvg</li><li class=\"ql-indent-1\">Button</li><li class=\"ql-indent-2\">calls flowOutward</li></ul><p><br></p><h2>Properties:</h2><ul><li>setEdges</li><li class=\"ql-indent-1\">callback to modify <em>edges</em><sub>1</sub></li><li>selectedNodes</li><li class=\"ql-indent-1\">list of currently selected <em>nodes</em><sub><em>2</em></sub></li><li>selectedEdges</li><li class=\"ql-indent-1\">list of currently selected <em>edges</em></li><li>markHistory<sub>3</sub></li><li class=\"ql-indent-1\">callback to mark history</li></ul><p><br></p><h2>Description:</h2><p>Button group that, when one node and it's edges are selected, can reverse selected edges.</p><p><br></p><p>[1][2][3] see <strong>GraphEditor</strong></p>"
@@ -471,7 +491,8 @@
       "height": 100,
       "style": {
         "width": 236,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(210, 176, 31)"
       },
       "resizing": false,
       "data": {
@@ -490,7 +511,8 @@
       "tool": "pointer",
       "style": {
         "width": 210,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(176, 48, 202)"
       },
       "resizing": false,
       "data": {
@@ -508,7 +530,8 @@
       },
       "style": {
         "width": 201,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(57, 144, 193)"
       },
       "resizing": false,
       "tool": "pointer",
@@ -527,7 +550,8 @@
       },
       "style": {
         "width": 257,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(255, 255, 255)"
       },
       "resizing": false,
       "tool": "pointer",
@@ -546,7 +570,8 @@
       "height": 100,
       "style": {
         "width": 138,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(255, 255, 255)"
       },
       "resizing": false,
       "data": {
@@ -564,7 +589,8 @@
       "height": 100,
       "style": {
         "width": 347,
-        "height": 100
+        "height": 100,
+        "backgroundColor": "rgb(255, 255, 255)"
       },
       "resizing": false,
       "data": {
@@ -596,8 +622,11 @@
         "x": 43.346976405862364,
         "y": 216.0472148917283
       },
+      "style": {
+        "backgroundColor": "rgb(255, 255, 255)"
+      },
       "data": {
-        "content": "<h1>utils</h1><p><br></p><h2>Functions:</h2><ul><li>sanitizeEdgesFromStorage(data, props)</li><li class=\"ql-indent-1\">cleans edges of unnecessary data for saving</li><li>sanitizeNodesFromStorage(data, props)</li><li class=\"ql-indent-1\">cleans nodes of unnecessary data for saving</li><li>sanitizeEdgesForStorage(props)</li><li class=\"ql-indent-1\">adds data necessary for displaying edges</li><li>sanitizeNodesForStorage(props)</li><li class=\"ql-indent-1\">adds data necessary for displaying nodes</li></ul><p><br></p><h2>Description:</h2><p>Utility functions for cleaner code.</p><p><br></p>"
+        "content": "<h1>utils</h1><p><br></p><h2>Functions:</h2><ul><li>sanitizeEdgesFromStorage(data, props)</li><li class=\"ql-indent-1\">cleans edges of unnecessary data for saving</li><li>sanitizeNodesFromStorage(data, props)</li><li class=\"ql-indent-1\">cleans nodes of unnecessary data for saving</li><li>sanitizeEdgesForStorage(props)</li><li class=\"ql-indent-1\">adds data necessary for displaying edges</li><li>sanitizeNodesForStorage(props)</li><li class=\"ql-indent-1\">adds data necessary for displaying nodes</li></ul><p><br></p><h2>Description:</h2><p>Utility functions for cleaner code.</p>"
       }
     }
   ],
@@ -663,73 +692,109 @@
       "type": "straight",
       "id": "1699251840590.87259",
       "source": "1699251457332.19575",
-      "target": "1699251840590.87259"
+      "target": "1699251840590.87259",
+      "style": {
+        "stroke": "rgb(93, 188, 70)"
+      }
     },
     {
       "type": "straight",
       "id": "1699251846259.39926",
       "source": "1699251457332.19575",
-      "target": "1699251846259.72371"
+      "target": "1699251846259.72371",
+      "style": {
+        "stroke": "rgb(210, 176, 31)"
+      }
     },
     {
       "type": "straight",
       "id": "1699251853580.26831",
       "source": "1699251457332.19575",
-      "target": "1699251853579.78221"
+      "target": "1699251853579.78221",
+      "style": {
+        "stroke": "rgb(176, 48, 202)"
+      }
     },
     {
       "type": "straight",
       "id": "1699251862141.16728",
       "source": "1699251457332.19575",
-      "target": "1699251862141.32228"
+      "target": "1699251862141.32228",
+      "style": {
+        "stroke": "rgb(57, 144, 193)"
+      }
     },
     {
       "type": "straight",
       "id": "1699252249998.44457",
       "source": "1699251840590.87259",
-      "target": "1699252113990.40984"
+      "target": "1699252113990.40984",
+      "style": {
+        "stroke": "rgb(93, 188, 70)"
+      }
     },
     {
       "type": "straight",
       "id": "1699252250875.68520",
       "source": "1699251846259.72371",
-      "target": "1699252182747.67726"
+      "target": "1699252182747.67726",
+      "style": {
+        "stroke": "rgb(210, 176, 31)"
+      }
     },
     {
       "type": "straight",
       "id": "1699252251630.96608",
       "source": "1699251862141.32228",
-      "target": "1699252207854.98899"
+      "target": "1699252207854.98899",
+      "style": {
+        "stroke": "rgb(57, 144, 193)"
+      }
     },
     {
       "type": "straight",
       "id": "1699252252473.53048",
       "source": "1699251853579.78221",
-      "target": "1699252222599.78529"
+      "target": "1699252222599.78529",
+      "style": {
+        "stroke": "rgb(176, 48, 202)"
+      }
     },
     {
       "type": "step",
       "id": "1699252280501.1363",
       "source": "1699252263581.81195",
-      "target": "1699252113990.40984"
+      "target": "1699252113990.40984",
+      "style": {
+        "stroke": "rgb(255, 255, 255)"
+      }
     },
     {
       "type": "step",
       "id": "1699252281191.83515",
       "source": "1699252263581.81195",
-      "target": "1699252182747.67726"
+      "target": "1699252182747.67726",
+      "style": {
+        "stroke": "rgb(255, 255, 255)"
+      }
     },
     {
       "type": "step",
       "id": "1699252282194.36447",
       "source": "1699252263581.81195",
-      "target": "1699252207854.98899"
+      "target": "1699252207854.98899",
+      "style": {
+        "stroke": "rgb(255, 255, 255)"
+      }
     },
     {
       "type": "step",
       "id": "1699252283866.36667",
       "source": "1699252263581.81195",
-      "target": "1699252222599.78529"
+      "target": "1699252222599.78529",
+      "style": {
+        "stroke": "rgb(255, 255, 255)"
+      }
     },
     {
       "type": "straight",
@@ -741,73 +806,109 @@
       "type": "straight",
       "id": "1699252363925.56466",
       "source": "1699251846259.72371",
-      "target": "1699252289037.38367"
+      "target": "1699252289037.38367",
+      "style": {
+        "stroke": "rgb(210, 176, 31)"
+      }
     },
     {
       "type": "straight",
       "id": "1699252365058.6386",
       "source": "1699251853579.78221",
-      "target": "1699252341536.99116"
+      "target": "1699252341536.99116",
+      "style": {
+        "stroke": "rgb(176, 48, 202)"
+      }
     },
     {
       "type": "straight",
       "id": "1699252511709.41585",
       "source": "1699251853579.78221",
-      "target": "1699252500670.83383"
+      "target": "1699252500670.83383",
+      "style": {
+        "stroke": "rgb(176, 48, 202)"
+      }
     },
     {
       "type": "straight",
       "id": "1699252513031.20924",
       "source": "1699251846259.72371",
-      "target": "1699252478436.23482"
+      "target": "1699252478436.23482",
+      "style": {
+        "stroke": "rgb(210, 176, 31)"
+      }
     },
     {
       "type": "straight",
       "id": "1699252570421.78927",
       "source": "1699251853579.78221",
-      "target": "1699252561703.63215"
+      "target": "1699252561703.63215",
+      "style": {
+        "stroke": "rgb(176, 48, 202)"
+      }
     },
     {
       "type": "straight",
       "id": "1699252577273.83966",
       "source": "1699251846259.72371",
-      "target": "1699252545946.99674"
+      "target": "1699252545946.99674",
+      "style": {
+        "stroke": "rgb(210, 176, 31)"
+      }
     },
     {
       "type": "straight",
       "id": "1699252596274.95637",
       "source": "1699251862141.32228",
-      "target": "1699252593428.15642"
+      "target": "1699252593428.15642",
+      "style": {
+        "stroke": "rgb(57, 144, 193)"
+      }
     },
     {
       "type": "straight",
       "id": "1699252652803.12340",
       "source": "1699251853579.78221",
-      "target": "1699252632481.73713"
+      "target": "1699252632481.73713",
+      "style": {
+        "stroke": "rgb(176, 48, 202)"
+      }
     },
     {
       "type": "straight",
       "id": "1699252654100.21901",
       "source": "1699251846259.72371",
-      "target": "1699252618182.8138"
+      "target": "1699252618182.8138",
+      "style": {
+        "stroke": "rgb(210, 176, 31)"
+      }
     },
     {
       "type": "straight",
       "id": "1699252657189.86861",
       "source": "1699251862141.32228",
-      "target": "1699252657189.42933"
+      "target": "1699252657189.42933",
+      "style": {
+        "stroke": "rgb(57, 144, 193)"
+      }
     },
     {
       "type": "step",
       "id": "1699291242231.73578",
       "source": "1699291227315.26488",
-      "target": "1699252289037.38367"
+      "target": "1699252289037.38367",
+      "style": {
+        "stroke": "rgb(255, 255, 255)"
+      }
     },
     {
       "type": "step",
       "id": "1699291243831.13971",
       "source": "1699291227315.26488",
-      "target": "1699252341536.99116"
+      "target": "1699252341536.99116",
+      "style": {
+        "stroke": "rgb(255, 255, 255)"
+      }
     },
     {
       "type": "step",
@@ -819,67 +920,100 @@
       "type": "step",
       "id": "1699294785116.6615",
       "source": "1699252113990.40984",
-      "target": "1699294686459.55552"
+      "target": "1699294686459.55552",
+      "style": {
+        "stroke": "rgb(255, 255, 255)"
+      }
     },
     {
       "type": "step",
       "id": "1699294792132.36192",
       "source": "1699252207854.98899",
-      "target": "1699294686459.55552"
+      "target": "1699294686459.55552",
+      "style": {
+        "stroke": "rgb(255, 255, 255)"
+      }
     },
     {
       "type": "step",
       "id": "1699294795429.2819",
       "source": "1699252222599.78529",
-      "target": "1699294686459.55552"
+      "target": "1699294686459.55552",
+      "style": {
+        "stroke": "rgb(255, 255, 255)"
+      }
     },
     {
       "type": "step",
       "id": "1699294828669.91206",
       "source": "1699294686459.55552",
-      "target": "1699252341536.99116"
+      "target": "1699252341536.99116",
+      "style": {
+        "stroke": "rgb(255, 255, 255)"
+      }
     },
     {
       "type": "step",
       "id": "1699294830380.54229",
       "source": "1699294686459.55552",
-      "target": "1699252500670.83383"
+      "target": "1699252500670.83383",
+      "style": {
+        "stroke": "rgb(255, 255, 255)"
+      }
     },
     {
       "type": "step",
       "id": "1699294831857.61321",
       "source": "1699294686459.55552",
-      "target": "1699252561703.63215"
+      "target": "1699252561703.63215",
+      "style": {
+        "stroke": "rgb(255, 255, 255)"
+      }
     },
     {
       "type": "step",
       "id": "1699294833623.86944",
       "source": "1699294686459.55552",
-      "target": "1699252632481.73713"
+      "target": "1699252632481.73713",
+      "style": {
+        "stroke": "rgb(255, 255, 255)"
+      }
     },
     {
       "type": "step",
       "id": "1699294851344.8768",
       "source": "1699294686459.55552",
-      "target": "1699252593428.15642"
+      "target": "1699252593428.15642",
+      "style": {
+        "stroke": "rgb(255, 255, 255)"
+      }
     },
     {
       "type": "step",
       "id": "1699294852895.32492",
       "source": "1699294686459.55552",
-      "target": "1699252657189.42933"
+      "target": "1699252657189.42933",
+      "style": {
+        "stroke": "rgb(255, 255, 255)"
+      }
     },
     {
       "type": "step",
       "id": "1699296529873.7614",
       "source": "1699296472957.44910",
-      "target": "1699252478436.23482"
+      "target": "1699252478436.23482",
+      "style": {
+        "stroke": "rgb(255, 255, 255)"
+      }
     },
     {
       "type": "straight",
       "id": "1699303028442.94375",
       "source": "1699251862141.32228",
-      "target": "1699252500670.83383"
+      "target": "1699252500670.83383",
+      "style": {
+        "stroke": "rgb(57, 144, 193)"
+      }
     },
     {
       "type": "straight",
@@ -915,7 +1049,10 @@
       "type": "step",
       "id": "1699995900067.29400",
       "source": "1699250791239.69913",
-      "target": "1699995900067.29400"
+      "target": "1699995900067.29400",
+      "style": {
+        "stroke": "rgb(255, 255, 255)"
+      }
     }
   ]
 }
