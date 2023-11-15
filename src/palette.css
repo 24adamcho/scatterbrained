@@ -1,5 +1,5 @@
 .palette-light {
-	--color-high: rgb(218, 212, 187);
+	--color-high: rgb(219, 212, 189);
 	--color-low: rgb(87, 84, 74);
 	--color-mid: rgb(151, 147, 129);
 	--color-alert: rgb(205, 102, 77);
@@ -15,7 +15,7 @@
 }
 
 .palette-dark {
-	--color-low: rgb(218, 212, 187);
+	--color-low: rgb(219, 212, 189);
 	--color-high: rgb(87, 84, 74);
 	--color-mid: rgb(151, 147, 129);
 	--color-green: rgb(205, 102, 77);
