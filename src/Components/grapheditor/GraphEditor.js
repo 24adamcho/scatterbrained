@@ -657,7 +657,7 @@ const GraphEditor = forwardRef((
                     onNodeDoubleClick={onNodeDoubleClick}
                     onNodeDrag={(a, b) => {changeNoteId(a, b);}}
                     onNodeDragStop={()=>markHistory()}
-                    nodeDragThreshold={2}
+                    nodeDragThreshold={10}
                     onNodesDelete={clearEditor}
                     onConnect={onConnect}
                     onConnectStart={onConnectStart}
