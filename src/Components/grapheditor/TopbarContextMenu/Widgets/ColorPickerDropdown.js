@@ -39,7 +39,9 @@ const ColorPickerDropdown = ({
     //and RajeshP's answer to https://stackoverflow.com/questions/42827884/split-a-number-from-a-string-in-javascript
     //this function is to assign hexColorInput's text after a change, converting rgb(r,g,b) to hex
     useEffect(()=>{
+        if(color === undefined) return;
         var s = color.match(/\d+/g);
+        if(s === undefined) return;
         setHexColor(rgbToHex(s[0], s[1], s[2]))
     },[color])
 
