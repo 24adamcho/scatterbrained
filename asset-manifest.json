@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/scatterbrained/static/css/main.a8120c22.css",
+    "main.js": "/scatterbrained/static/js/main.a297335e.js",
+    "static/js/787.581dbd78.chunk.js": "/scatterbrained/static/js/787.581dbd78.chunk.js",
+    "static/media/solid-slash-dashed.svg": "/scatterbrained/static/media/solid-slash-dashed.a26895765a1ba9598223d93b6b016969.svg",
+    "static/media/dashedType.svg": "/scatterbrained/static/media/dashedType.27795ed7413e6126c9a33dc102242587.svg",
+    "static/media/reset-svgrepo-com.svg": "/scatterbrained/static/media/reset-svgrepo-com.46dadad078103d589fa017f1bae6483d.svg",
+    "static/media/note-sticky-svgrepo-com.svg": "/scatterbrained/static/media/note-sticky-svgrepo-com.95c02a02aa5ed82ec2f78abfe706e0dc.svg",
+    "static/media/cursor-alt-svgrepo-com.svg": "/scatterbrained/static/media/cursor-alt-svgrepo-com.e201dc3fb22381f29c60447c303d2942.svg",
+    "static/media/scribble-svgrepo-com.svg": "/scatterbrained/static/media/scribble-svgrepo-com.32372d5cad89f109d79648cd627c7dea.svg",
+    "static/media/bezierType.svg": "/scatterbrained/static/media/bezierType.df9a582545395027b531257baffd96b7.svg",
+    "index.html": "/scatterbrained/index.html",
+    "static/media/steppedType.svg": "/scatterbrained/static/media/steppedType.b144601460a79749db18184a1fc84db2.svg",
+    "static/media/straightType.svg": "/scatterbrained/static/media/straightType.7d3c11db285b408e4762dc876d25b25f.svg",
+    "static/media/add-note-svgrepo-com.svg": "/scatterbrained/static/media/add-note-svgrepo-com.28e172aa339165043f29e38ef4223968.svg",
+    "static/media/reverse-svgrepo-com.svg": "/scatterbrained/static/media/reverse-svgrepo-com.92bc6d2cdf8ec8918ad7a3a0533f6743.svg",
+    "static/media/arrow-narrow-right-alignment-svgrepo-com.svg": "/scatterbrained/static/media/arrow-narrow-right-alignment-svgrepo-com.eb9a1985282460b037bf9a3fc2362fce.svg",
+    "static/media/arrow-narrow-right-move-svgrepo-com.svg": "/scatterbrained/static/media/arrow-narrow-right-move-svgrepo-com.b2ab5b39e2239cca77b568c34b11263a.svg",
+    "static/media/resize-handle-svgrepo-com.svg": "/scatterbrained/static/media/resize-handle-svgrepo-com.d4bdbc5d4efeaaa3579e10e02adda6eb.svg",
+    "static/media/slash-svgrepo-com.svg": "/scatterbrained/static/media/slash-svgrepo-com.7f2d326ab9e17a0d4d8109356dddbcd0.svg",
+    "main.a8120c22.css.map": "/scatterbrained/static/css/main.a8120c22.css.map",
+    "main.a297335e.js.map": "/scatterbrained/static/js/main.a297335e.js.map",
+    "787.581dbd78.chunk.js.map": "/scatterbrained/static/js/787.581dbd78.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a8120c22.css",
+    "static/js/main.a297335e.js"
+  ]
+}
