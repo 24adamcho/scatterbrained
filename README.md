@@ -7,6 +7,7 @@ Scatterbrained is a tool for taking notes, and then connecting those notes in an
 
 ## How do I use it?
 Scatterbrained is a static React app. Open it in any browser of choice. (Note: tested in Chrome and Firefox. Some CSS divergences will appear.)
+It has *partial* functionality on mobile devices, but most of the CSS and keybinds are designed for desktop.
 
 Want to see it in action? `docs.json` is documentation for this project! Download and open it in the app to see.
 
